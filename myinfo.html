@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tekken Supporter</title>
+  <link rel="stylesheet" href="myinfo.css">
+</head>
+
+<body>
+
+<div class="container">
+    <video autoplay loop muted plays-inline class="background-clip">
+        <source src="background.mp4" type="video/mp4">
+    </video>
+  
+    <header>
+        <h2 class="logo">Tekken</h2>
+        <nav class="navigation">
+            <a href="myinfo.html"><strong>계정 정보</strong></a>
+            <a href="tier.html" class="tier">티어표</a>
+            <a href="fight.html" class="fight">1:1대결</a>
+            <a href="help.html" class="help">캐릭터 도움말</a>
+            <button class="btnLogout" onclick="logout()">로그아웃</button>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <div class="form-box myinfo">
+          <h2>계정 정보</h2>
+          <form onsubmit="return save()" action="#">
+            <div class="output-box">
+              <span class="icon"><ion-icon name="person"></ion-icon></span>
+              <label>이름</label>
+              <p class="output" id="name"></p>
+            </div>
+            <div class="output-box">
+              <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <label>아이디</label>
+              <output type="text" id="id">
+            </div>
+            <div class="output-box">
+              <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <label>비밀번호</label>
+              <output type="text" id="password">
+            </div>
+            <div class="output-box">
+              <span class="icon"><ion-icon name="accessibility"></ion-icon></span>
+              <label>주캐릭터</label>
+              <output type="text" id="champion">
+            </div>
+            <div class="output-box">
+              <span class="icon"><ion-icon name="cellular"></ion-icon></span>
+              <label>티어</label>
+              <output type="text" id="tier">
+            </div>
+            <div class="change-info">
+              <button type="submit" class="btn">수정하기</button>
+            </div>
+          </form>
+        </div>
+    </div>
+
+
+
+    <script src="myinfo.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+</body>
+
+</html>

@@ -202,6 +202,7 @@ header {
     transition: .5s;
 }
 
+
 .input-box input:focus~label,
 .input-box input:valid~label {
     top: -5px;
@@ -220,6 +221,14 @@ header {
 }
 
 .input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #272727;
+    line-height: 57px;
+}
+
+.input-box .icon-eyeoff {
     position: absolute;
     right: 8px;
     font-size: 1.2em;
