@@ -28,3 +28,9 @@ function logout() {
   localStorage.removeItem("jwt");
   window.location.href = "./main.html";
 }
+
+
+
+const wrapper = document.querySelector('.wrapper');
+
+btnPopup.addEventListener('click', ()=> {wrapper.classList.add('active-popup');});
