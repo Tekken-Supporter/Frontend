@@ -1,0 +1,178 @@
+
+body {
+    font-family: 돋움, Dotum, sans-serif;
+    font-size: medium;
+    position: relative;
+    background: linear-gradient(303.19deg, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 61.15%), linear-gradient(107.71deg, #5E69C8 9.62%, rgba(215, 13, 86, 0.46) 85.4%), linear-gradient(89.52deg, #5E69C8 10.57%, rgba(243, 122, 122, 0.46) 99.88%);
+
+  }
+
+.champion_name{
+    position: absolute;
+    left: 2.12%;
+    right: 0%;
+    top: 600px;
+    
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+    
+    color: #000000;
+
+}
+
+.champion_pic{
+
+position: absolute;
+width: 335px;
+height: 392px;
+left: 233px;
+top: 304px;
+background-color:#FEDD28;
+border: 1px solid #000000;
+
+}
+
+.champion_shadow{
+position: absolute;
+border-bottom: 100px solid rgba(163, 121, 253, 0.69873);
+border-left: 50px solid transparent;
+border-right: 50px solid transparent;
+height:0;
+width: 280px;
+left: 220px;
+top: 700px;
+
+background: linear-gradient(180.08deg, #7B3FFC 17.45%, rgba(163, 121, 253, 0.69873) 35.16%, 
+rgba(206, 183, 254, 0.17) 54.88%, rgba(225, 211, 254, 0.04) 64.87%,
+ rgba(255, 255, 255, 0) 80.23%);
+
+}
+
+.under10th{
+
+position: absolute;
+width: 346px;
+height: 743px;
+left: 1472px;
+top: 169px;
+font-family: 'Inter';
+font-style: italic;
+font-weight: 600;
+font-size: 30px;
+line-height: 36px;
+text-transform: uppercase;
+
+color: #000000;
+    
+background: #FFFFFF;
+}
+  
+
+.box2{
+
+position: absolute;
+width: 105px;
+height: 122px;
+left: 839px;
+top: 205px;
+
+border-top: 50px solid transparent;
+border-bottom: 70px solid red;
+border-left: 0px solid transparent;
+border-right: 30px solid red;
+background-color: black;
+
+}
+
+.box3{
+    position: absolute;
+    width: 135px;
+    height: 192px;
+    left: 1089px;
+    top: 235px;
+    background-color: #000000;
+}
+.box4{
+position: absolute;
+width: 134px;
+height: 192px;
+left: 771px;
+top: 453px;
+background-color: #000000;
+}
+.box5{
+    position: absolute;
+    width: 134px;
+    height: 192px;
+    left: 989px;
+    top: 453px;
+    background-color: #000000;
+}
+.box6{
+    position: absolute;
+    width: 134px;
+    height: 192px;
+    left: 1181px;
+    top: 453px;
+    background-color: #000000;
+}
+.box7{
+    position: absolute;
+    width: 134px;
+    height: 192px;
+    left: 749px;
+    top: 679px;
+    background-color: #000000;
+}
+.box8{
+    position: absolute;
+    width: 134px;
+    height: 192px;
+    left: 907px;
+    top: 679px;
+    background-color: #000000;
+    
+    }
+
+.box9{
+ position: absolute;
+width: 134px;
+height: 192px;
+left: 1065px;
+top: 679px;
+background-color: #000000;
+    }
+.box10{
+ position: absolute;
+width: 134px;
+height: 192px;
+left: 1223px;
+top: 679px;
+background-color: #000000;
+    }
+
+.opener{
+position: absolute;
+width: 346px;
+height: 68px;
+left: 1472px;
+top: 900px;
+
+font-family: 'Inter';
+font-style: italic;
+font-weight: 600;
+font-size: 30px;
+line-height: 36px;
+text-transform: uppercase;
+
+background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 17.71%, rgba(0, 0, 0, 0) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+
+}
