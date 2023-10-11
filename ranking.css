@@ -5,9 +5,17 @@ body {
     font-family: 돋움, Dotum, sans-serif;
     font-size: medium;
     position: relative;
-    background: linear-gradient(303.19deg, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 61.15%), linear-gradient(107.71deg, #5E69C8 9.62%, rgba(215, 13, 86, 0.46) 85.4%), linear-gradient(89.52deg, #5E69C8 10.57%, rgba(243, 122, 122, 0.46) 99.88%);
-
-  }
+    background: linear-gradient(303.19deg, 
+    rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 61.15%), 
+    linear-gradient(107.71deg, #5E69C8 9.62%, rgba(215, 13, 86, 0.46) 85.4%), 
+    linear-gradient(89.52deg, #5E69C8 10.57%, rgba(243, 122, 122, 0.46) 99.88%);
+    background-size: cover;
+    background-position: center;  
+    
+    display: flex;
+    align-items: center;
+      
+}
 
   .container { 
     position: relative;
@@ -31,14 +39,14 @@ body {
 
   .container_2{ 
     position: relative;
-    width: 30%;
+    width: 60%;
  
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     background-color: rgba(17, 25, 40, 0.25);
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.125);  
-    padding: 38px;  
+    padding: 5px 5px 5px 5px;  
     filter: drop-shadow(0 30px 10px rgba(0,0,0,0.125));
     display: flex;
     flex-direction: column;
@@ -135,7 +143,7 @@ body {
   
   .fill:hover{
     transform: scale(1.125);  
-    border-color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(175, 128, 128, 0.9);
     filter: drop-shadow(0 10px 5px rgba(0,0,0,0.125));
     transition: all .3s ease;    
   }
@@ -147,7 +155,7 @@ width: 346px;
 height: 743px;
 left: 1472px;
 top: 169px;
-font-align: center;
+text-align: center;
 font-family: 'Inter';
 font-style: italic;
 font-weight: 600;
@@ -155,8 +163,10 @@ font-size: 30px;
 line-height: 36px;
 text-transform: uppercase;
 
-color: #000000;
-background: #FFFFFF;
+backdrop-filter: blur(16px) saturate(180%);
+-webkit-backdrop-filter: blur(16px) saturate(180%);
+background-color: rgba(17, 25, 40, 0.25);
+
 
 }
   
@@ -170,7 +180,7 @@ top: 205px;
 .box3{
     position: absolute;
     left: 1089px;
-    top: 235px;
+    top: 205px;
 }
    
 .box4{
@@ -191,27 +201,26 @@ top: 453px;
 }
 .box7{
     position: absolute;
-    left: 749px;
+    left: 680px;
     top: 679px;
 }
 .box8{
     position: absolute;
-    left: 907px;
+    left: 887px;
     top: 679px;
     }
 
 .box9{
 position: absolute;
-left: 1065px;
+left: 1085px;
 top: 679px;
 
     }
 
 .box10{
 position: absolute;
-left: 1223px;
+left: 1293px;
 top: 679px;
-
 }
 
 .opener{
