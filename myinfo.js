@@ -33,14 +33,22 @@ function loadUser() {
 
 const update_user = (event) =>{
   event.preventDefault();
-  //예외처리를 해야함
-  /*
-  1. 두값이 전부 채워졌는지.
-  2. 주캐릭터가 올바른지.
-  
-  */
+
+  if (!input_champion.value || !input_password.value) {
+        alert('챔피언 값과 비밀번호 값이 채워져야 합니다!');
+        return;
+    }
+
+  const validChampions = ['AKUMA', 'ALISA', 'ARMOR KING', 'ASUKA', 'BOB', 'BRYAN', 'CLAUDIO', 'DEVIL JIN', 'DRAGUNOV', 'EDDY', 
+  'FENG', 'GIGAS', 'HEIHACHI','HWARANG', 'JACK-7', 'JIN', 'JOSIE', 'KATARINA', 'KAZUMI', 'KAZUYA', 'KING', 'KUMA', 'LARS',
+  'LAW', 'LEE', 'LEO', 'LILI', 'LUCKY CHLOE', 'MASTER RAVEN', 'MIGUEL', 'NINA', 'PANDA', 'PAUL', 'SHAHEEN', 'STEVE', 'XIAOYU', 'YOSHIMITSU'
+  ];
+  if (!validChampions.includes(input_champion.value)) {
+        alert('Please enter a valid champion!');
+        return;
+  }
+
   console.log(input_champion.value,input_password.value)
-  //loadUser();
 }
 
 btnLogout.addEventListener("click",logout)
