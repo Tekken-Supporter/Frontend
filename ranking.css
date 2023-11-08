@@ -17,18 +17,32 @@ body {
       
 }
 
+<<<<<<< Updated upstream
   .container { 
     position: relative;
     left: 100px;
     top: 250px;
     width: 10%;
+=======
+
+  .champion{ 
+    position: absolute;
+    left: 50px;
+    top: 70px;
+    height: 600px;
+    width: 400px;
+>>>>>>> Stashed changes
  
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     background-color: rgba(17, 25, 40, 0.25);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.125);  
+<<<<<<< Updated upstream
     padding: 38px;  
+=======
+    padding: 20px 0 0 0 ;  
+>>>>>>> Stashed changes
     filter: drop-shadow(0 30px 10px rgba(0,0,0,0.125));
     display: flex;
     flex-direction: column;
@@ -58,6 +72,7 @@ body {
   .wrapper {
     width: 100%;
     height: 100%;
+
   }
   .wrapper2 {
     width: 100%;
@@ -68,12 +83,47 @@ body {
     background-image: url(https://images.unsplash.com/photo-1641326201918-3cafc641038e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
     background-position: center;
     background-size: cover;
+    margin-left: 15px;
     height: 300px;
-    width: 100%;
+    width: 90%;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255, 0.255)
+    border: 3px solid rgba(255,255,255, 0.255)
+  }
+<<<<<<< Updated upstream
+
+=======
+  .from2to10 {
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    width: 60%;
+    background-color: aquamarine;
+    }
+
+  .container_2{ 
+    position: relative;
+    width: 90%;
+ 
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.25);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.125);  
+    padding: 5px 5px 5px 5px;  
+    filter: drop-shadow(0 10px 5px rgba(0,0,0,0.125));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    text-align: center;
   }
 
+  .wrapper2 {
+    width: 100%;
+    height: 100%;
+  }
+  
+>>>>>>> Stashed changes
   .banner-image2 {
     background-image: url(https://images.unsplash.com/photo-1641326201918-3cafc641038e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
     background-position: center;
@@ -171,22 +221,36 @@ background-color: rgba(17, 25, 40, 0.25);
 }
   
 
+
 .box2{
 position: absolute;
+<<<<<<< Updated upstream
 left: 839px;
 top: 205px;
+=======
+left: 500px;
+>>>>>>> Stashed changes
 }
 
 .box3{
     position: absolute;
+<<<<<<< Updated upstream
     left: 1089px;
     top: 205px;
+=======
+    left: 650px;
+>>>>>>> Stashed changes
 }
    
 .box4{
 position: absolute;
+<<<<<<< Updated upstream
 left: 771px;
 top: 453px;
+=======
+left: 430px;
+top: 250px;
+>>>>>>> Stashed changes
 }
 
 .box5{
@@ -219,8 +283,53 @@ top: 679px;
 
 .box10{
 position: absolute;
+<<<<<<< Updated upstream
 left: 1293px;
 top: 679px;
+=======
+left: 760px;
+top: 500px;
+ }
+.under10th{
+  position: absolute;
+  top: 50px;
+  left: 1450px;
+
+  height: 650px;
+  width: 20%;
+ 
+  text-align: center;
+  font-family: 'Inter';
+  font-style: italic;
+  
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 23px;
+  text-transform: uppercase;
+  
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.25);
+  
+  }
+.rank-opener{
+  position: absolute;
+  left: 1450px;
+  top: 750px;
+  height: 50px;
+  width: 10%;
+
+  text-align: center;
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 90;
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: uppercase;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(185, 142, 202, 0.25);
+>>>>>>> Stashed changes
 }
 
 .opener{
