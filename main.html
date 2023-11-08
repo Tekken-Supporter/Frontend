@@ -10,14 +10,14 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script defer src="./login.js"></script>
     <script>
-        function enable(){
+        function enable() {
             var check = document.getElementById("check");
             var btn = document.getElementById("btn");
-            if(check.checked){
+            if (check.checked) {
                 btn.removeAttribute("disabled");
                 console.log("필수체크");
             }
-            else{
+            else {
                 btn.disabled = "true";
             }
         }
@@ -31,99 +31,99 @@
 
 <body>
 
-<div class="container">
-    <video autoplay loop muted plays-inline class="background-clip">
-        <source src="background.mp4" type="video/mp4">
-    </video>
+    <div class="container">
+        <video autoplay loop muted plays-inline class="background-clip">
+            <source src="background.mp4" type="video/mp4">
+        </video>
 
-    <header>
-        <h2 class="logo" href="main.html">Tekken</h2>
-        <nav class="navigation">
-            <a href="#">계정 정보</a>
-            <a href="#">티어표</a>
-            <a href="#">1:1 대결</a>
-            <a href="#">캐릭터 도움말</a>
-            
-        </nav>
-    </header>
+        <header>
+            <h2 class="logo" href="main.html">Tekken</h2>
+            <nav class="navigation">
+                <a href="#">계정 정보</a>
+                <a href="#">티어표</a>
+                <a href="#">1:1 대결</a>
+                <a href="#">캐릭터 도움말</a>
 
-    <button class="btnLogin-popup"><b>L O G I N</b></button>
+            </nav>
+        </header>
 
-    <div class="wrapper">
-        <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+        <button class="btnLogin-popup"><b>L O G I N</b></button>
 
-        <div class="form-box login">
-            <h2>로그인</h2>
-            <form onsubmit="return login()" action="#">
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <input class="input_id" type="text" required id="id">
-                    <label>아이디</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="eye-off" id="eyeicon"></ion-icon></span>
-                    <input type="password" required id="password">
-                    <label>비밀번호</label>
-                </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox">아이디 저장하기</label>
-                    <a href="#" class="idpw_search">비밀번호를 까먹었나영?</a>
-                </div>
-                <div class="submit-login">
-                <button type="submit" class="login_btn">로그인</button>
-                </div>
-                <div class="login-register">
-                    <p>계정이 없으시나영? <a href="#" class="register-link">회원가입하기</a></p>
-                </div>
-            </form>
-        </div>
+        <div class="wrapper">
+            <span class="icon-close"><ion-icon name="close"></ion-icon></span>
 
-        <div class="form-box register">
-            <h2>회원가입</h2>
-            <form onsubmit="return register()" action="#">
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <input type="text" required id="newname">
-                    <label>이름</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                    <input type="text" required id="newid">
-                    <label>아이디</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" required id="newpassword">
-                    <label>비밀번호</label>
-                </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox" id="check" onclick="enable()">[필수]인터페이스 소속입니다.</label>
-                </div>
-                <div class="submit-register">
-                <button type="submit" id="btn" class="register_btn" disabled="true">회원가입</button>
-                </div>
-                <div class="login-register">
-                    <p>계정이 있으시나영? <a href="#" class="login-link">로그인하기</a></p>
-                </div>
-            </form>
+            <div class="form-box">
+                <h2>로그인</h2>
+                <form onsubmit="return login()" action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <input class="input_id" type="text" required id="id">
+                        <label>아이디</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="eye-off" id="eyeicon"></ion-icon></span>
+                        <input type="password" required id="password">
+                        <label>비밀번호</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">아이디 저장하기</label>
+                        <a href="#" class="idpw_search">비밀번호를 까먹었나영?</a>
+                    </div>
+                    <div class="submit-login">
+                        <button type="submit" class="login_btn">로그인</button>
+                    </div>
+                    <div class="login-register">
+                        <p>계정이 없으시나영? <a href="#" class="register-link">회원가입하기</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-box register">
+                <h2>회원가입</h2>
+                <form onsubmit="return register()" action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <input type="text" required id="newname">
+                        <label>이름</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                        <input type="text" required id="newid">
+                        <label>아이디</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <input type="password" required id="newpassword">
+                        <label>비밀번호</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox" id="check" onclick="enable()">[필수]인터페이스 소속입니다.</label>
+                    </div>
+                    <div class="submit-register">
+                        <button type="submit" id="btn" class="register_btn" disabled="true">회원가입</button>
+                    </div>
+                    <div class="login-register">
+                        <p>계정이 있으시나영? <a href="#" class="login-link">로그인하기</a></p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script defer>
-    let password = document.getElementById("password");
-    let eyeicon = document.getElementById("eyeicon");
-    eyeicon.onclick=function(){ 
-        if (password.type === "password") {
-            password.type = "text";
-            eyeicon.name = "eye";
-        } else {
-            password.type = "password";
-            eyeicon.name = "eye-off";
+    <script defer>
+        let password = document.getElementById("password");
+        let eyeicon = document.getElementById("eyeicon");
+        eyeicon.onclick = function () {
+            if (password.type === "password") {
+                password.type = "text";
+                eyeicon.name = "eye";
+            } else {
+                password.type = "password";
+                eyeicon.name = "eye-off";
+            }
         }
-    }
-</script>
-    
+    </script>
+
 </body>
 
 </html>
