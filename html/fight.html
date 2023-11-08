@@ -24,11 +24,32 @@
             <a href="tier.html" class="tier">티어표</a>
             <a href="fight.html" class="fight"><strong>1:1대결</strong></a>
             <a href="help.html" class="help">캐릭터 도움말</a>
-            <button class="btnLogout" onclick="logout()">로그아웃</button>
+            <button class="btnLogout">로그아웃</button>
         </nav>
     </header>
 
-
+    <div class="fight-quest">
+        <form action="">
+            <div class="message-icon">
+                <i class="bi bi-telegram"></i>
+                <span>1:1 대결 신청</span>
+            </div>
+            <div id="input-field">
+                <i class="bi bi-person"></i>
+                <span>To.</span>
+                <input type="text" placeholder="Name" name="Name">
+            </div>
+            <div id="input-field">
+                <i class="bi bi-telephone"></i>
+                <input type="text" placeholder="ID" name="ID">
+            </div>
+            <div id="input-field">
+                <i class="bi bi-chat-right-dots"></i>
+                <textarea type="Message" placeholder="Message" rows="5"></textarea>
+            </div>
+            <input type="submit" value="Submit" class="send-btn">
+        </form>
+    </div>
 
     
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
