@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./fight.js"></script>
 
     <title>Tekken Supporter</title>
     <link rel="stylesheet" href="fight.css">
@@ -28,32 +29,35 @@
             </nav>
         </header>
 
-        <div class="hero">
-            <h2 class="fight">1:1 대결</h2>
-            <div class="fight-quest">
-                <form action="">
+        <button class="btnQuest-popup"><b>대결 신청</b></button>
+
+        <div class="wrapper">
+            <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+            <div class="form-box fight-quest">
+                <h2>1:1 대결</h2>
+                <form onsubmit="return quest()" action="#">
+                    <div class="input-box" id="input-field">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <span>To.</span>
+                        <input type="text" placeholder="이름" name="Name">
+                    </div>
+                    <div class="input-box" id="input-field">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <input type="text" placeholder="아이디" name="Name">
+                    </div>
+                    <div class="input-box" id="input-field">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <textarea type="Message" placeholder="내용" rows="5"></textarea>
+                    </div>
+                    <div class="submit-quest">
+                        <button type="submit" class="quest_btn">신청하기</button>
+                    </div>
+                </form>
             </div>
-            <div id="input-field">
-                <span class="icon"><ion-icon name="person"></ion-icon></span>
-                <span>To.</span>
-                <input type="text" placeholder="이름" name="Name">
-            </div>
-            <div id="input-field">
-                <span class="icon"><ion-icon name="person"></ion-icon></span>
-                <input type="text" placeholder="아이디" name="ID">
-            </div>
-            <div id="input-field">
-                <span class="icon"><ion-icon name="person"></ion-icon></span>
-                <textarea type="Message" placeholder="내용" rows="5"></textarea>
-            </div>
-            <input type="submit" value="Submit" class="send-btn">
-            </form>
         </div>
-    </div>
 
-
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 
 </body>

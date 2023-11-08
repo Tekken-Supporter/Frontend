@@ -93,9 +93,24 @@ header {
     transform: scaleX(1);
 }
 
-.btnLogin-popup {
-    width: 310px;
-    height: 100px;
+.navigation .btnLogout {
+    width: 100px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.btnQuest-popup {
+    width: 200px;
+    height: 50px;
     position: absolute;
     background: transparent;
     backdrop-filter: blur(20px);
@@ -103,7 +118,7 @@ header {
     outline: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 4em;
+    font-size: 2em;
     color: #fff;
     font-weight: 500;
     /* margin-left: 40px; */
@@ -113,8 +128,8 @@ header {
 
 .wrapper {
     position: relative;
-    width: 1000px;
-    height: 600px;
+    width: 400px;
+    height: 440px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
@@ -124,7 +139,8 @@ header {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    transform: scale(1);
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
 }
 
 .wrapper.active-popup {
@@ -140,25 +156,14 @@ header {
     padding: 40px;
 }
 
-.wrapper .form-box.login {
+.wrapper .form-box.fight-quest {
     transition: transform .18s ease;
     transform: translateX(0);
 }
 
-.wrapper.active .form-box.login {
+.wrapper.active .form-box.fight-quest  {
     transition: none;
     transform: translateX(-400px);
-}
-
-.wrapper .form-box.register {
-    position: absolute;
-    transition: none;
-    transform: translateX(400px);
-}
-
-.wrapper.active .form-box.register {
-    transition: transform .18s ease;
-    transform: translateX(0);
 }
 
 .wrapper .icon-close {
@@ -178,104 +183,21 @@ header {
     z-index: 1;
 }
 
-.form-box h2 {
-    font-size: 2em;
-    color: #272727;
-    text-align: center;
-}
-
 .input-box {
     position: relative;
     width: 100%;
     height: 50px;
-    border-bottom: 2px solid #272727;
-    margin: 30px 0;
-}
-
-.input-box label {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    font-size: 1em;
-    color: #272727;
-    font-weight: 500;
-    pointer-events: none;
-    transition: .5s;
-}
-
-
-.input-box input:focus~label,
-.input-box input:valid~label {
-    top: -5px;
-}
-
-.input-box input {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    color: #272727;
-    font-weight: 600;
-    padding: 0 35px 0 5px;
 }
 
 .input-box .icon {
     position: absolute;
-    right: 8px;
     font-size: 1.2em;
     color: #272727;
     line-height: 57px;
 }
 
-.input-box .icon-eyeoff {
-    position: absolute;
-    right: 8px;
-    font-size: 1.2em;
-    color: #272727;
-    line-height: 57px;
-}
-
-.remember-forgot {
-    font-size: .9em;
-    color: #272727;
-    font-weight: 500;
-    margin: -15px 0 15px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.remember-forgot label input {
-    accent-color: #272727;
-    margin-right: 3px;
-}
-
-.remember-forgot a {
-    color: #272727;
-    text-decoration: none;
-}
-
-.remember-forgot a:hover {
-    text-decoration: underline;
-}
-
-.register_btn {
-    width: 100%;
-    height: 45px;
-    background: #272727;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    font-size: 1em;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 500;   
-}
-
-.login_btn {
-    width: 100%;
+.quest_btn {
+    width: 50%;
     height: 45px;
     background: #272727;
     border: none;
@@ -285,22 +207,4 @@ header {
     font-size: 1em;
     color: #fff;
     font-weight: 500;   
-}
-
-.login-register {
-    font-size: .9em;
-    color: #272727;
-    text-align: center;
-    font-weight: 500;
-    margin: 25px 0 10px;
-}
-
-.login-register p a {
-    color: #272727;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.login-register p a:hover {
-    text-decoration: underline;
 }
