@@ -4,7 +4,7 @@ var xhttp = new XMLHttpRequest();
 // 페이지 로드 시 데이터를 받아오는 함수 실행
 window.addEventListener("load", function () {
     // 요청을 열고 설정
-    xhttp.open("GET", "http://34.168.80.42:3000/ranking/", true);
+    xhttp.open("GET", "http://34.127.90.191:3000/ranking/", true);
 
     // 데이터가 도착할 때 실행할 콜백 함수 설정
     xhttp.onreadystatechange = function () {
