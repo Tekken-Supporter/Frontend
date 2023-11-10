@@ -9,7 +9,7 @@ function register() {
   const password = document.getElementById("newpassword").value;
 
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "http://34.168.80.42:3000/auth/register");
+  xhttp.open("POST", "http://34.127.90.191/auth/register");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
   xhttp.send(
