@@ -8,7 +8,7 @@ var jwt = localStorage.getItem("jwt");
 
 function loadUser() {
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", `http://34.168.80.42:3000/user/info/:${user_id.value}`);
+  xhttp.open("GET", `34.127.90.191/user/info/:${user_id.value}`);
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.setRequestHeader("Authorization", "Bearer " + jwt);
   xhttp.send();

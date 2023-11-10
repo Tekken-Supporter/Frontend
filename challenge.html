@@ -29,7 +29,7 @@
                 <button class="btnLogout">로그아웃</button>
             </nav>
         </header>
-
+<div class="side-menu"></div>
         <button class="btnQuest-popup"><b>대결 신청</b></button>
 
         <div class="wrapper">
@@ -46,6 +46,10 @@
                         <label><ion-icon name="person"></ion-icon> 방어자 아이디</label>
                     </div>
                     <div class="input-box">
+                        <input type="date" id="date" required>
+                        <label><ion-icon name="calendar"></ion-icon> 대결 날짜</label>
+                    </div>
+                    <div class="input-box">
                         <textarea id="message" rows="2"></textarea>
                         <label><ion-icon name="chatbox-ellipses"></ion-icon> 내용</label>
                     </div>
@@ -53,6 +57,45 @@
                         <button type="submit" class="quest_btn">신청하기</button>
                     </div>
                 </form>
+            </div>
+        </div>
+
+
+        <div class="app-left-medium">
+            <div class="header-icon">
+                <div class="menu-top">
+                    <div class="menu-text">
+                        <h6>Widelab</h6>
+                    </div>
+                    <div class="menu-icon-down">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-chevron-down">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="side-menu">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="" class="sidebar-link">
+                            <div class="menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-book">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                            </div>
+                            <div class="menu-link">
+                                <span>
+                                    Activity
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
 
