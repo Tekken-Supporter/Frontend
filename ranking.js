@@ -12,8 +12,10 @@
 
           console.log(data);// 티어별 구분 -success  
 
-          var singlePlayer = data[0];
-          displayPlayerInfo(singlePlayer);//-success
+          var champion = data[0];
+          var opener = data[5];
+          displayChampionInfo(champion);//-success> champion
+          displayGateKeeperInfo(opener);
            // 데이터를 HTML에 표시하는 함수 호출
           
           const fourthTear = data[4];
@@ -25,14 +27,37 @@
 xhttp.send();//request sending
 
 
+//개별 사람 
+function displayChampionInfo(player) {
+  var playerInfoContainer = document.querySelector('.champion'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.style= 'margin-top : 50px;'
+  playerElement.innerHTML = `
+  <button class="btn outline"><h1> ${player.tier}</h1></button>
+  <button class="btn fill"><h1> ${player.name}</h1></button>
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+
+function displayGateKeeperInfo(player) {
+  var playerInfoContainer = document.querySelector('.rank-opener'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.innerHTML = `
+  <p> ${player.tier}</p>   
+  <p> ${player.name}</p>
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+
 function extractAndDisplayData(data) {
   const names = data.name.split(',');
-  //const tier = data.tier;
-
   // HTML 클래스 "result"를 가진 요소를 찾아서 가져오기
   const resultElements = document.getElementsByClassName("under10th");
 
   // 가져온 티어와 이름들을 모든 "result" 클래스를 가진 요소에 표시
+  
   for (let i = 0; i < resultElements.length; i++) {
       const resultElement = resultElements[i];
 
@@ -45,7 +70,6 @@ function extractAndDisplayData(data) {
   }
 }
 
-
   
 // API 2 호출 >> 순위표 반영용(1~10위 추출)
 var xhttp2 = new XMLHttpRequest();
@@ -56,37 +80,127 @@ xhttp2.onreadystatechange = function () {
         var data2 = JSON.parse(xhttp2.responseText);
         console.log(data2);// > success
        
+
         var box2=data2[1];
-        boxInfo(box2);
+        var box3=data2[2];
+        var box4=data2[3];
+        var box5=data2[4];
+        var box6=data2[5];
+        var box7=data2[6];
+        var box8=data2[7];
+        var box9=data2[8];
+        var box10=data2[9];
+
+        boxInfo2(box2);
+        boxInfo3(box3);
+        boxInfo4(box4);
+        boxInfo5(box5);
+        boxInfo6(box6);
+        boxInfo7(box7);
+        boxInfo8(box8);
+        boxInfo9(box9);
+        boxInfo10(box10);
         //displayPlayerInfo(singlePlayer2, 'playerInfo2');
     }
 };
 xhttp2.send();
 
 //개별 사람 
-function displayPlayerInfo(player) {
-  var playerInfoContainer = document.querySelector('.wrapper'); // 클래스로 선택
+function boxInfo2(player) {
+  var playerInfoContainer = document.querySelector('.player2'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
   playerElement.innerHTML = `
-      <h1>이름: ${player.name}</h1>
-      <p>티어: ${player.tier}</p>
+  <button class="btn2 outline"> ${player.name}</button>
+  <button class="btn2 fill">${player.tier}</button>  
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+
+function boxInfo3(player) {
+  var playerInfoContainer = document.querySelector('.player3'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.innerHTML = `
+  <button class="btn2 outline"> ${player.name}</button>
+  <button class="btn2 fill">${player.tier}</button>  
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+function boxInfo4(player) {
+  var playerInfoContainer = document.querySelector('.player4'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.innerHTML = `
+  <button class="btn2 outline"> ${player.name}</button>
+  <button class="btn2 fill">${player.tier}</button>  
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+function boxInfo5(player) {
+  var playerInfoContainer = document.querySelector('.player5'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.innerHTML = `
+  <button class="btn2 outline"> ${player.name}</button>
+  <button class="btn2 fill">${player.tier}</button>  
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+function boxInfo6(player) {
+  var playerInfoContainer = document.querySelector('.player6'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.innerHTML = `
+  <button class="btn2 outline"> ${player.name}</button>
+  <button class="btn2 fill">${player.tier}</button>  
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+function boxInfo7(player) {
+  var playerInfoContainer = document.querySelector('.player7'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.innerHTML = `
+  <button class="btn2 outline"> ${player.name}</button>
+  <button class="btn2 fill">${player.tier}</button>  
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+function boxInfo8(player) {
+  var playerInfoContainer = document.querySelector('.player8'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.innerHTML = `
+  <button class="btn2 outline"> ${player.name}</button>
+  <button class="btn2 fill">${player.tier}</button>  
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+function boxInfo9(player) {
+  var playerInfoContainer = document.querySelector('.player9'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.innerHTML = `
+  <button class="btn2 outline"> ${player.name}</button>
+  <button class="btn2 fill">${player.tier}</button>  
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+function boxInfo10(player) {
+  var playerInfoContainer = document.querySelector('.player10'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.innerHTML = `
+  <button class="btn2 outline"> ${player.name}</button>
+  <button class="btn2 fill">${player.tier}</button>  
   `;
   playerInfoContainer.appendChild(playerElement);
 }
 
 
-function boxInfo(player) {
-  //개별 사람 
-  var playerInfoContainer = document.querySelector('.box2'); // 클래스로 선택
 
-  var playerElement = document.createElement('div');
-  playerElement.innerHTML = `
-      <h6>이름: ${player.name}</h6>
-      <p>티어: ${player.tier}</p>
-  `;
-  playerInfoContainer.appendChild(playerElement);
-}
+
 
 
 
