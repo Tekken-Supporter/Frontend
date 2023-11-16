@@ -14,6 +14,7 @@ window.onload=()=>{
 
 
 
+ 
     //반복문 순회하면서 해당FAQ제목 클릭시 콜백 처리
     for(let i=0;i<panelContainer.length;i++){
         panelContainer[i].addEventListener('click',function(){
@@ -24,6 +25,10 @@ window.onload=()=>{
             panelAnswer[i].classList.add('active');
         });
     }
+
+
+
+    //All close button
     btnAllClose.addEventListener('click',function(){
     console.log('all close button click');
 
@@ -32,4 +37,8 @@ window.onload=()=>{
         panelAnswer[i].classList.remove('active');
     }
     });
+
+
+
+
 }

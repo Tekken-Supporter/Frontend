@@ -36,7 +36,29 @@ body {
   background: linear-gradient(180deg, #d9d9d9e7 0%, rgba(167, 212, 227, 0.56) 0%);
   font-family: 'Noto+Serif+KR', sans-serif;
    }
+   .my_img{
+    display:none;
+   }
+   .my_text:hover+.my_img{
+    display: block;
+   }
+   .my1_img{
+    display:none;
+   }
+   .my1_text:hover+.my1_img{
+    display: block;
+   }
 
+  .showpicture{
+    position: absolute;
+    width: 250px;
+    height: 50%;
+    left: 70%;
+    top: 200px;
+    background-color: white;
+  }
+  
+  
 .contitle{
 position: absolute;
 width: 60%;
@@ -54,9 +76,10 @@ color:white;
 
 }
 
+
 .content{
   position: relative;
-  width: 90%;
+  width: 60%;
   height: 79%;
   left: 60px;
   top: 220px;
@@ -71,6 +94,7 @@ color:white;
   
   background: linear-gradient(180deg, #D9D9D9 0%, rgba(217, 217, 217, 0.51) 0%);
   }
+ 
   .chac_table{
     border-radius:3px;
     margin: auto;
