@@ -1,5 +1,5 @@
 
- var jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdCIsImlhdCI6MTY5OTYzMjA1NywiZXhwIjoxNzAyMjI0MDU3fQ.P0AX2jyS18tjHFKBQRy6Wi6OWG9AlDQ4hJtpZp3woB0";
+var jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdCIsImlhdCI6MTY5OTYzMjA1NywiZXhwIjoxNzAyMjI0MDU3fQ.P0AX2jyS18tjHFKBQRy6Wi6OWG9AlDQ4hJtpZp3woB0";
 //API 1 >> under 10th용 
   var xhttp = new XMLHttpRequest();
   // 서버로부터 데이터 가져오기
@@ -197,11 +197,3 @@ function boxInfo10(player) {
   `;
   playerInfoContainer.appendChild(playerElement);
 }
-
-
-
-
-
-
-
-
