@@ -22,7 +22,7 @@
 body {
   display: flex;
   align-items: center;
-  min-height: 100vh;
+  min-height: 108vh;
   background: linear-gradient(303.19deg, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 61.15%),
     linear-gradient(107.71deg, #5E69C8 9.62%, rgba(215, 13, 86, 0.46) 85.4%),
     linear-gradient(89.52deg, #5E69C8 10.57%, rgba(243, 122, 122, 0.46) 99.88%);
@@ -30,63 +30,7 @@ body {
   background-size: cover;
   background-position: center;
 }
-  
-.avatar {
-  width: 100px;
-  border-radius: 50%;
-}
 
-.username {
-  margin-top: 10px;
-}
- .wrapper {
-    width: 100%;
-    height: 100%;
-  }
-
-  .banner-image {
-    background-image: url(https://images.unsplash.com/photo-1641326201918-3cafc641038e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
-    background-position: center;
-    background-size: cover;
-    height: 300px;
-    width: 100%;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255, 0.255)
-  }
-
-  .container_2{ 
-    position: relative;
-    width: 90%;
- 
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(17, 25, 40, 0.25);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.125);  
-    padding: 5px 5px 5px 5px;  
-    filter: drop-shadow(0 10px 5px rgba(0,0,0,0.125));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:center;
-    text-align: center;
-  }
-
-  .wrapper2 {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .banner-image2 {
-    background-image: url(https://images.unsplash.com/photo-1641326201918-3cafc641038e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
-    background-position: center;
-    background-size: cover;
-    height: 120px;
-    width: 100%;
-    border-radius: 10px;
-    border: 2px solid rgba(255,255,255, 0.255)
-  }
- 
 header {
   position: fixed;
   top: 0;
@@ -150,8 +94,9 @@ header {
 
 .champion {
   position: static;
-  width: 200px;
+  width: 300px;
   height: 90%;
+  margin-top: 80px;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(17, 25, 40, 0.25);
@@ -168,7 +113,7 @@ header {
 
 .wrapper {
   width: 100%;
-  height: 100%;
+  height: 50%;
 }
 
 .banner-image {
@@ -185,6 +130,7 @@ header {
   position: static;
   left: 0;
   top: 0;
+  margin-top: 80px;
   width: 600px;
   height: 100%;
   display: flex;
@@ -269,14 +215,14 @@ p {
 }
 
 .button-wrapper2 {
-  margin-top: 1px;
+  margin-top: 5px;
 }
 
 .btn2 {
   border: none;
   padding: 6px 12px;
   border-radius: 22px;
-  font-size: 0.4rem;
+  font-size: 1 rem;
   letter-spacing: 0px;
   cursor: pointer;
 }
@@ -292,8 +238,12 @@ p {
 }
 
 .btn+.btn {
-  margin-left: 10px;
+  margin-top : 15px;
 }
+.btn2 + .btn2 {
+  margin-top: 5px;
+}
+
 
 .outline {
   background: transparent;
@@ -327,8 +277,10 @@ p {
 .under10th {
   position: static;
   left: 1000px;
-  top: 50px;
-
+  top: 100px;
+  padding-top: 50px;
+  margin-top: 80px;
+ 
   height: 90%;
   width: 200px;
 
@@ -348,9 +300,12 @@ p {
 }
 
 .rank-opener {
-  position: static;
-  height: 10%;
-  width: 100%;
+  position:relative;
+ 
+  left: -197px;
+  top: 440px;
+  height: 5%;
+  width: 12%;
   text-align: center;
   font-family: 'Inter';
   font-style: italic;
@@ -358,8 +313,8 @@ p {
   font-size: 20px;
   line-height: 20px;
   text-transform: uppercase;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(100%);
+  -webkit-backdrop-filter: blur(16px) saturate(100%);
   background-color: rgba(185, 142, 202, 0.25);
 }
 
