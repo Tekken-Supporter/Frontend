@@ -59,12 +59,56 @@
         <form onsubmit="return save()" action="#">
           <div class="output-box">
             <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input class="input_password" type="text" id="password" placeholder=""></input>
-            <label>비밀번호</label>
+            <input class="input_nowpassword" type="text" id="nowpassword" placeholder=""></input>
+            <label>현재 비밀번호</label>
+          </div>
+          <div class="output-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+            <input class="input_newpassword" type="text" id="newpassword" placeholder=""></input>
+            <label>새 비밀번호</label>
           </div>
           <div class="output-box">
             <span class="icon"><ion-icon name="accessibility"></ion-icon></span>
-            <input class="input_champion" type="text" id="champion" placeholder=""></input>
+            <select class="input_champion" id="champion">
+              <option value="" disabled selected hidden>주캐릭터를 선택하세요</option>
+              <option value="AKUMA">AKUMA</option>
+              <option value="ALISA">ALISA</option>
+              <option value="ARMOR KING">ARMOR KING</option>
+              <option value="ASUKA">ASUKA</option>
+              <option value="BOB">BOB</option>
+              <option value="BRYAN">BRYAN</option>
+              <option value="CLAUDIO">CLAUDIO</option>
+              <option value="DEVIL JIN">DEVIL JIN</option>
+              <option value="DRAGUNOV">DRAGUNOV</option>
+              <option value="EDDY">EDDY</option>
+              <option value="FENG">FENG</option>
+              <option value="GIGAS">GIGAS</option>
+              <option value="HEIHACHI">HEIHACHI</option>
+              <option value="HWARANG">HWARANG</option>
+              <option value="JACK-7">JACK-7</option>
+              <option value="JIN">JIN</option>
+              <option value="JOSIE">JOSIE</option>
+              <option value="KATARINA">KATARINA</option>
+              <option value="KAZUMI">KAZUMI</option>
+              <option value="KAZUYA">KAZUYA</option>
+              <option value="KING">KING</option>
+              <option value="KUMA">KUMA</option>
+              <option value="LARS">LARS</option>
+              <option value="LAW">LAW</option>
+              <option value="LEE">LEE</option>
+              <option value="LEO">LEO</option>
+              <option value="LILI">LILI</option>
+              <option value="LUCKY CHLOE">LUCKY CHLOE</option>
+              <option value="MASTER RAVEN">MASTER RAVEN</option>
+              <option value="MIGUEL">MIGUEL</option>
+              <option value="NINA">NINA</option>
+              <option value="PANDA">PANDA</option>
+              <option value="PAUL">PAUL</option>
+              <option value="SHAHEEN">SHAHEEN</option>
+              <option value="STEVE">STEVE</option>
+              <option value="XIAOYU">XIAOYU</option>
+              <option value="YOSHIMITSU">YOSHIMITSU</option>
+            </select>
             <label>주캐릭터</label>
           </div>
           <div class="change">
@@ -74,5 +118,4 @@
       </div>
     </div>
 </body>
-
 </html>
