@@ -67,9 +67,6 @@ function loadUser() {
     }
   };
 }
-   
-
-
 
   const update_user = (event) => {
     event.preventDefault();
