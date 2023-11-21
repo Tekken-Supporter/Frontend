@@ -22,34 +22,34 @@ function register() {
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
-        if(this.status == 200){
-            const objects = JSON.parse(this.responseText);
-            console.log(objects);
-            if (objects["status"] == "ok") {
-            localStorage.setItem("jwt", objects["token"]);
-            Swal.fire({
-                text: '회원가입 성공!',
-                icon: "success",
-                confirmButtonText: "OK",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "./main.html";
-                }
-            });
-            } else {
-                Swal.fire({
-                    text: '동일한 계정이 존재합니다',
-                    icon: "error",
-                    confirmButtonText: "Retry",
-                });
+      if (this.status == 200) {
+        const objects = JSON.parse(this.responseText);
+        console.log(objects);
+        if (objects["status"] == "ok") {
+          localStorage.setItem("jwt", objects["token"]);
+          Swal.fire({
+            text: '회원가입 성공!',
+            icon: "success",
+            confirmButtonText: "OK",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "./main.html";
             }
+          });
         } else {
-            Swal.fire({
-                text: '알 수 없는 오류가 발생했습니다',
-                icon: "error",
-                confirmButtonText: "Retry",
-            })
+          Swal.fire({
+            text: '동일한 계정이 존재합니다',
+            icon: "error",
+            confirmButtonText: "Retry",
+          });
         }
+      } else {
+        Swal.fire({
+          text: '알 수 없는 오류가 발생했습니다',
+          icon: "error",
+          confirmButtonText: "Retry",
+        })
+      }
     }
   };
   return false;
