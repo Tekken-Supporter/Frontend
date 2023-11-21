@@ -1,3 +1,4 @@
+const btnLogout = document.querySelector(".btnLogout");
 const wrapper = document.querySelector('.wrapper');
 const btnPopup = document.querySelector('.btnQuest-popup');
 const iconClose = document.querySelector('.icon-close');
@@ -11,10 +12,6 @@ if (jwt != null) {
 }
 
 function quest() {
-    const name = document.getElementById("newname").value;
-    const id = document.getElementById("newid").value;
-    const password = document.getElementById("newpassword").value;
-
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "http://34.127.90.191:3000/challenge/apply");
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
