@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,15 +23,15 @@
     z-index: -1;
 }
 
-@media (min-aspect-ratio:16/9){
-    .background-clip{
+@media (min-aspect-ratio:16/9) {
+    .background-clip {
         width: 100%;
         height: auto;
     }
 }
 
-@media (max-aspect-ratio:16/9){
-    .background-clip{
+@media (max-aspect-ratio:16/9) {
+    .background-clip {
         width: auto;
         height: 100%;
     }
@@ -101,7 +101,7 @@ header {
 .btnQuest-popup {
     width: 200px;
     height: 50px;
-    top: 20%;
+    top: 50%;
     left: 10%;
     position: absolute;
     background: transparent;
@@ -111,7 +111,7 @@ header {
     border-radius: 6px;
     cursor: pointer;
     font-size: 2em;
-    color:#fff;
+    color: #fff;
     font-weight: 500;
     /* margin-left: 40px; */
     transition: .5s;
@@ -120,7 +120,7 @@ header {
 
 .wrapper {
     position: absolute;
-    left: 5%;
+    left: 8%;
     width: 400px;
     height: 600px;
     background: transparent;
@@ -172,7 +172,7 @@ header {
     text-align: center;
 }
 
-form{
+form {
     width: 100%;
     max-width: 600px;
 }
@@ -192,7 +192,7 @@ form{
     /*line-height: 30px;*/
 }
 
-.input-box input{
+.input-box input {
     width: 100%;
     padding: 10px;
     outline: 0;
@@ -202,7 +202,7 @@ form{
     font-size: 15px;
 }
 
-.input-box textarea{
+.input-box textarea {
     width: 100%;
     padding: 10px;
     outline: 0;
@@ -212,7 +212,7 @@ form{
     font-size: 15px;
 }
 
-.input-box label{
+.input-box label {
     height: 100%;
     position: absolute;
     left: 0;
@@ -234,12 +234,12 @@ form{
     cursor: pointer;
     font-size: 1em;
     color: #fff;
-    font-weight: 500;   
+    font-weight: 500;
 }
 
 .wrapper_list {
     position: absolute;
-    right: 10%;
+    right: 8%;
     display: flex;
     width: 1000px;
     height: 600px;
@@ -252,22 +252,33 @@ form{
     transform: scale(1);
 }
 
-.get_list,
+.get_list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-right: 1px solid #ddd;
+}
+
 .give_list {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 30px;
 }
 
-.get_list h2, .give_list h2 {
+.get_list h2,
+.give_list h2 {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.board_list, .board_page {
+.board_list,
+.board_page {
     width: 100%;
     text-align: center;
 }
@@ -279,27 +290,27 @@ form{
     border-top: 2px solid #000;
 }
 
-.board_list > div {
+.board_list>div {
     border-bottom: 1px solid #ddd;
     font-size: 0;
 }
 
-.board_list > div.top {
-    border-bottom: 1px solid #999;
+.board_list>div.top {
+    border-bottom: 1.5px solid #000;
 }
 
-.board_list > div:last-child {
-    border-bottom: 1px solid #000;
+.board_list>div:last-child {
+    border-bottom: 1.5px solid #000;
 }
 
-.board_list > div > div {
+.board_list>div>div {
     display: inline-block;
     padding: 15px 0;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
-.board_list > div.top > div {
+.board_list>div.top>div {
     font-weight: 600;
 }
 
@@ -308,11 +319,11 @@ form{
 }
 
 .board_list .writer {
-    width: 50%;
+    width: 70%;
 }
 
 .board_list .date {
-    width: 40%;
+    width: 20%;
 }
 
 .board_page {
@@ -333,19 +344,19 @@ form{
 }
 
 .board_page a.bt {
-    padding-top: 10px;
+    padding-top: 5px;
     font-size: 1.2rem;
     letter-spacing: -1px;
+    color: #272727;
 }
 
 .board_page a.num {
-    padding-top: 9px;
-    font-size: 1.4rem;
+    padding-top: 7px;
+    font-size: 1rem;
+    color: #272727;
 }
 
 .board_page a.num.on {
-    border-color: #000;
-    background: #000;
     color: #fff;
 }
 
