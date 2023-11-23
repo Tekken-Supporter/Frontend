@@ -68,7 +68,7 @@ function loadUser() {
   };
 }
 
-function modify(){
+function modify() {
   const nowpassword = document.getElementById("nowpassword").value;
   const newpassword = document.getElementById("newpassword").value;
   const newchampion = document.getElementById("champion").value
@@ -111,13 +111,13 @@ function modify(){
             Swal.fire({
               text: "현재 비밀번호가 틀립니다.",
               icon: "error",
-              confirmButtonText: "OK", 
+              confirmButtonText: "OK",
             });
           } else {
             Swal.fire({
               text: "수정에 실패했습니다.",
               icon: "error",
-              confirmButtonText: "OK", 
+              confirmButtonText: "OK",
             });
             console.error("Empty response received from the server");
           }
