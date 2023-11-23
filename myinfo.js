@@ -96,7 +96,7 @@ function modify(){
           const objects = JSON.parse(this.responseText); //서버로부터 받은 응답텍스트를 JSON 객체로 변환
           console.log(objects); //서버로부터 받은 응답 콘솔에 출력
 
-          if (objects["status"] === "yes") { //서버로부터 받은 응답의 상태가 ok일 때
+          if (objects["check"] === "yes") { //서버로부터 받은 응답의 상태가 ok일 때
             localStorage.setItem("jwt", objects["token"]);
             Swal.fire({
               text: "수정 성공!",
@@ -107,9 +107,15 @@ function modify(){
                 window.location.href = "./myinfo.html"; //해당 페이지로 리다이렉션
               }
             });
+          } else if (objects["check"] === "no") {
+            Swal.fire({
+              text: "현재 비밀번호가 틀립니다.",
+              icon: "error",
+              confirmButtonText: "OK", 
+            });
           } else {
             Swal.fire({
-              text: "수정에 실패했습니다",
+              text: "수정에 실패했습니다.",
               icon: "error",
               confirmButtonText: "OK", 
             });
