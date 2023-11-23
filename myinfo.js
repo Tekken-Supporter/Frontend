@@ -68,77 +68,95 @@ function loadUser() {
   };
 }
 
-  const update_user = (event) => {
-    event.preventDefault();
-    if (!input_champion.value || !input_password.value) {
-      alert('챔피언 값, 현재 비밀번호, 그리고 새 비밀번호가 모두 필요합니다!');
-      return;
-    }
+function modify(){
+  const nowpassword = document.getElementById("nowpassword").value;
+  const newpassword = document.getElementById("newpassword").value;
+  const newchampion = document.getElementById("champion").value
 
-    const validChampions = ['AKUMA', 'ALISA', 'ARMOR KING', 'ASUKA', 'BOB', 'BRYAN', 'CLAUDIO', 'DEVIL JIN', 'DRAGUNOV', 'EDDY', 'FENG', 'GIGAS', 'HEIHACHI', 'HWARANG', 'JACK-7', 'JIN', 'JOSIE', 'KATARINA', 'KAZUMI', 'KAZUYA', 'KING', 'KUMA', 'LARS', 'LAW', 'LEE', 'LEO', 'LILI', 'LUCKY CHLOE', 'MASTER RAVEN', 'MIGUEL', 'NINA', 'PANDA', 'PAUL', 'SHAHEEN', 'STEVE', 'XIAOYU', 'YOSHIMITSU'];
-    if (!validChampions.includes(input_champion.value)) {
-      alert('Please enter a valid champion!');
-      return;
-    }
+  const userId = localStorage.getItem("userId");
+  jwt = localStorage.getItem("jwt");
 
-    const userUpdateData = {
-      nowpassword: input_nowpassword.value,
-      newpassword: input_newpassword.value,
-      champion: input_champion.value
-    };
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("PUT", `http://34.127.90.191:3000/user/updateinfo/${userId}`);
+  xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhttp.setRequestHeader("Authorization", "Bearer " + jwt);
 
-    const userId = localStorage.getItem("userId");
-    jwt = localStorage.getItem("jwt");
+  xhttp.send(
+    JSON.stringify({
+      nowpassword: nowpassword,
+      newpassword: newpassword,
+      champion: newchampion
+    })
+  );
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", `http://34.127.90.191:3000/user/update/${userId}`);
-    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.setRequestHeader("Authorization", "Bearer " + jwt);
-    xhttp.send(JSON.stringify(userUpdateData));
-
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == XMLHttpRequest.DONE) {
+  xhttp.onreadystatechange = function () {
+    if (this.readyState === XMLHttpRequest.DONE) {
+      try {
         if (this.status >= 200 && this.status < 300) {
-          try {
-            const objects = JSON.parse(this.responseText);
-            console.log(objects);
-            if (objects["response"] == "yes") {
-              alert('비밀번호가 변경되었습니다!');
-              loadUser(); // 사용자 정보를 다시 로드합니다.
-            } else if (objects["response"] == "no") {
-              alert('현재 비밀번호가 틀렸습니다. 다시 시도해주세요.');
-            }
-          } catch (e) {
-            console.error("Error parsing response:", e);
+          const objects = JSON.parse(this.responseText); //서버로부터 받은 응답텍스트를 JSON 객체로 변환
+          console.log(objects); //서버로부터 받은 응답 콘솔에 출력
+
+          if (objects["status"] === "yes") { //서버로부터 받은 응답의 상태가 ok일 때
+            localStorage.setItem("jwt", objects["token"]);
+            Swal.fire({
+              text: "수정 성공!",
+              icon: "success",
+              confirmButtonText: "OK", //성공 메시지를 사용자에게 보여줌
+            }).then((result) => { //확인 버튼 누르면
+              if (result.isConfirmed) {
+                window.location.href = "./myinfo.html"; //해당 페이지로 리다이렉션
+              }
+            });
+          } else {
+            Swal.fire({
+              text: "수정에 실패했습니다",
+              icon: "error",
+              confirmButtonText: "OK", 
+            });
+            console.error("Empty response received from the server");
           }
         } else {
+          Swal.fire({
+            text: "서버 오류 발생. 잠시 후 다시 시도해주세요.",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
           console.error("Server responded with status:", this.status);
         }
+      } catch (e) {
+        Swal.fire({
+          text: "응답 처리 중 오류가 발생했습니다.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        console.error("Error parsing response:", e);
       }
-    };
-  }
+    }
+  };
+  return false;
+}
 
-  btnLogout.addEventListener("click", function (event) {
-    event.preventDefault();
-    window.location.href = "main.html";
-    console.log("Redirecting to:", window.location.href);
-    localStorage.removeItem("jwt");
+
+btnLogout.addEventListener("click", function (event) {
+  event.preventDefault();
+  window.location.href = "main.html";
+  console.log("Redirecting to:", window.location.href);
+  localStorage.removeItem("jwt");
+});
+
+document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('click', function () {
+    if (!this.value) {
+      this.value = this.placeholder;
+    }
   });
+});
 
-  document.querySelectorAll('input').forEach(input => {
-    input.addEventListener('click', function () {
-      if (!this.value) {
-        this.value = this.placeholder;
-      }
-    });
+document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('focus', function () {
+    if (!this.value) {
+      this.value = this.placeholder;
+    }
   });
+});
 
-  document.querySelectorAll('input').forEach(input => {
-    input.addEventListener('focus', function () {
-      if (!this.value) {
-        this.value = this.placeholder;
-      }
-    });
-  });
-
-  change_btn.addEventListener("click", update_user);
