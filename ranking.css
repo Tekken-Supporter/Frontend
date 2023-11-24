@@ -10,8 +10,7 @@
 
 .container {
   width: 100%;
-  top: 0;
-  height: 800px;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0);
   display: flex;
   align-items: center;
@@ -19,17 +18,35 @@
   padding: 10px 10px 10px 10px;
 }
 
-body {
+.background-clip {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+@media (min-aspect-ratio:16/9){
+  .background-clip{
+      width: 100%;
+      height: auto;
+  }
+}
+
+@media (max-aspect-ratio:16/9){
+  .background-clip{
+      width: auto;
+      height: 100%;
+  }
+}
+
+/*body {
   display: flex;
   align-items: center;
   min-height: 108vh;
-  background: linear-gradient(303.19deg, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 61.15%),
-    linear-gradient(107.71deg, #5E69C8 9.62%, rgba(215, 13, 86, 0.46) 85.4%),
-    linear-gradient(89.52deg, #5E69C8 10.57%, rgba(243, 122, 122, 0.46) 99.88%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
+}*/
 
 header {
   position: fixed;
@@ -280,30 +297,24 @@ p {
   top: 100px;
   padding-top: 50px;
   margin-top: 80px;
- 
   height: 90%;
   width: 200px;
-
   text-align: center;
   font-family: 'Inter';
   font-style: italic;
-
   font-weight: 600;
   font-size: 20px;
   line-height: 23px;
   text-transform: uppercase;
-
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(17, 25, 40, 0.25);
-
 }
 
 .rank-opener {
-  position:relative;
- 
-  left: -197px;
-  top: 440px;
+  position:absolute;
+  right: 290px;
+  top: 100%;
   height: 5%;
   width: 12%;
   text-align: center;
@@ -317,24 +328,3 @@ p {
   -webkit-backdrop-filter: blur(16px) saturate(100%);
   background-color: rgba(185, 142, 202, 0.25);
 }
-
-/*.opener {
-  position: absolute;
-  width: 346px;
-  height: 68px;
-  left: 1472px;
-  top: 900px;
-
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 36px;
-  text-transform: uppercase;
-
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 17.71%, rgba(0, 0, 0, 0) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-}*/

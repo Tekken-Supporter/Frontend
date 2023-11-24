@@ -118,6 +118,8 @@ header {
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }
 
+/* 대결 신청 팝업 */
+
 .wrapper {
     position: absolute;
     left: 8%;
@@ -166,25 +168,25 @@ header {
     padding: 40px;
 }
 
-.form-box h2 {
+.wrapper .form-box h2 {
     font-size: 2em;
     color: #272727;
     text-align: center;
 }
 
-form {
+.wrapper form {
     width: 100%;
     max-width: 600px;
 }
 
-.input-box {
+.wrapper .input-box {
     position: relative;
     width: 100%;
     height: 50px;
     margin-bottom: 30px;
 }
 
-.input-box .icon {
+.wrapper .input-box .icon {
     position: absolute;
     left: 10px;
     font-size: 1.2em;
@@ -192,7 +194,7 @@ form {
     /*line-height: 30px;*/
 }
 
-.input-box input, output{
+.wrapper .input-box input, output{
     width: 100%;
     padding: 10px;
     outline: 0;
@@ -203,10 +205,11 @@ form {
     box-sizing: border-box;
 }
 
-.input-box output {
+.wrapper .input-box output {
     display: block;
 }
-.input-box textarea {
+
+.wrapper .input-box textarea {
     width: 100%;
     padding: 10px;
     outline: 0;
@@ -216,7 +219,7 @@ form {
     font-size: 15px;
 }
 
-.input-box label {
+.wrapper .input-box label {
     height: 100%;
     position: absolute;
     left: 0;
@@ -227,7 +230,7 @@ form {
     transition: 0.2s;
 }
 
-.quest_btn {
+.wrapper .quest_btn {
     padding: 10px 0;
     width: 100%;
     height: 45px;
@@ -240,6 +243,134 @@ form {
     color: #fff;
     font-weight: 500;
 }
+
+/* 대결 수락 팝업*/
+
+.wrapper_unread {
+    position: absolute;
+    left: 8%;
+    width: 400px;
+    height: 600px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper_unread.active-popup {
+    transform: scale(1);
+}
+
+.wrapper_unread.active {
+    height: 520px;
+}
+
+.wrapper_unread .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #272727;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.wrapper_unread .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper_unread .form-box h2 {
+    font-size: 2em;
+    color: #272727;
+    text-align: center;
+}
+
+.wrapper_unread form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.wrapper_unread .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.wrapper_unread .input-box .icon {
+    position: absolute;
+    left: 10px;
+    font-size: 1.2em;
+    color: #272727;
+    /*line-height: 30px;*/
+}
+
+.wrapper_unread .input-box input, output{
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.wrapper_unread .input-box output {
+    display: block;
+}
+
+.wrapper_unread .input-box textarea {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+}
+
+.wrapper_unread .input-box label {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: -37px;
+    padding: 10px;
+    color: black;
+    cursor: text;
+    transition: 0.2s;
+}
+
+.wrapper_unread .quest_btn {
+    padding: 10px 0;
+    width: 45%;
+    height: 45px;
+    background: #272727;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* 리스트 */
 
 .wrapper_list {
     position: absolute;

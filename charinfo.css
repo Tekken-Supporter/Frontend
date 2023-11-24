@@ -16,13 +16,33 @@
   justify-content: center;
 }
 
+.background-clip {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+@media (min-aspect-ratio:16/9){
+  .background-clip{
+      width: 100%;
+      height: auto;
+  }
+}
+
+@media (max-aspect-ratio:16/9){
+  .background-clip{
+      width: auto;
+      height: 100%;
+  }
+}
+
 body {
   display: flex;
   align-items: center;
   min-height: 108vh;
   font-size: medium;
   justify-content: center;
-  background: url('./background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

@@ -37,7 +37,7 @@ function loadUser() {
           console.log("Response from server:", objects);
 
           if (objects["status"] == "ok") {
-            document.getElementById("challenger").textContent = objects["name"];
+            document.getElementById("challenger_apply").textContent = objects["name"];
           }
         } catch (e) {
           console.error("Error parsing response:", e);
@@ -51,10 +51,10 @@ function loadUser() {
 
 /* 대결 신청 */
 function quest() {
-  const challenger = document.getElementById("challenger").value;
-  const contender = document.getElementById("contender").value;
-  const date = document.getElementById("date").value;
-  const message = document.getElementById("message").value;
+  const challenger = document.getElementById("challenger_apply").value;
+  const contender = document.getElementById("contender_apply").value;
+  const date = document.getElementById("date_apply").value;
+  const message = document.getElementById("message_apply").value;
 
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://34.127.90.191:3000/challenge/apply");
