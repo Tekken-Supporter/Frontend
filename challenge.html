@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="./challenge.js"></script>
+    <script defer src="./challenge_apply.js"></script>
+    <script defer src="./challenge_accept.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
@@ -38,19 +39,19 @@
                 <h2>1:1 대결</h2><br><br>
                 <form onsubmit="return quest()" action="#">
                     <div class="input-box">
-                        <output type="text" id="challenger"></output>
+                        <output type="text" id="challenger_apply"></output>
                         <label><ion-icon name="person"></ion-icon> 도전자 이름</label>
                     </div>
                     <div class="input-box">
-                        <input type="text" id="contender" required>
+                        <input type="text" id="contender_apply" required>
                         <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
                     </div>
                     <div class="input-box">
-                        <input type="date" id="date" required>
+                        <input type="date" id="date_apply" required>
                         <label><ion-icon name="calendar"></ion-icon> 대결 날짜</label>
                     </div>
                     <div class="input-box">
-                        <textarea id="message" rows="2"></textarea>
+                        <textarea id="message_apply" rows="2"></textarea>
                         <label><ion-icon name="chatbox-ellipses"></ion-icon> 내용</label>
                     </div>
                     <div class="submit-quest">
@@ -71,7 +72,7 @@
                     </div>
                     <div>
                         <div class="num">1</div>
-                        <div class="writer">김이름</div>
+                        <div class="writer"><button class="btnAccept-popup">김이름</button></div>
                         <div class="date">2021.1.15</div>
                     </div>
                     <div>
@@ -148,8 +149,38 @@
                     <a href="#" class="bt next">></a>
                 </div>
             </div>
-
         </div>
+
+        <div class="wrapper_unread">
+            <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+            <div class="form-box">
+                <h2>1:1 신청</h2><br><br>
+                <form onsubmit="return accept()" action="#">
+                    <div class="input-box">
+                        <output type="text" id="challenger_accept"></output>
+                        <label><ion-icon name="person"></ion-icon> 도전자 이름</label>
+                    </div>
+                    <div class="input-box">
+                        <output type="text" id="contender_accept" required>
+                        <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
+                    </div>
+                    <div class="input-box">
+                        <input type="date" id="date_accept" required>
+                        <label><ion-icon name="calendar"></ion-icon> 대결 날짜</label>
+                    </div>
+                    <div class="input-box">
+                        <output type="text" id="message_accept"></output>
+                        <label><ion-icon name="chatbox-ellipses"></ion-icon> 내용</label>
+                    </div>
+                    <div class="submit-quest">
+                        <button type="submit" class="quest_btn">수락하기</button>
+                        <button type="button" class="quest_btn" onclick="deny()">거절하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 
