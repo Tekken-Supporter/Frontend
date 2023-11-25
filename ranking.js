@@ -34,8 +34,8 @@ function displayChampionInfo(player) {
   var playerElement = document.createElement('div');
   playerElement.style= 'margin-top : 50px;'
   playerElement.innerHTML = `
-  <button class="btn outline"><h1> ${player.tier}</h1></button>
-  <button class="btn fill"><h1> ${player.name}</h1></button>
+  <button class="btn outlineforC"><h1> ${player.tier}</h1></button>
+  <button class="btn fillforC"><h1> ${player.name}</h1></button>
   `;
   playerInfoContainer.appendChild(playerElement);
 }

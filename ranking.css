@@ -131,6 +131,7 @@ header {
 .wrapper {
   width: 100%;
   height: 50%;
+  margin-bottom: 10px;
 }
 
 .banner-image {
@@ -139,8 +140,10 @@ header {
   background-size: cover;
   height: 300px;
   width: 100%;
+  border-bottom: 0px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.255)
+
 }
 
 .twototen {
@@ -162,13 +165,13 @@ header {
 .layer {
   display: flex;
   justify-content: center;
-  margin: 5px 0;
-  height: 30%;
+  margin: 5px ;
+  height: 33%;
 }
 
 .box {
   box-sizing: border-box;
-  padding: 5px;
+  padding: 3px;
   width: 100%;
   height: 50px;
   /* 고정된 박스 높이 */
@@ -184,7 +187,7 @@ header {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(17, 25, 40, 0.25);
-  border-radius: 15px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.125);
   padding: 5px 5px 5px 5px;
   filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.125));
@@ -206,7 +209,7 @@ header {
   background-size: cover;
   height: 120px;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.255)
 }
 
@@ -261,11 +264,23 @@ p {
   margin-top: 5px;
 }
 
-
+.outlineforC{
+  background: transparent;
+  color: rgba(226, 209, 24, 1); 
+  border: 1px solid rgba(233, 215, 15, 0.836);
+  transition: all .3s ease;
+}
 .outline {
   background: transparent;
   color: rgba(0, 212, 255, 0.9);
   border: 1px solid rgba(0, 212, 255, 0.6);
+  transition: all .3s ease;
+}
+
+.outlineforC:hover {
+  transform: scale(1.125);
+  color: rgba(242, 250, 128, 1);
+  border-color: rgba(255, 255, 255, 0.9);
   transition: all .3s ease;
 }
 
@@ -276,11 +291,26 @@ p {
   transition: all .3s ease;
 }
 
+.fillforC {
+  background: rgba(233, 215, 15, 0.836);
+  color: rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0);
+  font-weight: bold;
+  transition: all .3s ease;
+}
+
 .fill {
   background: rgba(0, 212, 255, 0.9);
   color: rgba(255, 255, 255, 0.95);
   filter: drop-shadow(0);
   font-weight: bold;
+  transition: all .3s ease;
+}
+
+.fillforC:hover {
+  transform: scale(1.125);
+  border-color: rgba(175, 128, 128, 0.9);
+  filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.125));
   transition: all .3s ease;
 }
 
@@ -293,9 +323,8 @@ p {
 
 .under10th {
   position: static;
-  left: 1000px;
-  top: 100px;
-  padding-top: 50px;
+  
+  padding-top: 10px;
   margin-top: 80px;
   height: 90%;
   width: 200px;
@@ -309,14 +338,15 @@ p {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(17, 25, 40, 0.25);
+  border-radius: 12px;
 }
 
 .rank-opener {
-  position:absolute;
-  right: 290px;
-  top: 100%;
-  height: 5%;
-  width: 12%;
+  position:relative;
+  
+  top: 101%;
+  height: 7%;
+  width: 100%;
   text-align: center;
   font-family: 'Inter';
   font-style: italic;
@@ -327,4 +357,6 @@ p {
   backdrop-filter: blur(16px) saturate(100%);
   -webkit-backdrop-filter: blur(16px) saturate(100%);
   background-color: rgba(185, 142, 202, 0.25);
+  border-radius: 12px;
+  
 }
