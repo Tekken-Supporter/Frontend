@@ -108,7 +108,8 @@ header {
   margin-left: 40px;
   transition: .5s;
 }
-.review{
+.reviews-container{
+  position: absolute;
   top:50px;
   width: 50%;
   height: flex;

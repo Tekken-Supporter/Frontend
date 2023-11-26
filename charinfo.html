@@ -34,9 +34,29 @@
 
 <body>
 
+    <div id="reviews-container">
+        <form id="reviewForm">
+            <label for="cName">캐릭터 이름:</label>
+            <input type="text" id="cName" name="c_name" required><br>
+        
+            <label for="userId">사용자 ID:</label>
+            <input type="text" id="userId" name="id" required><br>
+        
+            <label for="reviewContent">리뷰 내용:</label>
+            <textarea id="reviewContent" name="reviewData" required></textarea><br>
+        
+            <button id="reviewbtn">리뷰 제출</button>
+          </form>
+        
+          <div id="reviewList">
+            <!-- 리뷰 목록이 여기에 표시됩니다 -->
+          </div>
+
+  </div>
+    
     <div class="container">
         <video autoplay loop muted plays-inline class="background-clip">
-            <source src="tekken.mp4" type="video/mp4">
+            <source src="tekken2.webm" type="video/webm">
         </video>
         
         <header>
@@ -59,27 +79,6 @@
 
        
        
-        <div id="reviews-container"></div>
-
-         <form id="review-form">
-         <label for="comment">리뷰 추가:</label>
-         <input type="text" id="comment" name="comment" required>
-         <button type="button" onclick="addReview()">추가</button>
-        </form>
-
-        <form id="update-form">
-        <label for="update-comment">리뷰 수정 (리뷰 ID 입력):</label>
-        <input type="text" id="update-review-id" name="update-review-id" required>
-        <input type="text" id="update-comment" name="update-comment" required>
-        <button type="button" onclick="updateReview()">수정</button>
-        </form>
-
-        <form id="delete-form">
-        <label for="delete-review-id">리뷰 삭제 (리뷰 ID 입력):</label>
-        <input type="text" id="delete-review-id" name="delete-review-id" required>
-        <button type="button" onclick="deleteReview()">삭제</button>
-        </form>
-
         
 
         <div class="content">
@@ -288,7 +287,7 @@
         </div>
 
     </div>
-
+  
 </body>
 
 
