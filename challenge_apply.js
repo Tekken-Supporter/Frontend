@@ -1,4 +1,3 @@
-const btnLogout = document.querySelector(".btnLogout");
 const wrapper = document.querySelector('.wrapper');
 const btnPopup = document.querySelector('.btnQuest-popup');
 const iconClose = document.querySelector('.icon-close');
@@ -8,8 +7,9 @@ iconClose.addEventListener('click', () => { wrapper.classList.remove('active-pop
 
 var jwt = localStorage.getItem("jwt");
 
-/* 대결 신청 이름 뜨기*/
+/* 대결 신청에 본인 이름 뜨기*/
 document.addEventListener("DOMContentLoaded", loadUser);
+document.addEventListener("DOMContentLoaded", loadContenders);
 
 function loadUser() {
   const userId = localStorage.getItem("userId");
@@ -34,16 +34,46 @@ function loadUser() {
       if (this.status >= 200 && this.status < 300) {
         try {
           const objects = JSON.parse(this.responseText);
-          console.log("Response from server:", objects);
+          console.log("Response about user:", objects);
 
           if (objects["status"] == "ok") {
             document.getElementById("challenger_apply").textContent = objects["name"];
+            document.getElementById("contender_accept").textContent = objects["name"];
           }
         } catch (e) {
           console.error("Error parsing response:", e);
         }
       } else {
         console.error("Server responded with status:", this.status);
+      }
+    }
+  };
+}
+
+function loadContenders() {
+  const userId = localStorage.getItem("userId"); // 현재 사용자 ID 가져오기
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", `http://34.127.90.191:3000/challenge/name/${userId}`);
+  xhttp.setRequestHeader("Authorization", "Bearer " + jwt);
+  xhttp.send();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+      const response = JSON.parse(this.responseText); // 전체 응답 파싱
+      console.log("Response about Contenders:", response); // 파싱된 응답 출력
+
+      if (response.status === "ok" && Array.isArray(response.namelist)) {
+        const namelist = response.namelist; // 'namelist'에서 이름 배열을 가져옵니다.
+
+        const selectElement = document.getElementById("contender_apply");
+        namelist.forEach(function (contenderName) {
+          const option = document.createElement("option");
+          option.value = contenderName; // 옵션의 값 설정
+          option.text = contenderName; // 옵션의 텍스트 설정
+          selectElement.appendChild(option);
+        });
+      } else {
+        console.error("No namelist found in the response or response format is incorrect");
       }
     }
   };
@@ -59,6 +89,7 @@ function quest() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://34.127.90.191:3000/challenge/apply");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhttp.setRequestHeader("Authorization", "Bearer " + jwt);
 
   xhttp.send(
     JSON.stringify({
@@ -73,15 +104,15 @@ function quest() {
     if (this.readyState === XMLHttpRequest.DONE) {
       try {
         if (this.status >= 200 && this.status < 300) {
-          const objects = JSON.parse(this.responseText); 
-          console.log(objects); 
+          const objects = JSON.parse(this.responseText);
+          console.log(objects);
 
-          if (objects["status"] === "ok") { 
+          if (objects["status"] === "ok") {
             localStorage.setItem("jwt", objects["token"]);
             Swal.fire({
               text: "대결을 신청했습니다!",
               icon: "success",
-              confirmButtonText: "OK", 
+              confirmButtonText: "OK",
             }).then((result) => {
               if (result.isConfirmed) {
                 window.location.href = "./challenge.html";

@@ -205,6 +205,23 @@ header {
     box-sizing: border-box;
 }
 
+.wrapper .input-box select {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.wrapper .input-box select option {
+    color: black;
+    background: white;
+}
+
 .wrapper .input-box output {
     display: block;
 }
@@ -272,7 +289,7 @@ header {
     height: 520px;
 }
 
-.wrapper_unread .icon-close {
+.wrapper_unread .icon-close2 {
     position: absolute;
     top: 0;
     right: 0;
@@ -368,6 +385,124 @@ header {
     font-size: 1em;
     color: #fff;
     font-weight: 500;
+    margin: 0 6.8px;
+}
+
+/* 대결 결과 팝업*/
+
+.wrapper_result {
+    position: absolute;
+    left: 8%;
+    width: 400px;
+    height: 600px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper_result.active-popup {
+    transform: scale(1);
+}
+
+.wrapper_result.active {
+    height: 520px;
+}
+
+.wrapper_result .icon-close3 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #272727;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.wrapper_result .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper_result .form-box h2 {
+    font-size: 2em;
+    color: #272727;
+    text-align: center;
+}
+
+.wrapper_result form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.wrapper_result .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.wrapper_result .input-box .icon {
+    position: absolute;
+    left: 10px;
+    font-size: 1.2em;
+    color: #272727;
+    /*line-height: 30px;*/
+}
+
+.wrapper_result .input-box input, output{
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.wrapper_result .input-box output {
+    display: block;
+}
+
+.wrapper_result .input-box label {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: -37px;
+    padding: 10px;
+    color: black;
+    cursor: text;
+    transition: 0.2s;
+}
+
+.wrapper_result .quest_btn {
+    padding: 10px 0;
+    width: 100%;
+    height: 45px;
+    background: #272727;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    margin: 0 6.8px;
 }
 
 /* 리스트 */
@@ -454,8 +589,21 @@ header {
     width: 10%;
 }
 
-.board_list_ur .writer {
+.board_list_ur .name {
     width: 70%;
+}
+
+.btnAccept-popup {
+    background: none; 
+    border: none; 
+    color: inherit; 
+    font: inherit; 
+    cursor: pointer; 
+    padding: 0; 
+    margin: 0; 
+    text-align: left; 
+    display: inline; 
+    line-height: normal; 
 }
 
 .board_list_ur .date {
@@ -497,8 +645,21 @@ header {
     width: 10%;
 }
 
-.board_list_p .writer {
+.board_list_p .name {
     width: 35%;
+}
+
+.btnResult-popup {
+    background: none; 
+    border: none; 
+    color: inherit; 
+    font: inherit; 
+    cursor: pointer; 
+    padding: 0; 
+    margin: 0; 
+    text-align: left; 
+    display: inline; 
+    line-height: normal; 
 }
 
 .board_list_p .result {
