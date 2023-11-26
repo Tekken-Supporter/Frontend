@@ -464,7 +464,7 @@ header {
     /*line-height: 30px;*/
 }
 
-.wrapper_result .input-box input, output{
+.wrapper_result .input-box output{
     width: 100%;
     padding: 10px;
     outline: 0;
@@ -473,10 +473,18 @@ header {
     background: transparent;
     font-size: 15px;
     box-sizing: border-box;
+    display: block;
 }
 
-.wrapper_result .input-box output {
-    display: block;
+.wrapper_result .input-box input {
+    width: 20%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
 }
 
 .wrapper_result .input-box label {
