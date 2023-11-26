@@ -6,44 +6,42 @@ if (jwt != null) {
 function login() {
   const id = document.getElementById("id").value;
   const password = document.getElementById("password").value;
+  const rememberMe = document.getElementById("rememberMe").checked; // '아이디 저장하기' 체크박스 상태 확인
 
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://34.127.90.191:3000/auth/login");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-  xhttp.send(
-    JSON.stringify({
-      id: id,
-      password: password,
-    })
-  );
+  xhttp.send(JSON.stringify({ id: id, password: password }));
 
   xhttp.onreadystatechange = function () {
     if (this.readyState === XMLHttpRequest.DONE) {
       try {
         if (this.status >= 200 && this.status < 300) {
-          const objects = JSON.parse(this.responseText); //서버로부터 받은 응답텍스트를 JSON 객체로 변환
-          console.log(objects); //서버로부터 받은 응답 콘솔에 출력
+          const objects = JSON.parse(this.responseText);
 
-          if (objects["status"] === "ok") { //서버로부터 받은 응답의 상태가 ok일 때
-            localStorage.setItem("jwt", objects["token"]); //jwt라는 이름으로 서버에서 받은 토큰을 로컬스토리지에 저장
-            localStorage.setItem("userId", id); // 사용자 ID를 로컬 스토리지에 저장
+          if (objects["status"] === "ok") {
+            localStorage.setItem("jwt", objects["token"]);
+            
+            if (rememberMe) { // 체크박스가 선택된 경우, 로컬 스토리지에 아이디 저장
+              localStorage.setItem("userId", id);
+            }
+
             Swal.fire({
               text: "로그인 성공!",
               icon: "success",
-              confirmButtonText: "OK", //성공 메시지를 사용자에게 보여줌
-            }).then((result) => { //확인 버튼 누르면
+              confirmButtonText: "OK",
+            }).then((result) => {
               if (result.isConfirmed) {
-                window.location.href = "./myinfo.html"; //해당 페이지로 리다이렉션
+                window.location.href = "./myinfo.html";
               }
             });
           } else {
             Swal.fire({
               text: "로그인에 실패했습니다",
               icon: "error",
-              confirmButtonText: "OK", 
+              confirmButtonText: "OK",
             });
-            console.error("Empty response received from the server");
           }
         } else {
           Swal.fire({
@@ -51,7 +49,6 @@ function login() {
             icon: "error",
             confirmButtonText: "OK",
           });
-          console.error("Server responded with status:", this.status);
         }
       } catch (e) {
         Swal.fire({
@@ -59,9 +56,24 @@ function login() {
           icon: "error",
           confirmButtonText: "OK",
         });
-        console.error("Error parsing response:", e);
       }
     }
   };
-  return false;
+
+  return false; // 폼 제출 방지
 }
+
+
+function load() {
+  // 로컬 스토리지에서 저장된 아이디를 검색
+  var savedUserId = localStorage.getItem("savedUserId");
+  if (savedUserId) {
+    // 저장된 아이디가 있으면 입력 필드에 채워 넣음
+    document.getElementById("id").value = savedUserId;
+    // '아이디 저장하기' 체크박스 선택
+    document.getElementById("rememberMe").checked = true;
+  }
+}
+
+// 페이지 로드 시 'load' 함수 실행
+window.onload = load;

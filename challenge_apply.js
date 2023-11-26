@@ -59,6 +59,7 @@ function quest() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://34.127.90.191:3000/challenge/apply");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhttp.setRequestHeader("Authorization", "Bearer " + jwt);
 
   xhttp.send(
     JSON.stringify({
@@ -75,7 +76,7 @@ function quest() {
         if (this.status >= 200 && this.status < 300) {
           const objects = JSON.parse(this.responseText); 
           console.log(objects); 
-
+          
           if (objects["status"] === "ok") { 
             localStorage.setItem("jwt", objects["token"]);
             Swal.fire({
