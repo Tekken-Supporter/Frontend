@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./challenge.js"></script>
     <script defer src="./challenge_apply.js"></script>
     <script defer src="./challenge_accept.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -43,7 +44,7 @@
                         <label><ion-icon name="person"></ion-icon> 도전자 이름</label>
                     </div>
                     <div class="input-box">
-                        <input type="text" id="contender_apply" required>
+                        <select id="contender_apply" required></select>
                         <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
                     </div>
                     <div class="input-box">
@@ -152,17 +153,17 @@
         </div>
 
         <div class="wrapper_unread">
-            <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+            <span class="icon-close2"><ion-icon name="close"></ion-icon></span>
             <div class="form-box">
-                <h2>1:1 신청</h2><br><br>
-                <form onsubmit="return accept()" action="#">
+                <h2>신청 대결</h2><br><br>
+                <form onsubmit="" action="#">
                     <div class="input-box">
                         <output type="text" id="challenger_accept"></output>
                         <label><ion-icon name="person"></ion-icon> 도전자 이름</label>
                     </div>
                     <div class="input-box">
                         <output type="text" id="contender_accept" required>
-                        <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
+                            <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
                     </div>
                     <div class="input-box">
                         <input type="date" id="date_accept" required>
@@ -173,7 +174,7 @@
                         <label><ion-icon name="chatbox-ellipses"></ion-icon> 내용</label>
                     </div>
                     <div class="submit-quest">
-                        <button type="submit" class="quest_btn">수락하기</button>
+                        <button type="submit" class="quest_btn" onclick="accept()">수락하기</button>
                         <button type="button" class="quest_btn" onclick="deny()">거절하기</button>
                     </div>
                 </form>

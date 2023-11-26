@@ -205,6 +205,23 @@ header {
     box-sizing: border-box;
 }
 
+.wrapper .input-box select {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.wrapper .input-box select option {
+    color: black;
+    background: white;
+}
+
 .wrapper .input-box output {
     display: block;
 }
@@ -272,7 +289,7 @@ header {
     height: 520px;
 }
 
-.wrapper_unread .icon-close {
+.wrapper_unread .icon-close2 {
     position: absolute;
     top: 0;
     right: 0;
