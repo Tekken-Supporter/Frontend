@@ -2,7 +2,7 @@
 var jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdCIsImlhdCI6MTY5OTYzMjA1NywiZXhwIjoxNzAyMjI0MDU3fQ.P0AX2jyS18tjHFKBQRy6Wi6OWG9AlDQ4hJtpZp3woB0";
 //API 1 >> under 10th용 
   var xhttp = new XMLHttpRequest();
-  // 서버로부터 데이터 가져오기
+  //서버로부터 데이터 가져오기
   xhttp.open("GET", "http://34.127.90.191:3000/ranking/", true);
   
   // 데이터가 도착할 때 실행할 콜백 함수 설정
@@ -12,9 +12,9 @@ var jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdC
 
           console.log(data);// 티어별 구분 -success  
 
-          var champion = data[0];
+          //var champion = data[0];
           var opener = data[5];
-          displayChampionInfo(champion);//-success> champion
+          // displayChampionInfo(champion);//-success> champion
           displayGateKeeperInfo(opener);
            // 데이터를 HTML에 표시하는 함수 호출
           
@@ -28,17 +28,6 @@ xhttp.send();//request sending
 
 
 //개별 사람 
-function displayChampionInfo(player) {
-  var playerInfoContainer = document.querySelector('.champion'); // 클래스로 선택
-
-  var playerElement = document.createElement('div');
-  playerElement.style= 'margin-top : 50px;'
-  playerElement.innerHTML = `
-  <button class="btn outlineforC"><h1> ${player.tier}</h1></button>
-  <button class="btn fillforC"><h1> ${player.name}</h1></button>
-  `;
-  playerInfoContainer.appendChild(playerElement);
-}
 
 function displayGateKeeperInfo(player) {
   var playerInfoContainer = document.querySelector('.rank-opener'); // 클래스로 선택
@@ -79,7 +68,10 @@ xhttp2.onreadystatechange = function () {
     if (xhttp2.readyState === 4 && xhttp2.status === 200) {
         var data2 = JSON.parse(xhttp2.responseText);
         console.log(data2);// > success
+
+
        
+        var champion=data2[0];
 
         var box2=data2[1];
         var box3=data2[2];
@@ -90,6 +82,8 @@ xhttp2.onreadystatechange = function () {
         var box8=data2[7];
         var box9=data2[8];
         var box10=data2[9];
+
+        displayChampionInfo(champion);//-success> champion
 
         boxInfo2(box2);
         boxInfo3(box3);
@@ -105,8 +99,71 @@ xhttp2.onreadystatechange = function () {
 };
 xhttp2.send();
 
-//개별 사람 
+
+function getCharacterImage(characterName) {
+  // 캐릭터 이름을 기반으로 캐릭터 이미지 경로 또는 URL을 반환하는 함수
+  // 여기서는 간단한 예제로 고정된 이미지 URL을 반환하도록 하겠습니다.
+  // 실제 서비스에서는 서버에서 동적으로 이미지 URL을 가져오는 방식으로 구현해야 합니다.
+  // 예: 서버에서는 캐릭터 이름에 대응하는 이미지 URL을 DB에서 조회하여 전송
+  console.log(characterName);
+
+  switch (characterName) {
+    
+    case 'PAUL':
+      return 'https://github.com/Tekken-Supporter/Frontend/blob/main/image/lili.png?raw=true';
+    case 'ASKUKA':
+      return 'https://github.com/Tekken-Supporter/Frontend/blob/main/image/asuka.png?raw=true';
+    case 'EDDY':
+      return 'https://github.com/Tekken-Supporter/Frontend/blob/main/image/eddy.png?raw=true';
+    default:
+      return '#';
+  }
+}
+
+// 이미지 URL을 동적으로 가져오는 함수 추가
+function getChampionImageDynamic(championName) {
+  const lowercaseChampionName = championName.toLowerCase();
+
+  return `https://github.com/Tekken-Supporter/Frontend/blob/main/image/${lowercaseChampionName}`+ `.png?raw=true`;
+}
+
+//개별 사람 > 1st~ 10th
+function displayChampionInfo(player) {
+  
+  var playerCharacter = document.querySelector('.banner-image');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  
+  // 이미지 URL을 동적으로 가져오기
+  picture.innerHTML = `
+    <img class="champion-image" src="${getChampionImageDynamic(player.champion)}" alt="${player.champion} 이미지">
+  `;
+  playerCharacter.appendChild(picture);
+  console.log(getChampionImageDynamic(player.champion));
+
+  var playerInfoContainer = document.querySelector('.champion'); // 클래스로 선택
+
+  var playerElement = document.createElement('div');
+  playerElement.style= 'margin-top : 50px;'
+  playerElement.innerHTML = `
+  <button class="btn outlineforC"><h1> ${player.tier}</h1></button>
+  <button class="btn fillforC"><h1> ${player.name}</h1></button>
+  `;
+  playerInfoContainer.appendChild(playerElement);
+}
+
 function boxInfo2(player) {
+  var playerCharacter = document.querySelector('.banner2');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  picture.innerHTML = `
+  <img class="character-image" src="${getCharacterImage("${player.champion}")}" alt="${player.champion} 이미지">
+  `
+  ;
+  playerCharacter.appendChild(picture);
+
   var playerInfoContainer = document.querySelector('.player2'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
@@ -117,7 +174,18 @@ function boxInfo2(player) {
   playerInfoContainer.appendChild(playerElement);
 }
 
+
 function boxInfo3(player) {
+  var playerCharacter = document.querySelector('.banner3');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  picture.innerHTML = `
+  <img class="character-image" src="${getCharacterImage("${player.champion}")}" alt="${player.champion} 이미지">
+  `
+  ;
+  playerCharacter.appendChild(picture);
+
   var playerInfoContainer = document.querySelector('.player3'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
@@ -127,7 +195,17 @@ function boxInfo3(player) {
   `;
   playerInfoContainer.appendChild(playerElement);
 }
+
 function boxInfo4(player) {
+  var playerCharacter = document.querySelector('.banner4');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  picture.innerHTML = `
+  <img class="character-image" src="${getCharacterImage("${player.champion}")}" alt="${player.champion} 이미지">
+  `
+  ;
+  playerCharacter.appendChild(picture);
   var playerInfoContainer = document.querySelector('.player4'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
@@ -138,6 +216,16 @@ function boxInfo4(player) {
   playerInfoContainer.appendChild(playerElement);
 }
 function boxInfo5(player) {
+  var playerCharacter = document.querySelector('.banner5');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  picture.innerHTML = `
+  <img class="character-image" src="${getCharacterImage("${player.champion}")}" alt="${player.champion} 이미지">
+  `
+  ;
+  playerCharacter.appendChild(picture);
+
   var playerInfoContainer = document.querySelector('.player5'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
@@ -147,7 +235,18 @@ function boxInfo5(player) {
   `;
   playerInfoContainer.appendChild(playerElement);
 }
+
 function boxInfo6(player) {
+  var playerCharacter = document.querySelector('.banner6');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  picture.innerHTML = `
+  <img class="character-image" src="${getCharacterImage("${player.champion}")}" alt="${player.champion} 이미지">
+  `
+  ;
+  playerCharacter.appendChild(picture);
+
   var playerInfoContainer = document.querySelector('.player6'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
@@ -158,6 +257,16 @@ function boxInfo6(player) {
   playerInfoContainer.appendChild(playerElement);
 }
 function boxInfo7(player) {
+  var playerCharacter = document.querySelector('.banner7');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  picture.innerHTML = `
+  <img class="character-image" src="${getCharacterImage("${player.champion}")}" alt="${player.champion} 이미지">
+  `
+  ;
+  playerCharacter.appendChild(picture);
+
   var playerInfoContainer = document.querySelector('.player7'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
@@ -168,6 +277,16 @@ function boxInfo7(player) {
   playerInfoContainer.appendChild(playerElement);
 }
 function boxInfo8(player) {
+  var playerCharacter = document.querySelector('.banner8');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  picture.innerHTML = `
+  <img class="character-image" src="${getCharacterImage("${player.champion}")}" alt="${player.champion} 이미지">
+  `
+  ;
+  playerCharacter.appendChild(picture);
+
   var playerInfoContainer = document.querySelector('.player8'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
@@ -178,6 +297,16 @@ function boxInfo8(player) {
   playerInfoContainer.appendChild(playerElement);
 }
 function boxInfo9(player) {
+  var playerCharacter = document.querySelector('.banner9');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  picture.innerHTML = `
+  <img class="character-image" src="${getCharacterImage("${player.champion}")}" alt="${player.champion} 이미지">
+  `
+  ;
+  playerCharacter.appendChild(picture);
+
   var playerInfoContainer = document.querySelector('.player9'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
@@ -188,6 +317,16 @@ function boxInfo9(player) {
   playerInfoContainer.appendChild(playerElement);
 }
 function boxInfo10(player) {
+  var playerCharacter = document.querySelector('.banner10');
+  var picture = document.createElement('div');
+  console.log(player.champion);
+  console.log(picture);
+  picture.innerHTML = `
+  <img class="character-image" src="${getCharacterImage("${player.champion}")}" alt="${player.champion} 이미지">
+  `
+  ;
+  playerCharacter.appendChild(picture);
+
   var playerInfoContainer = document.querySelector('.player10'); // 클래스로 선택
 
   var playerElement = document.createElement('div');
