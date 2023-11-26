@@ -34,7 +34,7 @@ function loadUser() {
       if (this.status >= 200 && this.status < 300) {
         try {
           const objects = JSON.parse(this.responseText);
-          console.log("Response from server:", objects);
+          console.log("Response about user:", objects);
 
           if (objects["status"] == "ok") {
             document.getElementById("challenger_apply").textContent = objects["name"];
@@ -60,7 +60,7 @@ function loadContenders() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
       const response = JSON.parse(this.responseText); // 전체 응답 파싱
-      console.log("Response from server:", response); // 파싱된 응답 출력
+      console.log("Response about Contenders:", response); // 파싱된 응답 출력
 
       if (response.status === "ok" && Array.isArray(response.namelist)) {
         const namelist = response.namelist; // 'namelist'에서 이름 배열을 가져옵니다.

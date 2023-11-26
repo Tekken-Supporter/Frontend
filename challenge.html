@@ -8,6 +8,7 @@
     <script defer src="./challenge.js"></script>
     <script defer src="./challenge_apply.js"></script>
     <script defer src="./challenge_accept.js"></script>
+    <script defer src="./challenge_result.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
@@ -68,32 +69,32 @@
                 <div class="board_list_ur">
                     <div class="top">
                         <div class="num">번호</div>
-                        <div class="writer">도전자</div>
+                        <div class="name">도전자</div>
                         <div class="date">신청일</div>
                     </div>
                     <div>
                         <div class="num">1</div>
-                        <div class="writer"><button class="btnAccept-popup">김이름</button></div>
+                        <div class="name"><button class="btnAccept-popup">이유진</button></div>
                         <div class="date">2021.1.15</div>
                     </div>
                     <div>
                         <div class="num">2</div>
-                        <div class="writer">김이름</div>
+                        <div class="name">김이름</div>
                         <div class="date">2021.1.15</div>
                     </div>
                     <div>
                         <div class="num">3</div>
-                        <div class="writer">김이름</div>
+                        <div class="name">김이름</div>
                         <div class="date">2021.1.15</div>
                     </div>
                     <div>
                         <div class="num">4</div>
-                        <div class="writer">김이름</div>
+                        <div class="name">김이름</div>
                         <div class="date">2021.1.15</div>
                     </div>
                     <div>
                         <div class="num">5</div>
-                        <div class="writer">김이름</div>
+                        <div class="name">김이름</div>
                         <div class="date">2021.1.15</div>
                     </div>
                 </div>
@@ -105,37 +106,37 @@
                 <div class="board_list_p">
                     <div class="top">
                         <div class="num">번호</div>
-                        <div class="writer">상대</div>
+                        <div class="name">상대</div>
                         <div class="result">대결결과</div>
                         <div class="date">대결일</div>
                     </div>
                     <div>
                         <div class="num">1</div>
-                        <div class="writer">김이름</div>
+                        <div class="name"><button class="btnResult-popup">이유진</button></div>
                         <div class="result">3:1</div>
                         <div class="date">2021.1.15</div>
                     </div>
                     <div>
                         <div class="num">2</div>
-                        <div class="writer">김이름</div>
+                        <div class="name">김이름</div>
                         <div class="result">3:1</div>
                         <div class="date">2021.1.15</div>
                     </div>
                     <div>
                         <div class="num">3</div>
-                        <div class="writer">김이름</div>
+                        <div class="name">김이름</div>
                         <div class="result">3:1</div>
                         <div class="date">2021.1.15</div>
                     </div>
                     <div>
                         <div class="num">4</div>
-                        <div class="writer">김이름</div>
+                        <div class="name">김이름</div>
                         <div class="result">3:1</div>
                         <div class="date">2021.1.15</div>
                     </div>
                     <div>
                         <div class="num">5</div>
-                        <div class="writer">김이름</div>
+                        <div class="name">김이름</div>
                         <div class="result">3:1</div>
                         <div class="date">2021.1.15</div>
                     </div>
@@ -162,11 +163,11 @@
                         <label><ion-icon name="person"></ion-icon> 도전자 이름</label>
                     </div>
                     <div class="input-box">
-                        <output type="text" id="contender_accept" required>
-                            <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
+                        <output type="text" id="contender_accept"></output>
+                        <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
                     </div>
                     <div class="input-box">
-                        <input type="date" id="date_accept" required>
+                        <input type="date" id="date_accept">
                         <label><ion-icon name="calendar"></ion-icon> 대결 날짜</label>
                     </div>
                     <div class="input-box">
@@ -175,14 +176,42 @@
                     </div>
                     <div class="submit-quest">
                         <button type="submit" class="quest_btn" onclick="accept()">수락하기</button>
-                        <button type="button" class="quest_btn" onclick="deny()">거절하기</button>
+                        <button type="submit" class="quest_btn" onclick="deny()">거절하기</button>
                     </div>
                 </form>
             </div>
         </div>
+
+        <div class="wrapper_result">
+            <span class="icon-close3"><ion-icon name="close"></ion-icon></span>
+            <div class="form-box">
+                <h2>대결 결과</h2><br><br>
+                <form onsubmit="" action="#">
+                    <div class="input-box">
+                        <output type="text" id="challenger_accept"></output>
+                        <label><ion-icon name="person"></ion-icon> 도전자 이름</label>
+                    </div>
+                    <div class="input-box">
+                        <output type="text" id="contender_accept"></output>
+                        <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
+                    </div>
+                    <div class="input-box">
+                        <output type="text" id="date_accept"></output>
+                        <label><ion-icon name="calendar"></ion-icon> 대결 날짜</label>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" id="contender_accept" required>
+                        <label><ion-icon name="ribbon"></ion-icon> 대결 결과</label>
+                    </div>
+                    <div class="submit-quest">
+                        <button type="submit" class="quest_btn" onclick="result()">결과 제출</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
     </div>
-
-
 </body>
 
 </html>
