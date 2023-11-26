@@ -15,6 +15,10 @@
         h3 {
             text-align: right;
         }
+
+        #reviews-container {
+      margin-bottom: 20px;
+    }
     </style>
 
     <script src="./charinfo.js"></script>
@@ -30,7 +34,6 @@
 
 <body>
 
-    <!-- homebutton & logo  -->
     <div class="container">
         <video autoplay loop muted plays-inline class="background-clip">
             <source src="tekken.mp4" type="video/mp4">
@@ -53,6 +56,31 @@
             </h1>
             <br>
         </div>
+
+       
+       
+        <div id="reviews-container"></div>
+
+         <form id="review-form">
+         <label for="comment">리뷰 추가:</label>
+         <input type="text" id="comment" name="comment" required>
+         <button type="button" onclick="addReview()">추가</button>
+        </form>
+
+        <form id="update-form">
+        <label for="update-comment">리뷰 수정 (리뷰 ID 입력):</label>
+        <input type="text" id="update-review-id" name="update-review-id" required>
+        <input type="text" id="update-comment" name="update-comment" required>
+        <button type="button" onclick="updateReview()">수정</button>
+        </form>
+
+        <form id="delete-form">
+        <label for="delete-review-id">리뷰 삭제 (리뷰 ID 입력):</label>
+        <input type="text" id="delete-review-id" name="delete-review-id" required>
+        <button type="button" onclick="deleteReview()">삭제</button>
+        </form>
+
+        
 
         <div class="content">
             <button id="btn-all-close">All Close</button>

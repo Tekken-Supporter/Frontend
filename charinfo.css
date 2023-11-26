@@ -108,6 +108,19 @@ header {
   margin-left: 40px;
   transition: .5s;
 }
+.review{
+  top:50px;
+  width: 50%;
+  height: flex;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 170;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: black;
+}
 
 .content {
   position: relative;
