@@ -4,7 +4,6 @@ var jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdC
 
 // 가장 상단에 리뷰 목록을 저장할 배열을 선언합니다.
 var reviews = [];
-console.log("reviews made.");
 
 var submitButton = document.getElementById("reviewbtn");
 
@@ -16,6 +15,39 @@ var submitButton = document.getElementById("reviewbtn");
   }
 
   getReviews();
+
+
+  function getReviews() {
+    // 서버로부터 리뷰를 받아오는 코드
+    var xhr = new XMLHttpRequest();
+    var url = "http://34.127.90.191:3000/character/review";
+  
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Authorization", "Bearer " + jwt);
+  
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          console.log("서버 응답:", xhr.responseText);
+          // 서버 응답에 따른 추가 작업 수행
+          var response = JSON.parse(xhr.responseText);
+          if (response.status === "success") {
+            // 리뷰가 성공적으로 받아온 경우에 처리할 내용 추가
+            // 예: 리뷰를 웹에 표시
+            displayReviews(response.data);
+          } else {
+            // 리뷰 받아오기가 실패한 경우에 처리할 내용 추가
+            console.error("리뷰 받아오기 실패:", response.message);
+          }
+        } else {
+          console.error("서버 에러:", xhr.status);
+        }
+      }
+    };
+  
+    // GET 요청 전송
+    xhr.send();
+  }
 
 //1 submit , POST 
 function submitReview() {
@@ -39,6 +71,7 @@ function submitReview() {
   };
 
   // XMLHttpRequest 객체 생성
+  console.log("posting order from server");
   var xhr = new XMLHttpRequest();
   var url = "http://34.127.90.191:3000/character/review";
 
@@ -70,39 +103,6 @@ function submitReview() {
   xhr.send(JSON.stringify(data));
 
   getReviews();
-}
-console.log("out from submit Review");
-
-function getReviews() {
-  // 서버로부터 리뷰를 받아오는 코드
-  var xhr = new XMLHttpRequest();
-  var url = "http://34.127.90.191:3000/character/review";
-
-  xhr.open("GET", url, true);
-  xhr.setRequestHeader("Authorization", "Bearer " + jwt);
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4) {
-      if (xhr.status == 200) {
-        console.log("서버 응답:", xhr.responseText);
-        // 서버 응답에 따른 추가 작업 수행
-        var response = JSON.parse(xhr.responseText);
-        if (response.status === "success") {
-          // 리뷰가 성공적으로 받아온 경우에 처리할 내용 추가
-          // 예: 리뷰를 웹에 표시
-          displayReviews(response.data);
-        } else {
-          // 리뷰 받아오기가 실패한 경우에 처리할 내용 추가
-          console.error("리뷰 받아오기 실패:", response.message);
-        }
-      } else {
-        console.error("서버 에러:", xhr.status);
-      }
-    }
-  };
-
-  // GET 요청 전송
-  xhr.send();
 }
 
 // 2 PUT, update 리뷰 수정 함수
