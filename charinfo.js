@@ -247,38 +247,40 @@ function updateReviewList() {
   });
 }
 
-    //panel-faq-container
-    const panelContainer = document.querySelectorAll('.panel-container');
-    console.log(panelContainer);//NodeList객체
-
-    // panel-faq-answer
-    let panelAnswer = document.querySelectorAll('.panel-answer');
-    console.log(panelAnswer);
 
     //btn-all-close
     const btnAllClose=document.getElementById('btn-all-close');
-    console.log(btnAllClose);
-
-    //반복문 순회하면서 해당FAQ제목 클릭시 콜백 처리
-    for(let i=0;i<panelContainer.length;i++){
-        panelContainer[i].addEventListener('click',function(){
-            //클릭시 처리할일
-            console.log('나 클릭...' + i);  
-
-            //FAQ제목클릭시 > 본문이 보이게끔 > active 클래스 추가
-            panelAnswer[i].classList.add('active');
-        });
-    }
-
-    btnAllClose.addEventListener('click',function(){
+    btnAllClose.addEventListener('click', resetCharacterContainers);
     console.log('all close button click');
-
-    //버튼클릭시 처리할일
-    for(let i=0;i<panelAnswer.length;i++){
-        panelAnswer[i].classList.remove('active');
+    
+    function resetCharacterContainers() {
+      const characterContainers = document.querySelectorAll('.character-container');
+      characterContainers.forEach(container => {
+        container.style.display = 'none';
+      });
     }
-    });
-
-
-
+   
+      // 각 캐릭터 링크에 이벤트 리스너 추가
+      const characterLinks = document.querySelectorAll('.character-link');
+      characterLinks.forEach(link => {
+        link.addEventListener('click', showCharacterInfo);
+      });
+    
+      function showCharacterInfo(event) {
+        // 클릭한 캐릭터의 데이터 얻기
+        const characterId = event.target.getAttribute('data-character');
+    
+        // 모든 캐릭터 컨테이너 숨기기
+        const characterContainers = document.querySelectorAll('.character-container');
+        characterContainers.forEach(container => {
+          container.style.display = 'none';
+        });
+    
+        // 클릭한 캐릭터에 해당하는 컨테이너 보이기
+        const selectedContainer = document.getElementById(characterId);
+        if (selectedContainer) {
+          selectedContainer.style.display = 'block';
+        }
+      }
+  
 }
