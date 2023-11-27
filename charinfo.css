@@ -177,7 +177,6 @@ header {
  margin-top: 10px;
 }
 
-
 .linkposition {
   position: relative;
   width: 100%;
@@ -231,11 +230,4 @@ h3 {
   background-color: yellow;
   color: #000;
   transition: all.35s;
-}
-
-.active {
-  display: flex;
-  text-align: center;
-  height: 100px;
-  width: 200px;
 }

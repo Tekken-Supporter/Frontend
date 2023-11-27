@@ -1,50 +1,43 @@
+var jwt= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdCIsImlhdCI6MTY5OTYzMjA1NywiZXhwIjoxNzAyMjI0MDU3fQ.P0AX2jyS18tjHFKBQRy6Wi6OWG9AlDQ4hJtpZp3woB0";
 window.onload=()=>{
-  
-var jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdCIsImlhdCI6MTY5OTYzMjA1NywiZXhwIjoxNzAyMjI0MDU3fQ.P0AX2jyS18tjHFKBQRy6Wi6OWG9AlDQ4hJtpZp3woB0";
-
+//위에거 없애면 버튼들이 안머금
 // 가장 상단에 리뷰 목록을 저장할 배열을 선언합니다.
 var reviews = [];
 
-var submitButton = document.getElementById("reviewbtn");
-
+var submitButton = document.getElementById("button");
   // 이벤트 리스너를 추가하기 전에 엘리먼트가 존재하는지 확인
+  //왜 인식을 못하지? 
   if (submitButton) {
     submitButton.addEventListener("click", submitReview);
   } else {
     console.error("Submit 버튼을 찾을 수 없습니다.");
   }
-
   getReviews();
 
-
+   // 서버로부터 리뷰를 받아오는 코드
   function getReviews() {
-    // 서버로부터 리뷰를 받아오는 코드
     var xhr = new XMLHttpRequest();
     var url = "http://34.127.90.191:3000/character/review";
   
     xhr.open("GET", url, true);
-    xhr.setRequestHeader("Authorization", "Bearer " + jwt);
+   
   
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
         if (xhr.status == 200) {
-          console.log("서버 응답:", xhr.responseText);
+         
           // 서버 응답에 따른 추가 작업 수행
           var response = JSON.parse(xhr.responseText);
-          if (response.status === "success") {
+          console.log(response);
             // 리뷰가 성공적으로 받아온 경우에 처리할 내용 추가
             // 예: 리뷰를 웹에 표시
-            displayReviews(response.data);
-          } else {
-            // 리뷰 받아오기가 실패한 경우에 처리할 내용 추가
-            console.error("리뷰 받아오기 실패:", response.message);
-          }
+          displayReviews(response);
+           
         } else {
           console.error("서버 에러:", xhr.status);
         }
       }
     };
-  
     // GET 요청 전송
     xhr.send();
   }
@@ -72,19 +65,19 @@ function submitReview() {
 
   // XMLHttpRequest 객체 생성
   console.log("posting order from server");
-  var xhr = new XMLHttpRequest();
-  var url = "http://34.127.90.191:3000/character/review";
+  var xhr2 = new XMLHttpRequest();
+  var url = "http://34.127.90.191:5500/character/review";
 
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhr.setRequestHeader("Authorization", "Bearer " + jwt);
+  xhr2.open("POST", url, true);
+  xhr2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr2.setRequestHeader("Authorization", "Bearer " + jwt);
 
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4) {
-      if (xhr.status == 200) {
-        console.log("서버 응답:", xhr.responseText);
+  xhr2.onreadystatechange = function () {
+    if (xhr2.readyState == 4) {
+      if (xhr2.status == 200) {
+        console.log("서버 응답:", xhr2.responseText);
         // 서버 응답에 따른 추가 작업 수행
-        var response = JSON.parse(xhr.responseText);
+        var response = JSON.parse(xhr2.responseText);
         if (response.status === "success") {
           // 리뷰가 성공적으로 등록된 경우에 처리할 내용 추가
           // 예: 수정된 리뷰를 웹에 보여주기
@@ -94,13 +87,13 @@ function submitReview() {
           console.error("리뷰 등록 실패:", response.message);
         }
       } else {
-        console.error("서버 에러:", xhr.status);
+        console.error("서버 에러:", xhr2.status);
       }
     }
   };
 
   // 데이터를 JSON 형식으로 변환하여 전송
-  xhr.send(JSON.stringify(data));
+  xhr2.send(JSON.stringify(data));
 
   getReviews();
 }
@@ -117,19 +110,19 @@ function updateReview(reviewId) {
     };
 
     // XMLHttpRequest 객체 생성
-    var xhr = new XMLHttpRequest();
-    var url = "http://34.127.90.191:3000/character/review?c_name=&id=&reviewData=&creationTime=";
+    var xhr3 = new XMLHttpRequest();
+    var url = "http://34.127.90.191:5500/character/review?c_name=&id=&reviewData=&creationTime=";
    
-    xhr.open("PUT", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.setRequestHeader("Authorization", "Bearer " + jwt);
+    xhr3.open("PUT", url, true);
+    xhr3.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr3.setRequestHeader("Authorization", "Bearer " + jwt);
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4) {
-        if (xhr.status == 200) {
-          console.log("서버 응답:", xhr.responseText);
+    xhr3.onreadystatechange = function () {
+      if (xhr3.readyState == 4) {
+        if (xhr3.status == 200) {
+          console.log("서버 응답:", xhr3.responseText);
           // 서버 응답에 따른 추가 작업 수행
-          var response = JSON.parse(xhr.responseText);
+          var response = JSON.parse(xhr3.responseText);
           if (response.status === "success") {
             // 리뷰가 성공적으로 수정된 경우에 처리할 내용 추가
             // 예: 수정된 리뷰를 웹에 보여주기
@@ -139,13 +132,13 @@ function updateReview(reviewId) {
             console.error("리뷰 수정 실패:", response.message);
           }
         } else {
-          console.error("서버 에러:", xhr.status);
+          console.error("서버 에러:", xhr3.status);
         }
       }
     };
 
     // 데이터를 JSON 형식으로 변환하여 전송
-    xhr.send(JSON.stringify(updatedData));
+    xhr3.send(JSON.stringify(updatedData));
   }
 }
 
@@ -155,17 +148,17 @@ function deleteReview(reviewId) {
   var confirmation = confirm("정말로 리뷰를 삭제하시겠습니까?");
   if (confirmation) {
     // XMLHttpRequest 객체 생성
-    var xhr = new XMLHttpRequest();
-    var url = "http://34.127.90.191:3000/character/review?number=";
+    var xhr4 = new XMLHttpRequest();
+    var url = "http://34.127.90.191:5500/character/review?number=";
 
-    xhr.open("DELETE", url + "?reviewId=" + reviewId, true);
+    xhr4.open("DELETE", url + "?reviewId=" + reviewId, true);
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4) {
-        if (xhr.status == 200) {
-          console.log("서버 응답:", xhr.responseText);
+    xhr4.onreadystatechange = function () {
+      if (xhr4.readyState == 4) {
+        if (xhr4.status == 200) {
+          console.log("서버 응답:", xhr4.responseText);
           // 서버 응답에 따른 추가 작업 수행
-          var response = JSON.parse(xhr.responseText);
+          var response = JSON.parse(xhr4.responseText);
           if (response.status === "success") {
             // 리뷰가 성공적으로 삭제된 경우에 처리할 내용 추가
             // 예: 삭제된 리뷰를 웹에서 제거
@@ -175,13 +168,13 @@ function deleteReview(reviewId) {
             console.error("리뷰 삭제 실패:", response.message);
           }
         } else {
-          console.error("서버 에러:", xhr.status);
+          console.error("서버 에러:", xhr4.status);
         }
       }
     };
 
     // 요청 전송
-    xhr.send();
+    xhr4.send();
   }
 }
 
@@ -282,5 +275,5 @@ function updateReviewList() {
           selectedContainer.style.display = 'block';
         }
       }
-  
-}
+    }
+
