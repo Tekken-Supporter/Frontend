@@ -1,50 +1,20 @@
 var jwt= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdCIsImlhdCI6MTY5OTYzMjA1NywiZXhwIjoxNzAyMjI0MDU3fQ.P0AX2jyS18tjHFKBQRy6Wi6OWG9AlDQ4hJtpZp3woB0";
-window.onload=()=>{
-//위에거 없애면 버튼들이 안머금
-// 가장 상단에 리뷰 목록을 저장할 배열을 선언합니다.
 var reviews = [];
+const reviewsPerPage = 3;
+let currentPage = 1;
+
+window.onload=()=>{
 
 var submitButton = document.getElementById("button");
-  // 이벤트 리스너를 추가하기 전에 엘리먼트가 존재하는지 확인
-  //왜 인식을 못하지? 
-  if (submitButton) {
+// 이벤트 리스너를 추가하기 전에 엘리먼트가 존재하는지 확인
+if (submitButton) {
     submitButton.addEventListener("click", submitReview);
-  } else {
+} else {
     console.error("Submit 버튼을 찾을 수 없습니다.");
-  }
-  getReviews();
-
-   // 서버로부터 리뷰를 받아오는 코드
-  function getReviews() {
-    var xhr = new XMLHttpRequest();
-    var url = "http://34.127.90.191:3000/character/review";
-  
-    xhr.open("GET", url, true);
-   
-  
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4) {
-        if (xhr.status == 200) {
-         
-          // 서버 응답에 따른 추가 작업 수행
-          var response = JSON.parse(xhr.responseText);
-          console.log(response);
-            // 리뷰가 성공적으로 받아온 경우에 처리할 내용 추가
-            // 예: 리뷰를 웹에 표시
-          displayReviews(response);
-           
-        } else {
-          console.error("서버 에러:", xhr.status);
-        }
-      }
-    };
-    // GET 요청 전송
-    xhr.send();
-  }
+}
 
 //1 submit , POST 
 function submitReview() {
-  console.log(submitReview);
   console.log("come in submit Review");
   var cName = document.getElementById("cName").value;
   var userId = document.getElementById("userId").value;
@@ -66,11 +36,9 @@ function submitReview() {
   // XMLHttpRequest 객체 생성
   console.log("posting order from server");
   var xhr2 = new XMLHttpRequest();
-  var url = "http://34.127.90.191:5500/character/review";
+  var url = "http://34.127.90.191:3000/character/review";
 
   xhr2.open("POST", url, true);
-  xhr2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhr2.setRequestHeader("Authorization", "Bearer " + jwt);
 
   xhr2.onreadystatechange = function () {
     if (xhr2.readyState == 4) {
@@ -78,6 +46,7 @@ function submitReview() {
         console.log("서버 응답:", xhr2.responseText);
         // 서버 응답에 따른 추가 작업 수행
         var response = JSON.parse(xhr2.responseText);
+        console.log(response.status);
         if (response.status === "success") {
           // 리뷰가 성공적으로 등록된 경우에 처리할 내용 추가
           // 예: 수정된 리뷰를 웹에 보여주기
@@ -91,12 +60,31 @@ function submitReview() {
       }
     }
   };
-
   // 데이터를 JSON 형식으로 변환하여 전송
   xhr2.send(JSON.stringify(data));
-
-  getReviews();
+  
+loadReviews(currentPage);
+loadPageNumbers();//index of lists
 }
+
+function getReviews() {
+  var xhr1 = new XMLHttpRequest();
+  var url = "http://34.127.90.191:3000/character/review";
+  
+  xhr1.open("GET", url, true);
+  xhr1.onreadystatechange = function () {
+      if (xhr1.readyState == 4) {
+          if (xhr1.status == 200) {
+              var response = JSON.parse(xhr1.responseText);
+              displayReviews(response);
+          } else {
+              console.error("서버 에러:", xhr1.status);
+          }
+      }
+  };
+  xhr.send();
+}
+
 
 // 2 PUT, update 리뷰 수정 함수
 function updateReview(reviewId) {
@@ -180,8 +168,7 @@ function deleteReview(reviewId) {
 
 // 4. 리뷰를 웹에 보여주는 함수 (UI 업데이트)
 function displayReview(reviewData) {
-  // 리뷰 배열에 추가
-  reviews.push(reviewData);
+  reviews.push(reviewData);// 리뷰 배열에 추가
 
   // 리뷰를 웹에 표시
   updateReviewList();
@@ -194,26 +181,6 @@ function removeReviewFromUI(reviewId) {
   
   // 리뷰를 웹에 표시
   updateReviewList();
-}
-
-
-function displayReviews(reviews) {
-  // 리뷰 목록을 표시하는 코드
-  var reviewListContainer = document.getElementById("reviewList");
-  reviewListContainer.innerHTML = "";
-
-  reviews.forEach(function (review) {
-    var reviewElement = document.createElement("div");
-    reviewElement.classList.add("review");
-    reviewElement.innerHTML = `
-      <p>캐릭터 이름: ${review.c_name}</p>
-      <p>사용자 ID: ${review.id}</p>
-      <p>리뷰 내용: ${review.reviewData}</p>
-      <p>작성 시간: ${review.creationTime}</p>
-      <p>수정 시간: ${review.modifiedTime}</p>
-    `;
-    reviewListContainer.appendChild(reviewElement);
-  });
 }
 
 
@@ -275,5 +242,77 @@ function updateReviewList() {
           selectedContainer.style.display = 'block';
         }
       }
-    }
 
+loadReviews(currentPage);
+loadPageNumbers();//index of lists
+
+function loadReviews(page) {
+  var xhr = new XMLHttpRequest();
+  var url = "http://34.127.90.191:3000/character/review";
+  
+  xhr.open("GET", url, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        // 서버 응답에 따른 추가 작업 수행
+        reviews = JSON.parse(xhr.responseText);
+        console.log(reviews);
+       const startIndex = (page - 1) * reviewsPerPage;
+       const endIndex = startIndex + reviewsPerPage;
+       const currentPageReviews = reviews.slice(startIndex, endIndex);
+       displayReviews(currentPageReviews);
+      } else {
+          console.error("서버 에러:", xhr.status);
+        }
+      }
+    };
+    xhr.send();
+}
+ function displayReviews(reviews) {
+  const reviewListContainer = document.getElementById("reviewList");
+  reviewListContainer.innerHTML = "";
+
+  reviews.forEach((review) => {
+      const reviewElement = document.createElement("div");
+      reviewElement.classList.add("review");
+      reviewElement.innerHTML = `
+          <p>캐릭터 이름: ${review.c_name || "알 수 없음"}</p>
+          <p>사용자 ID: ${review.id || "알 수 없음"}</p>
+          <p>리뷰 내용: ${review.reviewData || "리뷰 없음"}</p>
+          <p>작성 시간: ${review.Creationtime || "알 수 없음"}</p>
+          <button onclick="updateReview(${review.number})">수정</button>
+          <button onclick="deleteReview(${review.number})">삭제</button>
+      `;
+      reviewListContainer.appendChild(reviewElement);
+  });
+}
+function loadPageNumbers() {
+  const paginationContainer = document.getElementById("pagination-container");
+  const totalPages = Math.ceil(10 / reviewsPerPage);
+
+  for (let i = 0; i < totalPages; i++) {
+      const pageNumber = i + 1;
+      const pageLink = document.createElement("span");
+      pageLink.textContent = pageNumber;
+      pageLink.classList.add("page-link");
+      pageLink.addEventListener("click", () => {
+          currentPage = i + 1;
+          loadReviews(currentPage);
+          const pageLinks = document.querySelectorAll(".page-link");
+
+          pageLinks.forEach((link, index) => {
+              if (index + 1 === currentPage) {
+                  link.classList.add("active");
+              } else {
+                  link.classList.remove("active");
+              }
+          });
+      });
+      paginationContainer.appendChild(pageLink);
+  }
+}
+
+    }
+    
+    
+    
