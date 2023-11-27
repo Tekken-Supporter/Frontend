@@ -4,7 +4,6 @@ var jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdC
 
 // 가장 상단에 리뷰 목록을 저장할 배열을 선언합니다.
 var reviews = [];
-console.log("reviews made.");
 
 var submitButton = document.getElementById("reviewbtn");
 
@@ -16,6 +15,39 @@ var submitButton = document.getElementById("reviewbtn");
   }
 
   getReviews();
+
+
+  function getReviews() {
+    // 서버로부터 리뷰를 받아오는 코드
+    var xhr = new XMLHttpRequest();
+    var url = "http://34.127.90.191:3000/character/review";
+  
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Authorization", "Bearer " + jwt);
+  
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          console.log("서버 응답:", xhr.responseText);
+          // 서버 응답에 따른 추가 작업 수행
+          var response = JSON.parse(xhr.responseText);
+          if (response.status === "success") {
+            // 리뷰가 성공적으로 받아온 경우에 처리할 내용 추가
+            // 예: 리뷰를 웹에 표시
+            displayReviews(response.data);
+          } else {
+            // 리뷰 받아오기가 실패한 경우에 처리할 내용 추가
+            console.error("리뷰 받아오기 실패:", response.message);
+          }
+        } else {
+          console.error("서버 에러:", xhr.status);
+        }
+      }
+    };
+  
+    // GET 요청 전송
+    xhr.send();
+  }
 
 //1 submit , POST 
 function submitReview() {
@@ -39,6 +71,7 @@ function submitReview() {
   };
 
   // XMLHttpRequest 객체 생성
+  console.log("posting order from server");
   var xhr = new XMLHttpRequest();
   var url = "http://34.127.90.191:3000/character/review";
 
@@ -70,39 +103,6 @@ function submitReview() {
   xhr.send(JSON.stringify(data));
 
   getReviews();
-}
-console.log("out from submit Review");
-
-function getReviews() {
-  // 서버로부터 리뷰를 받아오는 코드
-  var xhr = new XMLHttpRequest();
-  var url = "http://34.127.90.191:3000/character/review";
-
-  xhr.open("GET", url, true);
-  xhr.setRequestHeader("Authorization", "Bearer " + jwt);
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4) {
-      if (xhr.status == 200) {
-        console.log("서버 응답:", xhr.responseText);
-        // 서버 응답에 따른 추가 작업 수행
-        var response = JSON.parse(xhr.responseText);
-        if (response.status === "success") {
-          // 리뷰가 성공적으로 받아온 경우에 처리할 내용 추가
-          // 예: 리뷰를 웹에 표시
-          displayReviews(response.data);
-        } else {
-          // 리뷰 받아오기가 실패한 경우에 처리할 내용 추가
-          console.error("리뷰 받아오기 실패:", response.message);
-        }
-      } else {
-        console.error("서버 에러:", xhr.status);
-      }
-    }
-  };
-
-  // GET 요청 전송
-  xhr.send();
 }
 
 // 2 PUT, update 리뷰 수정 함수
@@ -247,38 +247,40 @@ function updateReviewList() {
   });
 }
 
-    //panel-faq-container
-    const panelContainer = document.querySelectorAll('.panel-container');
-    console.log(panelContainer);//NodeList객체
-
-    // panel-faq-answer
-    let panelAnswer = document.querySelectorAll('.panel-answer');
-    console.log(panelAnswer);
 
     //btn-all-close
     const btnAllClose=document.getElementById('btn-all-close');
-    console.log(btnAllClose);
-
-    //반복문 순회하면서 해당FAQ제목 클릭시 콜백 처리
-    for(let i=0;i<panelContainer.length;i++){
-        panelContainer[i].addEventListener('click',function(){
-            //클릭시 처리할일
-            console.log('나 클릭...' + i);  
-
-            //FAQ제목클릭시 > 본문이 보이게끔 > active 클래스 추가
-            panelAnswer[i].classList.add('active');
-        });
-    }
-
-    btnAllClose.addEventListener('click',function(){
+    btnAllClose.addEventListener('click', resetCharacterContainers);
     console.log('all close button click');
-
-    //버튼클릭시 처리할일
-    for(let i=0;i<panelAnswer.length;i++){
-        panelAnswer[i].classList.remove('active');
+    
+    function resetCharacterContainers() {
+      const characterContainers = document.querySelectorAll('.character-container');
+      characterContainers.forEach(container => {
+        container.style.display = 'none';
+      });
     }
-    });
-
-
-
+   
+      // 각 캐릭터 링크에 이벤트 리스너 추가
+      const characterLinks = document.querySelectorAll('.character-link');
+      characterLinks.forEach(link => {
+        link.addEventListener('click', showCharacterInfo);
+      });
+    
+      function showCharacterInfo(event) {
+        // 클릭한 캐릭터의 데이터 얻기
+        const characterId = event.target.getAttribute('data-character');
+    
+        // 모든 캐릭터 컨테이너 숨기기
+        const characterContainers = document.querySelectorAll('.character-container');
+        characterContainers.forEach(container => {
+          container.style.display = 'none';
+        });
+    
+        // 클릭한 캐릭터에 해당하는 컨테이너 보이기
+        const selectedContainer = document.getElementById(characterId);
+        if (selectedContainer) {
+          selectedContainer.style.display = 'block';
+        }
+      }
+  
 }

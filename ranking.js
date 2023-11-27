@@ -102,9 +102,6 @@ xhttp2.send();
 
 function getCharacterImage(characterName) {
   // 캐릭터 이름을 기반으로 캐릭터 이미지 경로 또는 URL을 반환하는 함수
-  // 여기서는 간단한 예제로 고정된 이미지 URL을 반환하도록 하겠습니다.
-  // 실제 서비스에서는 서버에서 동적으로 이미지 URL을 가져오는 방식으로 구현해야 합니다.
-  // 예: 서버에서는 캐릭터 이름에 대응하는 이미지 URL을 DB에서 조회하여 전송
   console.log(characterName);
 
   switch (characterName) {
@@ -142,7 +139,7 @@ function displayChampionInfo(player) {
   playerCharacter.appendChild(picture);
   console.log(getChampionImageDynamic(player.champion));
 
-  var playerInfoContainer = document.querySelector('.champion'); // 클래스로 선택
+  var playerInfoContainer = document.querySelector('.champion'); 
 
   var playerElement = document.createElement('div');
   playerElement.style= 'margin-top : 50px;'
