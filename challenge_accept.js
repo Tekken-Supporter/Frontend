@@ -20,6 +20,7 @@ function sendChallengeResponse(challenge_id, responseType) {
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "http://34.127.90.191:3000/challenge/accept");
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.setRequestHeader("Authorization", "Bearer " + jwt);
     xhttp.send(
         JSON.stringify({
             challenge_id: parsedChallengeId,
@@ -31,7 +32,6 @@ function sendChallengeResponse(challenge_id, responseType) {
         if (this.readyState == XMLHttpRequest.DONE) {
             if (this.status >= 200 && this.status < 300) {
                 console.log("Response from server:", this.responseText);
-                // 성공적으로 처리된 경우, UI 업데이트 등의 추가 작업을 수행할 수 있습니다.
                 if (responseType === 'accept') {
                     Swal.fire({
                         text: "대결이 성사되었습니다!",
