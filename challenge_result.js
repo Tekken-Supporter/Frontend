@@ -5,9 +5,56 @@ const iconClose3 = document.querySelector('.icon-close3');
 btnPopup3.addEventListener('click', () => { wrapper3.classList.add('active-popup'); });
 iconClose3.addEventListener('click', () => { wrapper3.classList.remove('active-popup'); });
 
-document.addEventListener("DOMContentLoaded", result);
 document.addEventListener("DOMContentLoaded", loadChallengeInfo);
 
+function loadChallengeInfo() {
+    const userId = localStorage.getItem("userId");
+    jwt = localStorage.getItem("jwt");
+
+    if (!userId || !jwt) {
+        console.error("No userID or JWT found in localStorage");
+        return;
+    }
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", `http://34.127.90.191:3000/challenge/check/${userId}`); // 신청 정보 띄우기
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.setRequestHeader("Authorization", "Bearer " + jwt);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == XMLHttpRequest.DONE) {
+            if (this.status >= 200 && this.status < 300) {
+                try {
+                    const response = JSON.parse(this.responseText);
+                    console.log("Response from challenge check:", response);
+
+                    // challengelist가 존재하는지 확인
+                    if (response.challengelist && Array.isArray(response.challengelist)) {
+                        const listElement = document.querySelector(".board_list_ur");
+                        response.challengelist.forEach((challenge, index) => {
+                            const challengeRow = document.createElement("div");
+                            challengeRow.innerHTML = `
+                                <div class="num">${index + 1}</div>
+                                <div class="name"><button class="btnAccept-popup">${challenge.challenger}</button></div>
+                                <div class="date">${new Date(challenge.creationDate).toLocaleDateString()}</div>
+                            `;
+                            listElement.appendChild(challengeRow);
+                        });
+                    } else {
+                        console.error("challengelist is not an array or undefined");
+                    }
+
+                } catch (e) {
+                    console.error("Error parsing response", e);
+                }
+            } else {
+                console.error("Server returned status code " + this.status);
+            }
+        }
+    };
+}
+/*
 function result() {
     const challenger = document.getElementById("challenger_result").value;
     const contender = document.getElementById("contender_result").value;
@@ -79,44 +126,4 @@ function result() {
     return false;
   }
 
-  function loadChallengeInfo(){
-    const userId = localStorage.getItem("userId");
-    jwt = localStorage.getItem("jwt");
-
-    if (!userId || !jwt) {
-        console.error("No userID or JWT found in localStorage");
-        return;
-    }
-
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", `http://34.127.90.191:3000/challenge/check/${userId}`); // 신청 정보 띄우기
-    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.setRequestHeader("Authorization", "Bearer " + jwt);
-    xhttp.send();
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == XMLHttpRequest.DONE) {
-            if (this.status >= 200 && this.status < 300) {
-                try {
-                    const objects = JSON.parse(this.responseText);
-                    console.log("Response from challenge check:", objects);
-
-                    if (objects["status"] == "ok") {
-                        // 받아온 이름 정보를 'challenger_accept'와 'btnAccept-popup' 버튼에 설정
-                        // document.getElementById("challenger_accept").textContent = objects["name"];
-
-                        // 모든 'btnAccept-popup' 버튼에 대해 이름 설정
-                        // const acceptButtons = document.querySelectorAll('.btnAccept-popup');
-                        //acceptButtons.forEach(button => {
-                        //    button.textContent = objects["name"];
-                        //});
-                    }
-                } catch (e) {
-                    console.error("Error parsing response:", e);
-                }
-            } else {
-                console.error("Server responded with status:", this.status);
-            }
-        }
-    };
-}
+*/
