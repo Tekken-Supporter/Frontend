@@ -34,7 +34,7 @@ function submitReview() {
   };
 
   // XMLHttpRequest 객체 생성
-  console.log("posting order from server");
+  console.log("posting 2 server");
   var xhr2 = new XMLHttpRequest();
   var url = "http://34.127.90.191:3000/character/review";
 
@@ -82,9 +82,8 @@ function getReviews() {
           }
       }
   };
-  xhr.send();
+  xhr1.send();
 }
-
 
 // 2 PUT, update 리뷰 수정 함수
 function updateReview(reviewId) {
@@ -160,8 +159,6 @@ function deleteReview(reviewId) {
         }
       }
     };
-
-    // 요청 전송
     xhr4.send();
   }
 }
@@ -169,7 +166,6 @@ function deleteReview(reviewId) {
 // 4. 리뷰를 웹에 보여주는 함수 (UI 업데이트)
 function displayReview(reviewData) {
   reviews.push(reviewData);// 리뷰 배열에 추가
-
   // 리뷰를 웹에 표시
   updateReviewList();
 }
@@ -205,44 +201,45 @@ function updateReviewList() {
     `;
     reviewListContainer.appendChild(reviewElement);
   });
-}
-
-
-    //btn-all-close
-    const btnAllClose=document.getElementById('btn-all-close');
-    btnAllClose.addEventListener('click', resetCharacterContainers);
-    console.log('all close button click');
+ }
+//
+// [ 캐릭터 목록들 정리버튼 ]
+const btnAllClose=document.getElementById('btn-all-close');
+btnAllClose.addEventListener('click', resetCharacterContainers);
+console.log('all close button click');
     
-    function resetCharacterContainers() {
-      const characterContainers = document.querySelectorAll('.character-container');
-      characterContainers.forEach(container => {
-        container.style.display = 'none';
-      });
-    }
+function resetCharacterContainers() {
+    const characterContainers = document.querySelectorAll('.character-container');
+    characterContainers.forEach(container => {
+      container.style.display = 'none';
+     });
+  }
    
       // 각 캐릭터 링크에 이벤트 리스너 추가
-      const characterLinks = document.querySelectorAll('.character-link');
-      characterLinks.forEach(link => {
-        link.addEventListener('click', showCharacterInfo);
-      });
+const characterLinks = document.querySelectorAll('.character-link');
+  characterLinks.forEach(link => {
+       link.addEventListener('click', showCharacterInfo);
+     });
     
-      function showCharacterInfo(event) {
-        // 클릭한 캐릭터의 데이터 얻기
-        const characterId = event.target.getAttribute('data-character');
+function showCharacterInfo(event) {
+   // 클릭한 캐릭터의 데이터 얻기
+   const characterId = event.target.getAttribute('data-character');
     
-        // 모든 캐릭터 컨테이너 숨기기
-        const characterContainers = document.querySelectorAll('.character-container');
-        characterContainers.forEach(container => {
-          container.style.display = 'none';
-        });
+   // 모든 캐릭터 컨테이너 숨기기
+   const characterContainers = document.querySelectorAll('.character-container');
+   characterContainers.forEach(container => {
+     container.style.display = 'none';
+   });
     
-        // 클릭한 캐릭터에 해당하는 컨테이너 보이기
-        const selectedContainer = document.getElementById(characterId);
-        if (selectedContainer) {
-          selectedContainer.style.display = 'block';
-        }
-      }
+   // 클릭한 캐릭터에 해당하는 컨테이너 보이기
+ const selectedContainer = document.getElementById(characterId);
+ if (selectedContainer) {
+     selectedContainer.style.display = 'block';
+     }
+  }
 
+  ///////////////////
+//[리뷰창 보이게 만들기] 
 loadReviews(currentPage);
 loadPageNumbers();//index of lists
 
@@ -288,7 +285,7 @@ function loadReviews(page) {
 }
 function loadPageNumbers() {
   const paginationContainer = document.getElementById("pagination-container");
-  const totalPages = Math.ceil(10 / reviewsPerPage);
+  const totalPages = Math.ceil(12 / reviewsPerPage);
 
   for (let i = 0; i < totalPages; i++) {
       const pageNumber = i + 1;
@@ -311,6 +308,30 @@ function loadPageNumbers() {
       paginationContainer.appendChild(pageLink);
   }
 }
+
+checkLevel();
+
+function checkLevel(){
+  var xhr7 = new XMLHttpRequest();
+  var url = "http://34.127.90.191:3000/character/main";
+  
+  xhr7.open("GET", url, true);
+  xhr7.onreadystatechange = function () {
+    if (xhr7.readyState == 4) {
+      if (xhr7.status == 200) {
+        // 서버 응답에 따른 추가 작업 수행
+       tips = JSON.parse(xhr7.responseText);
+       console.log(tips);
+      } else {
+          console.error("서버 에러:", xhr7.status);
+        }
+      }
+
+    };
+    xhr7.send();
+}
+  
+
 
     }
     
