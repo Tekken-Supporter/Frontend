@@ -79,7 +79,6 @@ xhttp2.onreadystatechange = function () {
         boxInfo8(box8);
         boxInfo9(box9);
         boxInfo10(box10);
-        //displayPlayerInfo(singlePlayer2, 'playerInfo2');
     }
 };
 xhttp2.send();

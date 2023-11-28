@@ -309,6 +309,28 @@ function loadPageNumbers() {
   }
 }
 
+checkLevel();
+
+function checkLevel(){
+  var xhr7 = new XMLHttpRequest();
+  var url = "http://34.127.90.191:3000/character/main";
+  
+  xhr7.open("GET", url, true);
+  xhr7.onreadystatechange = function () {
+    if (xhr7.readyState == 4) {
+      if (xhr7.status == 200) {
+        // 서버 응답에 따른 추가 작업 수행
+       tips = JSON.parse(xhr7.responseText);
+       console.log(tips);
+      } else {
+          console.error("서버 에러:", xhr7.status);
+        }
+      }
+
+    };
+    xhr7.send();
+}
+  
 
 
     }
