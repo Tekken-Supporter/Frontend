@@ -221,7 +221,7 @@ header {
 
 .character-image {
   object-fit:cover;
-  height: 120px;
+  height: 90%;
   width: 100px;
   border-radius: 12px;
 }

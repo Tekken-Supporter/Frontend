@@ -86,7 +86,7 @@ xhttp2.send();
 // 이미지 URL을 동적으로 가져오는 함수 추가
 function getChampionImageDynamic(championName) {
   const lowercaseChampionName = championName.toLowerCase();
-  return `https://github.com/Tekken-Supporter/Frontend/blob/main/image/${lowercaseChampionName}`+ `.png?raw=true`;
+  return `https://github.com/Tekken-Supporter/Frontend/blob/main/image/${championName}`+ `.png?raw=true`;
 }
 
 //개별 사람 > 1st~ 10th
