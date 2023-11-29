@@ -3,92 +3,25 @@ var reviews = [];
 const reviewsPerPage = 3;
 let currentPage = 1;
 
-window.onload = () => {
-
+document.addEventListener("DOMContentLoaded", getReviews);
 
 var submitButton = document.getElementById("submit");
 // 이벤트 리스너를 추가하기 전에 엘리먼트가 존재하는지 확인
-if (submitButton) {
-    submitButton.addEventListener("click", submitReview);
-} else {
-    console.error("Submit 버튼을 찾을 수 없습니다.");
-}
 
-
-//1 submit , POST submitReview
-function submitReview() {
-  
-  var cName = document.getElementById("cName").value;
-  var userId = document.getElementById("userId").value;
-  var reviewContent = document.getElementById("reviewContent").value;
-  var currentTime = new Date();
-  var creationTime = currentTime.toISOString();
-  var modifiedTime = currentTime.toISOString();
-
-  // 데이터 객체 생성
-  var data = {
-    c_name: cName,
-    id: userId,
-    reviewData: reviewContent,
-    CreationTime: creationTime,
-    modifiedTime: modifiedTime,
-  };
-
-  // XMLHttpRequest 객체 생성
-  var xhr2 = new XMLHttpRequest();
-  var url = "http://34.127.90.191:3000/character/review";
-
-  xhr2.open("POST", url);
-  xhr2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-  xhr2.onreadystatechange = function () {
-    if (this.readyState === XMLHttpRequest.DONE) {
-      try {
-        if (this.status >= 200 && this.status < 300) {
-          const objects = JSON.parse(this.responseText); //서버로부터 받은 응답텍스트를 JSON 객체로 변환
-          console.log(objects); //서버로부터 받은 응답 콘솔에 출력
-
-          if (objects["status"] === "ok") { //서버로부터 받은 응답의 상태가 ok일 때
-            localStorage.setItem("jwt", objects["token"]); //jwt라는 이름으로 서버에서 받은 토큰을 로컬스토리지에 저장
-            localStorage.setItem("userId", userId); // 사용자 ID를 로컬 스토리지에 저장
-            localStorage.setItem("cName", cName); // 
-            localStorage.setItem("reviewContent", reviewContent); // 로컬 스토리지에 저wkd
-            localStorage.setItem("CreationTime", creationTime); //  로컬 스토리지에 저장
-            localStorage.setItem("modifiedTime", modifiedTime); // 로컬 스토리지에 저장
-            console.log("save in Local done! ");
-          } else {
-            console.error("Empty response received from the server");
-          }
-        } else {
-          console.error("Server responded with status:", this.status);
-        }
-      } catch (e) {
-        Swal.fire({
-          text: "응답 처리 중 오류가 발생했습니다!",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-        console.error("Error parsing response:", e);
-      }
-    }
-  };
-  return false;
-}
-/////////////
 function getReviews() {
   var xhr1 = new XMLHttpRequest();
   var url = "http://34.127.90.191:3000/character/review";
-  
+
   xhr1.open("GET", url, true);
   xhr1.onreadystatechange = function () {
-      if (xhr1.readyState == 4) {
-          if (xhr1.status == 200) {
-              var response = JSON.parse(xhr1.responseText);
-              displayReviews(response);
-          } else {
-              console.error("서버 에러:", xhr1.status);
-          }
+    if (xhr1.readyState == 4) {
+      if (xhr1.status == 200) {
+        var response = JSON.parse(xhr1.responseText);
+        displayReviews(response);
+      } else {
+        console.error("서버 에러:", xhr1.status);
       }
+    }
   };
   xhr1.send();
 }
@@ -107,7 +40,7 @@ function updateReview(reviewId) {
     // XMLHttpRequest 객체 생성
     var xhr3 = new XMLHttpRequest();
     var url = "http://34.127.90.191:3000/character/review?c_name=&id=&reviewData=&creationTime=";
-   
+
     xhr3.open("PUT", url, true);
     xhr3.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr3.setRequestHeader("Authorization", "Bearer " + jwt);
@@ -151,23 +84,23 @@ function displayReview(reviewData) {
 function removeReviewFromUI(reviewId) {
   // 리뷰 목록에서 해당 리뷰를 찾아서 제거
   reviews = reviews.filter(review => review.id !== reviewId);
-  
+
   // 리뷰를 웹에 표시
   updateReviewList();
 }
 
 // 2,4  related: 리뷰 목록을 업데이트하는 함수
 function updateReviewList() {
-  
+
   var reviewListContainer = document.getElementById("reviewList");
   // 이전 리뷰 목록을 지우기
   reviewListContainer.innerHTML = "";
 
   // 각 리뷰에 대해 HTML 엘리먼트를 생성하여 추가
   reviews.forEach(function (review) {
-  var reviewElement = document.createElement("div");
-  reviewElement.classList.add("review");
-  reviewElement.innerHTML = `
+    var reviewElement = document.createElement("div");
+    reviewElement.classList.add("review");
+    reviewElement.innerHTML = `
       <p>캐릭터 이름: ${review.c_name}</p>
       <p>사용자 ID: ${review.id}</p>
       <p>리뷰 내용: ${review.reviewData}</p>
@@ -176,24 +109,24 @@ function updateReviewList() {
       <button onclick="updateReview(${review.number})">수정</button>
       <button onclick="deleteReviewFunction(${review.number})">삭제</button>
   `;
-  reviewListContainer.appendChild(reviewElement);
+    reviewListContainer.appendChild(reviewElement);
   });
- }
+}
 
- var deleteButtons = document.querySelectorAll(".deleteButton");
- deleteButtons.forEach(function (deleteButton) {
-     deleteButton.addEventListener("click", function () {
-         var reviewId = deleteButton.getAttribute("data-reviewid");
-         console.log(reviewId);
-         deleteReviewFunction(reviewId);
-     });
- });
+var deleteButtons = document.querySelectorAll(".deleteButton");
+deleteButtons.forEach(function (deleteButton) {
+  deleteButton.addEventListener("click", function () {
+    var reviewId = deleteButton.getAttribute("data-reviewid");
+    console.log(reviewId);
+    deleteReviewFunction(reviewId);
+  });
+});
 
 
- function deleteReviewFunction(reviewId) {
+function deleteReviewFunction(reviewId) {
   var confirmation = confirm("정말로 리뷰를 삭제하시겠습니까?");
   if (confirmation) {
-      deleteReview(reviewId);
+    deleteReview(reviewId);
   }
 }
 
@@ -204,55 +137,55 @@ function deleteReview(reviewId) {
   xhr4.open("DELETE", url + "?reviewId=" + reviewId, true);
 
   xhr4.onreadystatechange = function () {
-      if (xhr4.readyState == 4) {
-          if (xhr4.status == 200) {
-              console.log("서버 응답:", xhr4.responseText);
-              var response = JSON.parse(xhr4.responseText);
-              if (response.status === "success") {
-                  removeReviewFromUI(reviewId);
-              } else {
-                  console.error("리뷰 삭제 실패:", response.message);
-              }
-          } else {
-              console.error("서버 에러:", xhr4.status);
-          }
+    if (xhr4.readyState == 4) {
+      if (xhr4.status == 200) {
+        console.log("서버 응답:", xhr4.responseText);
+        var response = JSON.parse(xhr4.responseText);
+        if (response.status === "success") {
+          removeReviewFromUI(reviewId);
+        } else {
+          console.error("리뷰 삭제 실패:", response.message);
+        }
+      } else {
+        console.error("서버 에러:", xhr4.status);
       }
+    }
   };
   xhr4.send();
 }
 //
 // [ 캐릭터 목록들 정리버튼 ]
-const btnAllClose=document.getElementById('btn-all-close');
+const btnAllClose = document.getElementById('btn-all-close');
 btnAllClose.addEventListener('click', resetCharacterContainers);
 console.log('all close button click');
-    
+
 function resetCharacterContainers() {
-    const characterContainers = document.querySelectorAll('.character-container');
-    characterContainers.forEach(container => {
-      container.style.display = 'none';
-     });
-  }
-  // 각 캐릭터 링크에 이벤트 리스너 추가
-  const characterLinks = document.querySelectorAll('.character-link');
-  characterLinks.forEach(link => {
-       link.addEventListener('click', showCharacterInfo);
-     });
-    
+  const characterContainers = document.querySelectorAll('.character-container');
+  characterContainers.forEach(container => {
+    container.style.display = 'none';
+  });
+}
+// 각 캐릭터 링크에 이벤트 리스너 추가
+const characterLinks = document.querySelectorAll('.character-link');
+characterLinks.forEach(link => {
+  link.addEventListener('click', showCharacterInfo);
+});
+
 function showCharacterInfo(event) {
-   // 클릭한 캐릭터의 데이터 얻기
-   const characterId = event.target.getAttribute('data-character');
-   // 모든 캐릭터 컨테이너 숨기기
-   const characterContainers = document.querySelectorAll('.character-container');
-   characterContainers.forEach(container => {
-     container.style.display = 'none';
-   });
-    
-   // 클릭한 캐릭터에 해당하는 컨테이너 보이기
- const selectedContainer = document.getElementById(characterId);
- if (selectedContainer) {
-     selectedContainer.style.display = 'block';
-     }
+  // 클릭한 캐릭터의 데이터 얻기
+  const characterId = event.target.getAttribute('data-character');
+  // 모든 캐릭터 컨테이너 숨기기
+  const characterContainers = document.querySelectorAll('.character-container');
+  characterContainers.forEach(container => {
+    container.style.display = 'none';
+  });
+
+  // 클릭한 캐릭터에 해당하는 컨테이너 보이기
+  const selectedContainer = document.getElementById(characterId);
+  if (selectedContainer) {
+    selectedContainer.style.display = 'block';
   }
+}
 
 ///////////////////
 //[리뷰창 보이게 만들기] 
@@ -261,8 +194,8 @@ loadPageNumbers();//index of lists
 
 function loadReviews(page) {
   var xhr = new XMLHttpRequest();
-  var url = "http://34.127.90.191:3000/character/review";
-  
+  var url = "http://34.127.90.191:3000/character/review?c_name=&id=&reviewData=&creationTime=";
+
   xhr.open("GET", url, true);
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
@@ -270,16 +203,16 @@ function loadReviews(page) {
         // 서버 응답에 따른 추가 작업 수행
         reviews = JSON.parse(xhr.responseText);
         console.log(reviews);
-       const startIndex = (page - 1) * reviewsPerPage;
-       const endIndex = startIndex + reviewsPerPage;
-       const currentPageReviews = reviews.slice(startIndex, endIndex);
-       displayReviews(currentPageReviews);
+        const startIndex = (page - 1) * reviewsPerPage;
+        const endIndex = startIndex + reviewsPerPage;
+        const currentPageReviews = reviews.slice(startIndex, endIndex);
+        displayReviews(currentPageReviews);
       } else {
-          console.error("서버 에러:", xhr.status);
-        }
+        console.error("서버 에러:", xhr.status);
       }
-    };
-    xhr.send();
+    }
+  };
+  xhr.send();
 }
 
 function displayReviews(reviews) {
@@ -287,9 +220,9 @@ function displayReviews(reviews) {
   reviewListContainer.innerHTML = "";
 
   reviews.forEach((review) => {
-      const reviewElement = document.createElement("div");
-      reviewElement.classList.add("review");
-      reviewElement.innerHTML = `
+    const reviewElement = document.createElement("div");
+    reviewElement.classList.add("review");
+    reviewElement.innerHTML = `
           <p>캐릭터 이름: ${review.c_name || "알 수 없음"}</p>
           <p>사용자 ID: ${review.id || "알 수 없음"}</p>
           <p>리뷰 내용: ${review.reviewData || "리뷰 없음"}</p>
@@ -297,7 +230,7 @@ function displayReviews(reviews) {
           <button type="updateReview(${review.number})">수정</button>
           <button type="deleteReview(${review.number})">삭제</button>
       `;
-      reviewListContainer.appendChild(reviewElement);
+    reviewListContainer.appendChild(reviewElement);
   });
 }
 
@@ -306,52 +239,45 @@ function loadPageNumbers() {
   const totalPages = Math.ceil(20 / reviewsPerPage);
 
   for (let i = 0; i < totalPages; i++) {
-      const pageNumber = i + 1;
-      const pageLink = document.createElement("span");
-      pageLink.textContent = pageNumber;
-      pageLink.classList.add("page-link");
-      pageLink.addEventListener("click", () => {
-          currentPage = i + 1;
-          loadReviews(currentPage);
-          const pageLinks = document.querySelectorAll(".page-link");
+    const pageNumber = i + 1;
+    const pageLink = document.createElement("span");
+    pageLink.textContent = pageNumber;
+    pageLink.classList.add("page-link");
+    pageLink.addEventListener("click", () => {
+      currentPage = i + 1;
+      loadReviews(currentPage);
+      const pageLinks = document.querySelectorAll(".page-link");
 
-          pageLinks.forEach((link, index) => {
-              if (index + 1 === currentPage) {
-                  link.classList.add("active");
-              } else {
-                  link.classList.remove("active");
-              }
-          });
+      pageLinks.forEach((link, index) => {
+        if (index + 1 === currentPage) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
       });
-      paginationContainer.appendChild(pageLink);
+    });
+    paginationContainer.appendChild(pageLink);
   }
 }
-
+////////////////////////////////////////////////////
 checkLevel();
 
-function checkLevel(){
+function checkLevel() {
   var xhr7 = new XMLHttpRequest();
   var url = "http://34.127.90.191:3000/character/main";
-  
+
   xhr7.open("GET", url, true);
   xhr7.onreadystatechange = function () {
     if (xhr7.readyState == 4) {
       if (xhr7.status == 200) {
         // 서버 응답에 따른 추가 작업 수행
-       tips = JSON.parse(xhr7.responseText);
-       console.log(tips);
+        tips = JSON.parse(xhr7.responseText);
+        console.log(tips);
       } else {
-          console.error("서버 에러:", xhr7.status);
-        }
+        console.error("서버 에러:", xhr7.status);
       }
-
-    };
-    xhr7.send();
-}
-  
-
-
     }
-    
-    
-    
+
+  };
+  xhr7.send();
+}
