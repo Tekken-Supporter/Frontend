@@ -23,7 +23,7 @@
         </video>
 
         <header>
-            <h2 class="logo">Tekken</h2>
+            <h2 class="logo">Tekken Supporter</h2>
             <nav class="navigation">
                 <a href="./myinfo.html">계정 정보</a>
                 <a href="./ranking.html" class="tier">티어표</a>
@@ -69,33 +69,8 @@
                 <div class="board_list_ur">
                     <div class="top">
                         <div class="num">번호</div>
-                        <div class="name">도전자</div>
+                        <div class="name"><button class="btnAccept-popup">도전자</button></div>
                         <div class="date">신청일</div>
-                    </div>
-                    <div>
-                        <div class="num">1</div>
-                        <div class="name"><button class="btnAccept-popup">이유진</button></div>
-                        <div class="date">2021.1.15</div>
-                    </div>
-                    <div>
-                        <div class="num">2</div>
-                        <div class="name">김이름</div>
-                        <div class="date">2021.1.15</div>
-                    </div>
-                    <div>
-                        <div class="num">3</div>
-                        <div class="name">김이름</div>
-                        <div class="date">2021.1.15</div>
-                    </div>
-                    <div>
-                        <div class="num">4</div>
-                        <div class="name">김이름</div>
-                        <div class="date">2021.1.15</div>
-                    </div>
-                    <div>
-                        <div class="num">5</div>
-                        <div class="name">김이름</div>
-                        <div class="date">2021.1.15</div>
                     </div>
                 </div>
                 <br><br><br>
@@ -106,49 +81,12 @@
                 <div class="board_list_p">
                     <div class="top">
                         <div class="num">번호</div>
-                        <div class="name">상대</div>
-                        <div class="result">대결결과</div>
+                        <div class="name"><button class="btnResult-popup">상대</button></div>
+                        <div class="result">승자</div>
                         <div class="date">대결일</div>
-                    </div>
-                    <div>
-                        <div class="num">1</div>
-                        <div class="name"><button class="btnResult-popup">이유진</button></div>
-                        <div class="result">3:1</div>
-                        <div class="date">2021.1.15</div>
-                    </div>
-                    <div>
-                        <div class="num">2</div>
-                        <div class="name">김이름</div>
-                        <div class="result">3:1</div>
-                        <div class="date">2021.1.15</div>
-                    </div>
-                    <div>
-                        <div class="num">3</div>
-                        <div class="name">김이름</div>
-                        <div class="result">3:1</div>
-                        <div class="date">2021.1.15</div>
-                    </div>
-                    <div>
-                        <div class="num">4</div>
-                        <div class="name">김이름</div>
-                        <div class="result">3:1</div>
-                        <div class="date">2021.1.15</div>
-                    </div>
-                    <div>
-                        <div class="num">5</div>
-                        <div class="name">김이름</div>
-                        <div class="result">3:1</div>
-                        <div class="date">2021.1.15</div>
                     </div>
                 </div>
                 <div class="board_page">
-                    <a href="#" class="bt prev"><</a>
-                    <a href="#" class="num on">1</a>
-                    <a href="#" class="num">2</a>
-                    <a href="#" class="num">3</a>
-                    <a href="#" class="num">4</a>
-                    <a href="#" class="num">5</a>
-                    <a href="#" class="bt next">></a>
                 </div>
             </div>
         </div>
@@ -167,7 +105,7 @@
                         <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
                     </div>
                     <div class="input-box">
-                        <input type="date" id="date_accept">
+                        <output type="text" id="date_accept"></output>
                         <label><ion-icon name="calendar"></ion-icon> 대결 날짜</label>
                     </div>
                     <div class="input-box">
@@ -186,25 +124,51 @@
             <span class="icon-close3"><ion-icon name="close"></ion-icon></span>
             <div class="form-box">
                 <h2>대결 결과</h2><br><br>
-                <form onsubmit="" action="#">
+                <form onsubmit="return result()" action="#">
                     <div class="input-box">
-                        <output type="text" id="challenger_accept"></output>
+                        <output type="text" id="challenger_result"></output>
                         <label><ion-icon name="person"></ion-icon> 도전자 이름</label>
                     </div>
                     <div class="input-box">
-                        <output type="text" id="contender_accept"></output>
+                        <output type="text" id="contender_result"></output>
                         <label><ion-icon name="person"></ion-icon> 방어자 이름</label>
                     </div>
                     <div class="input-box">
-                        <output type="text" id="date_accept"></output>
+                        <output type="text" id="date_result"></output>
                         <label><ion-icon name="calendar"></ion-icon> 대결 날짜</label>
                     </div>
                     <div class="input-box">
-                        <input type="text" id="contender_accept" required>
-                        <label><ion-icon name="ribbon"></ion-icon> 대결 결과</label>
+                        <input type="text" id="score_challenger" placeholder="" required> <strong>:</strong>
+                        <input type="text" id="score_contender" placeholder="" required>
+                        <label><ion-icon name="ribbon"></ion-icon> 대결 결과 (도전자 : 방어자)</label>
                     </div>
                     <div class="submit-quest">
-                        <button type="submit" class="quest_btn" onclick="result()">결과 제출</button>
+                        <button type="submit" class="quest_btn">결과 제출</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="wrapper_record">
+            <span class="icon-close4"><ion-icon name="close"></ion-icon></span>
+            <div class="form-box">
+                <h2>대결 결과</h2><br><br>
+                <form onsubmit="" action="#">
+                    <div class="input-box">
+                        <output type="text" id="winner_record"></output>
+                        <label><ion-icon name="person"></ion-icon> 승자 이름</label>
+                    </div>
+                    <div class="input-box">
+                        <output type="text" id="loser_record"></output>
+                        <label><ion-icon name="person"></ion-icon> 패자 이름</label>
+                    </div>
+                    <div class="input-box">
+                        <output type="text" id="winscore"></output>
+                        <label><ion-icon name="ribbon"></ion-icon> 승자 점수</label>
+                    </div>
+                    <div class="input-box">
+                        <output type="text" id="losescore"></output>
+                        <label><ion-icon name="ribbon"></ion-icon> 패자 점수</label>
                     </div>
                 </form>
             </div>
