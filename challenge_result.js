@@ -9,6 +9,7 @@ let challengess = [];
 
 // 현재 선택된 challengess 객체를 저장할 변수
 let currentSelectedChallenges = null;
+let userName = null;
 
 // 페이지당 항목 수
 const itemsPerPage = 5;
@@ -43,6 +44,8 @@ function loadName() {
           console.log("Response about user:", objects);
 
           if (objects["status"] == "ok") {
+            userName = objects["name"];
+            console.log(userName);
           }
         } catch (e) {
           console.error("Error parsing response:", e);
@@ -102,13 +105,15 @@ function updateList(pageNumber) {
   listElement.innerHTML = "";
 
   paginatedItems.forEach((challenge, index) => {
+    const nameToShow = (userName === challenge.challenger) ? challenge.challenger : challenge.contender;
+    console.log(nameToShow);
     const challengeRow = document.createElement("div");
     challengeRow.innerHTML = `
-                                <div class="num">${index + 1}</div>
-                                <div class="name"><button class="btnResult-popup" data-match-id="${challenge.match_id}">${challenge.challenger}</button></div>
-                                <div class="result">${challenge.winner}</div>
-                                <div class="date">${new Date(challenge.matchDate).toLocaleDateString()}</div>
-                            `;
+      <div class="num">${index + 1}</div>
+      <div class="name"><button class="btnResult-popup" data-match-id="${challenge.match_id}">${nameToShow}</button></div>
+      <div class="result">${challenge.winner}</div>
+      <div class="date">${new Date(challenge.matchDate).toLocaleDateString()}</div>
+    `;
     console.log(challenge.match_id);
     listElement.appendChild(challengeRow);
   });
