@@ -13,13 +13,12 @@ if (submitButton) {
     console.error("Submit 버튼을 찾을 수 없습니다.");
 }
 
-//1 submit , POST 
+//1 submit , POST submitReview
 function submitReview() {
   
-  const cName = document.getElementById("cName").value;
-  const userId = document.getElementById("userId").value;
-  const reviewContent = document.getElementById("reviewContent").value;
-
+  var cName = document.getElementById("cName").value;
+  var userId = document.getElementById("userId").value;
+  var reviewContent = document.getElementById("reviewContent").value;
   var currentTime = new Date();
   var creationTime = currentTime.toISOString();
   var modifiedTime = currentTime.toISOString();
@@ -34,44 +33,44 @@ function submitReview() {
   };
 
   // XMLHttpRequest 객체 생성
-  console.log("posting 2 server");
   var xhr2 = new XMLHttpRequest();
   var url = "http://34.127.90.191:3000/character/review";
 
-  xhr2.open("POST", url, true);
+  xhr2.open("POST", url);
+  xhr2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
   xhr2.onreadystatechange = function () {
-    if (xhr2.readyState == 4) {
-      if (xhr2.status == 200) {
-        console.log("서버 응답:", xhr2.responseText);
-        // 서버 응답에 따른 추가 작업 수행
-        var response = JSON.parse(xhr2.responseText);
-        if (response.status === "success") {
-          // 리뷰가 성공적으로 등록된 경우에 처리할 내용 추가
-          displayReview(response.data);
-          console.log(response.data);
+    if (this.readyState === XMLHttpRequest.DONE) {
+      try {
+        if (this.status >= 200 && this.status < 300) {
+          const objects = JSON.parse(this.responseText); //서버로부터 받은 응답텍스트를 JSON 객체로 변환
+          console.log(objects); //서버로부터 받은 응답 콘솔에 출력
+
+          if (objects["status"] === "ok") { //서버로부터 받은 응답의 상태가 ok일 때
+            localStorage.setItem("jwt", objects["token"]); //jwt라는 이름으로 서버에서 받은 토큰을 로컬스토리지에 저장
+            localStorage.setItem("userId", userId); // 사용자 ID를 로컬 스토리지에 저장
+            localStorage.setItem("cName", cName); // 
+            localStorage.setItem("reviewContent", reviewContent); // 로컬 스토리지에 저wkd
+            localStorage.setItem("CreationTime", creationTime); //  로컬 스토리지에 저장
+            localStorage.setItem("modifiedTime", modifiedTime); // 로컬 스토리지에 저장
+            console.log("save in Local done! ");
+          } else {
+            console.error("Empty response received from the server");
+          }
         } else {
-          // 리뷰 등록이 실패한 경우에 처리할 내용 추가
-          console.error("리뷰 등록 실패:", response.message);
+          console.error("Server responded with status:", this.status);
         }
-      } else {
-        console.error("서버 에러:", xhr2.status);
+      } catch (e) {
+        Swal.fire({
+          text: "응답 처리 중 오류가 발생했습니다!",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        console.error("Error parsing response:", e);
       }
     }
   };
-  // 데이터를 JSON 형식으로 변환하여 전송
-  xhr2.send(JSON.stringify({
-    c_name: cName,
-    id: userId,
-    reviewData: reviewContent,
-    CreationTime: creationTime,
-    modifiedTime: modifiedTime,
-
-  }));
-  
-  
-//loadReviews(currentPage);
-//loadPageNumbers();//index of lists
+  return false;
 }
 /////////////
 function getReviews() {
@@ -253,7 +252,7 @@ function showCharacterInfo(event) {
      }
   }
 
-  ///////////////////
+///////////////////
 //[리뷰창 보이게 만들기] 
 loadReviews(currentPage);
 loadPageNumbers();//index of lists

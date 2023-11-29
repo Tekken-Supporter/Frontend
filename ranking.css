@@ -236,7 +236,7 @@ p {
   color: #fff;
   font-family: 'Lato', sans-serif;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 15px;
   line-height: 150%;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -344,7 +344,7 @@ p {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 23px;
   line-height: 23px;
   text-transform: uppercase;
   backdrop-filter: blur(16px) saturate(180%);
