@@ -137,7 +137,7 @@ function loadChallengeInfo() {
                             const challengeRow = document.createElement("div");
                             challengeRow.innerHTML = `
                                 <div class="num">${index + 1}</div>
-                                <div class="name"><button class="btnAccept-popup">${challenge.challenger}</button></div>
+                                <div class="name"><button class="btnAccept-popup" data-challenge-id="${challenge.challenge_id}">${challenge.challenger}</button></div>
                                 <div class="date">${new Date(challenge.creationDate).toLocaleDateString()}</div>
                             `;
                             listElement.appendChild(challengeRow);
@@ -182,7 +182,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // 클릭된 요소가 btnAccept-popup 클래스를 가지고 있는지 확인
         if (event.target && event.target.classList.contains('btnAccept-popup')) {
             // 해당 버튼과 관련된 challenge 객체 찾기
-            const challenge = challenges.find(ch => ch.challenger === event.target.textContent);
+            const matchId = event.target.getAttribute('data-challenge-id');
+            // 문자열로 가져온 matchId를 숫자로 변환 (타입 불일치 방지)
+            const numericChallengeId = parseInt(matchId, 10);
+            // 타입 변환된 ID를 사용하여 객체 찾기
+            const challenge = challenges.find(ch => ch.challenge_id === numericChallengeId);
+            console.log(challenge);
             if (challenge) {
                 // challenge 객체에서 정보 가져와서 설정하기
                 document.getElementById("challenger_accept").textContent = challenge.challenger;
