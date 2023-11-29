@@ -259,8 +259,7 @@ function loadPageNumbers() {
     paginationContainer.appendChild(pageLink);
   }
 }
-      
-/////////////////////
+
 var xhr7 = new XMLHttpRequest();
 var url = "http://34.127.90.191:3000/character/main";
 
@@ -331,5 +330,5 @@ function checkLevel1(tips) {
 
     
     
-    
-    
+  
+
