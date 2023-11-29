@@ -29,7 +29,7 @@ function submitReview() {
     c_name: cName,
     id: userId,
     reviewData: reviewContent,
-    creationTime: creationTime,
+    CreationTime: creationTime,
     modifiedTime: modifiedTime,
   };
 
@@ -46,10 +46,8 @@ function submitReview() {
         console.log("서버 응답:", xhr2.responseText);
         // 서버 응답에 따른 추가 작업 수행
         var response = JSON.parse(xhr2.responseText);
-        console.log(response.status);
         if (response.status === "success") {
           // 리뷰가 성공적으로 등록된 경우에 처리할 내용 추가
-          // 예: 수정된 리뷰를 웹에 보여주기
           displayReview(response.data);
         } else {
           // 리뷰 등록이 실패한 경우에 처리할 내용 추가
@@ -98,7 +96,7 @@ function updateReview(reviewId) {
 
     // XMLHttpRequest 객체 생성
     var xhr3 = new XMLHttpRequest();
-    var url = "http://34.127.90.191:5500/character/review?c_name=&id=&reviewData=&creationTime=";
+    var url = "http://34.127.90.191:3000/character/review?c_name=&id=&reviewData=&creationTime=";
    
     xhr3.open("PUT", url, true);
     xhr3.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -130,38 +128,7 @@ function updateReview(reviewId) {
 }
 
 //3 delete, REview
-// 리뷰 삭제 함수 (삭제하는 방법은 서버에 따라 다를 수 있습니다)
-function deleteReview(reviewId) {
-  var confirmation = confirm("정말로 리뷰를 삭제하시겠습니까?");
-  if (confirmation) {
-    // XMLHttpRequest 객체 생성
-    var xhr4 = new XMLHttpRequest();
-    var url = "http://34.127.90.191:5500/character/review?number=";
 
-    xhr4.open("DELETE", url + "?reviewId=" + reviewId, true);
-
-    xhr4.onreadystatechange = function () {
-      if (xhr4.readyState == 4) {
-        if (xhr4.status == 200) {
-          console.log("서버 응답:", xhr4.responseText);
-          // 서버 응답에 따른 추가 작업 수행
-          var response = JSON.parse(xhr4.responseText);
-          if (response.status === "success") {
-            // 리뷰가 성공적으로 삭제된 경우에 처리할 내용 추가
-            // 예: 삭제된 리뷰를 웹에서 제거
-            removeReviewFromUI(reviewId);
-          } else {
-            // 리뷰 삭제가 실패한 경우에 처리할 내용 추가
-            console.error("리뷰 삭제 실패:", response.message);
-          }
-        } else {
-          console.error("서버 에러:", xhr4.status);
-        }
-      }
-    };
-    xhr4.send();
-  }
-}
 
 // 4. 리뷰를 웹에 보여주는 함수 (UI 업데이트)
 function displayReview(reviewData) {
@@ -179,29 +146,72 @@ function removeReviewFromUI(reviewId) {
   updateReviewList();
 }
 
-
 // 2,4  related: 리뷰 목록을 업데이트하는 함수
 function updateReviewList() {
+  
   var reviewListContainer = document.getElementById("reviewList");
   // 이전 리뷰 목록을 지우기
   reviewListContainer.innerHTML = "";
 
   // 각 리뷰에 대해 HTML 엘리먼트를 생성하여 추가
+  
   reviews.forEach(function (review) {
-    var reviewElement = document.createElement("div");
-    reviewElement.classList.add("review");
-    reviewElement.innerHTML = `
+  var reviewElement = document.createElement("div");
+  reviewElement.classList.add("review");
+  reviewElement.innerHTML = `
       <p>캐릭터 이름: ${review.c_name}</p>
       <p>사용자 ID: ${review.id}</p>
       <p>리뷰 내용: ${review.reviewData}</p>
-      <p>작성 시간: ${review.creationTime}</p>
+      <p>작성 시간: ${review.CreationTime}</p>
       <p>수정 시간: ${review.modifiedTime}</p>
-      <button onclick="updateReview(${review.id})">수정</button>
-      <button onclick="deleteReview(${review.id})">삭제</button>
-    `;
-    reviewListContainer.appendChild(reviewElement);
+      <button onclick="updateReview(${review.number})">수정</button>
+      <button onclick="deleteReviewFunction(${review.number})">삭제</button>
+  `;
+  reviewListContainer.appendChild(reviewElement);
   });
+
  }
+
+ var deleteButtons = document.querySelectorAll(".deleteButton");
+ deleteButtons.forEach(function (deleteButton) {
+     deleteButton.addEventListener("click", function () {
+         var reviewId = deleteButton.getAttribute("data-reviewid");
+         console.log(reviewId);
+         deleteReviewFunction(reviewId);
+     });
+ });
+
+
+ function deleteReviewFunction(reviewId) {
+  var confirmation = confirm("정말로 리뷰를 삭제하시겠습니까?");
+  if (confirmation) {
+      deleteReview(reviewId);
+  }
+}
+
+function deleteReview(reviewId) {
+  var xhr4 = new XMLHttpRequest();
+  var url = "http://34.127.90.191:3000/character/review?number=${review.number}";
+
+  xhr4.open("DELETE", url + "?reviewId=" + reviewId, true);
+
+  xhr4.onreadystatechange = function () {
+      if (xhr4.readyState == 4) {
+          if (xhr4.status == 200) {
+              console.log("서버 응답:", xhr4.responseText);
+              var response = JSON.parse(xhr4.responseText);
+              if (response.status === "success") {
+                  removeReviewFromUI(reviewId);
+              } else {
+                  console.error("리뷰 삭제 실패:", response.message);
+              }
+          } else {
+              console.error("서버 에러:", xhr4.status);
+          }
+      }
+  };
+  xhr4.send();
+}
 //
 // [ 캐릭터 목록들 정리버튼 ]
 const btnAllClose=document.getElementById('btn-all-close');
@@ -214,9 +224,8 @@ function resetCharacterContainers() {
       container.style.display = 'none';
      });
   }
-   
-      // 각 캐릭터 링크에 이벤트 리스너 추가
-const characterLinks = document.querySelectorAll('.character-link');
+  // 각 캐릭터 링크에 이벤트 리스너 추가
+  const characterLinks = document.querySelectorAll('.character-link');
   characterLinks.forEach(link => {
        link.addEventListener('click', showCharacterInfo);
      });
@@ -265,7 +274,8 @@ function loadReviews(page) {
     };
     xhr.send();
 }
- function displayReviews(reviews) {
+
+function displayReviews(reviews) {
   const reviewListContainer = document.getElementById("reviewList");
   reviewListContainer.innerHTML = "";
 
@@ -283,9 +293,10 @@ function loadReviews(page) {
       reviewListContainer.appendChild(reviewElement);
   });
 }
+
 function loadPageNumbers() {
   const paginationContainer = document.getElementById("pagination-container");
-  const totalPages = Math.ceil(12 / reviewsPerPage);
+  const totalPages = Math.ceil(20 / reviewsPerPage);
 
   for (let i = 0; i < totalPages; i++) {
       const pageNumber = i + 1;
