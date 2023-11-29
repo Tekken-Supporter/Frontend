@@ -175,7 +175,7 @@ function result() {
         console.log("대결 결과가 성공적으로 제출되었습니다.");
         if (scoreContender > scoreChallenger) {
           Swal.fire({
-            text: "대결에서 승리했습니다!",
+            text: contenderName + "님이 대결에서 승리했습니다!",
             icon: "success",
             confirmButtonText: "OK"
           }).then((result) => { //확인 버튼 누르면
@@ -195,7 +195,7 @@ function result() {
           });
         } else {
           Swal.fire({
-            text: "대결에서 패배했습니다!",
+            text: challengerName + "님이 대결에서 승리했습니다!",
             icon: "success",
             confirmButtonText: "OK"
           }).then((result) => { //확인 버튼 누르면
