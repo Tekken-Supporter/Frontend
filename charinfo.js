@@ -270,30 +270,24 @@ xhr7.onreadystatechange = function () {
      tips = JSON.parse(xhr7.responseText);
      console.log(tips);
      var akuma =tips[0];
-     var alisa=tips[1];
-     var armor=tips[2];
-     var bob=tips[4];
-     var bryan=tips[5];
-     var claudio=tips[6];
-     var devil=tips[7];
-     var eddy=tips[9];
-     var hwarang=tips[13];
-     var katarina=tips[17];
-     var gigas=tips[11];
-     var asuka=tips[3];
-
+     var alisa = tips[1];
+     var armor = tips[2];
+     var asuka = tips[3];
+     var bob =tips[4];
+     var bryan =tips[5];
+     var claudio =tips[6];
+     var devil =tips[7];
+     var eddy =tips[9];
      
 checkLevel1(akuma);
-//checkLevel2(alisa);
-checkLevel3(gigas);
-//checkLevel4(asuka);
-//checkLevel5(eddy);
-//checkLevel6(katarina);
-//checkLevel7(hwarang);
-//checkLevel8(bob);
-//checkLevel9(bryan);
-//checkLevel10(devil);
-
+checkLevel2(alisa);
+checkLevel3(armor);
+checkLevel4(asuka);
+checkLevel5(bob);
+checkLevel6(bryan);
+checkLevel7(claudio);
+checkLevel8(devil);
+checkLevel9(eddy);
     } else {
         console.error("서버 에러:", xhr7.status);
       }
@@ -301,29 +295,146 @@ checkLevel3(gigas);
   };
   xhr7.send();
 
+  function getChacImageDynamic(chacName) {
+    //const lowercaseChampionName = championName.toLowerCase();
+    return `https://github.com/Tekken-Supporter/Frontend/blob/main/IMAGES/${chacName}`+ `.png?raw=true`;
+    
+  }
+  
+function checkLevel1(tips) {
+  var characterinfo = document.getElementById('character1');
+  var tip = document.createElement('div');
+  tip.classList.add('tips');
+  console.log(tips.difficulty);
+  tip.innerHTML = `<p>${tips.difficulty}</p>`;
+  characterinfo.appendChild(tip);
 
+  var pic = document.createElement('div');
+  pic.innerHTML = `
+  <img class="character-image"  src="${getChacImageDynamic(tips.c_name)}" alt="캐릭터 이미지"></img>
+  `;
+  characterinfo.appendChild(pic);
+}
+function checkLevel2(tips) {
+  var characterinfo = document.getElementById('character2');
+  var tip = document.createElement('div');
+  tip.classList.add('tips');
+  console.log(tips.difficulty);
+  tip.innerHTML = `<p>${tips.difficulty}</p>`;
+  characterinfo.appendChild(tip);
+   
+  var pic = document.createElement('div');
+  pic.innerHTML = `
+  <img class="character-image" src="${getChacImageDynamic(tips.c_name)}" alt="캐릭터 이미지"></img>
+  `;
+  characterinfo.appendChild(pic);
+}
 function checkLevel3(tips) {
   var characterinfo = document.getElementById('character3');
   var tip = document.createElement('div');
   tip.classList.add('tips');
   console.log(tips.difficulty);
-  tip.innerHTML = `
-  <p>${tips.difficulty}</p>
-  `
-  ;
+  tip.innerHTML = `<p>${tips.difficulty}</p>`;
   characterinfo.appendChild(tip);
-}
 
-function checkLevel1(tips) {
-  var characterinfo = document.getElementById('character1');
+   
+  var pic = document.createElement('div');
+  pic.innerHTML = `
+  <img class="character-image"  src="${getChacImageDynamic(tips.c_name)}" alt="캐릭터 이미지"></img>
+  `;
+  characterinfo.appendChild(pic);
+}
+function checkLevel4(tips) {
+  var characterinfo = document.getElementById('character4');
   var tip = document.createElement('div');
   tip.classList.add('tips');
-  tip.innerHTML = `
-  <p>${tips.difficulty}</p>
-  `
-  ;
+  console.log(tips.difficulty);
+  tip.innerHTML = `<p>${tips.difficulty}</p>`;
   characterinfo.appendChild(tip);
+
+   
+  var pic = document.createElement('div');
+  pic.innerHTML = `
+  <img class="character-image"  src="${getChacImageDynamic(tips.c_name)}" alt="캐릭터 이미지"></img>
+  `;
+  characterinfo.appendChild(pic);
 }
+
+function checkLevel5(tips) {
+  var characterinfo = document.getElementById('character5');
+  var tip = document.createElement('div');
+  tip.classList.add('tips');
+  console.log(tips.difficulty);
+  tip.innerHTML = `<p>${tips.difficulty}</p>`;
+  characterinfo.appendChild(tip);
+
+   
+  var pic = document.createElement('div');
+  pic.innerHTML = `
+  <img class="character-image"  src="${getChacImageDynamic(tips.c_name)}" alt="캐릭터 이미지"></img>
+  `;
+  characterinfo.appendChild(pic);
+}
+function checkLevel6(tips) {
+  var characterinfo = document.getElementById('character6');
+  var tip = document.createElement('div');
+  tip.classList.add('tips');
+  console.log(tips.difficulty);
+  tip.innerHTML = `<p>${tips.difficulty}</p>`;
+  characterinfo.appendChild(tip);
+
+   
+  var pic = document.createElement('div');
+  pic.innerHTML = `
+  <img class="character-image"  src="${getChacImageDynamic(tips.c_name)}" alt="캐릭터 이미지"></img>
+  `;
+  characterinfo.appendChild(pic);
+}
+function checkLevel7(tips) {
+  var characterinfo = document.getElementById('character7');
+  var tip = document.createElement('div');
+  tip.classList.add('tips');
+  console.log(tips.difficulty);
+  tip.innerHTML = `<p>${tips.difficulty}</p>`;
+  characterinfo.appendChild(tip);
+
+   
+  var pic = document.createElement('div');
+  pic.innerHTML = `
+  <img class="character-image"  src="${getChacImageDynamic(tips.c_name)}" alt="캐릭터 이미지"></img>
+  `;
+  characterinfo.appendChild(pic);
+}
+function checkLevel8(tips) {
+  var characterinfo = document.getElementById('character8');
+  var tip = document.createElement('div');
+  tip.classList.add('tips');
+  console.log(tips.difficulty);
+  tip.innerHTML = `<p>${tips.difficulty}</p>`;
+  characterinfo.appendChild(tip);
+   
+  var pic = document.createElement('div');
+  pic.innerHTML = `
+  <img class="character-image"  src="${getChacImageDynamic(tips.c_name)}" alt="캐릭터 이미지"></img>
+  `;
+  characterinfo.appendChild(pic);
+}
+function checkLevel9(tips) {
+  var characterinfo = document.getElementById('character9');
+  var tip = document.createElement('div');
+  tip.classList.add('tips');
+  console.log(tips.difficulty);
+  tip.innerHTML = `<p>${tips.difficulty}</p>`;
+  characterinfo.appendChild(tip);
+   
+  var pic = document.createElement('div');
+  pic.innerHTML = `
+  <img class="character-image"  src="${getChacImageDynamic(tips.c_name)}" alt="캐릭터 이미지"></img>
+  `;
+  characterinfo.appendChild(pic);
+}
+
+
   
 
 
