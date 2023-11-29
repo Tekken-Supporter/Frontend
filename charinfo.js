@@ -62,7 +62,7 @@ function submitReview() {
         }
       } catch (e) {
         Swal.fire({
-          text: "응답 처리 중 오류가 발생했습니다.",
+          text: "응답 처리 중 오류가 발생했습니다!",
           icon: "error",
           confirmButtonText: "OK",
         });
