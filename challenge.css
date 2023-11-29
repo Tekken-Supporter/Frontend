@@ -736,20 +736,11 @@ header {
     border-top: 2px solid #000;
 }
 
-.board_list_p>div {
-    border-bottom: 1px solid #ddd;
+.board_list_p .top {
     font-size: 0;
 }
 
-.board_list_p>div.top {
-    border-bottom: 1.5px solid #000;
-}
-
-.board_list_p>div:last-child {
-    border-bottom: 1.5px solid #000;
-}
-
-.board_list_p>div>div {
+.board_list_p .top > div {
     display: inline-block;
     padding: 15px 0;
     text-align: center;
@@ -760,12 +751,41 @@ header {
     font-weight: 600;
 }
 
-.board_list_p .num {
+.board_list_p .num, .numT {
     width: 10%;
 }
 
-.board_list_p .name {
-    width: 35%;
+.board_list_p .name, .nameT {
+    width: 30%;
+}
+
+.board_list_p .result, .resultT {
+    width: 30%;
+}
+
+.board_list_p .date, .dateT {
+    width: 30%;
+}
+
+.list {
+    width: 100%;
+    border-top: 2px solid #000;
+}
+
+.list > div {
+    border-bottom: 1px solid #ddd;
+    font-size: 0;
+}
+
+.list > div:last-child {
+    border-bottom: 1.5px solid #000;
+}
+
+.list > div > div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1rem;
 }
 
 .btnResult-popup {
@@ -781,13 +801,7 @@ header {
     line-height: normal; 
 }
 
-.board_list_p .result {
-    width: 30%;
-}
-
-.board_list_p .date {
-    width: 25%;
-}
+/* 페이지 */
 
 .board_page {
     margin-top: 30px;

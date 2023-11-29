@@ -98,17 +98,18 @@ function updateList(pageNumber) {
   const endIndex = startIndex + itemsPerPage;
   const paginatedItems = challengess.slice(startIndex, endIndex);
 
-  const listElement = document.querySelector(".board_list_p");
+  const listElement = document.querySelector(".list");
   listElement.innerHTML = "";
 
   paginatedItems.forEach((challenge, index) => {
     const challengeRow = document.createElement("div");
     challengeRow.innerHTML = `
                                 <div class="num">${index + 1}</div>
-                                <div class="name"><button class="btnResult-popup">${challenge.challenger}</button></div>
+                                <div class="name"><button class="btnResult-popup" data-match-id="${challenge.match_id}">${challenge.challenger}</button></div>
                                 <div class="result">${challenge.winner}</div>
                                 <div class="date">${new Date(challenge.matchDate).toLocaleDateString()}</div>
                             `;
+    console.log(challenge.match_id);
     listElement.appendChild(challengeRow);
   });
 }
@@ -213,10 +214,15 @@ document.addEventListener('click', function (event) {
   // 클릭된 요소가 btnResult-popup 클래스를 가지고 있는지 확인
   if (event.target && event.target.classList.contains('btnResult-popup')) {
     // 해당 버튼과 관련된 challenge 객체 찾기
-    const challenge = challengess.find(ch => ch.challenger === event.target.textContent);
+    const matchId = event.target.getAttribute('data-match-id');
+    // 문자열로 가져온 matchId를 숫자로 변환 (타입 불일치 방지)
+    const numericMatchId = parseInt(matchId, 10);
+    // 타입 변환된 ID를 사용하여 객체 찾기
+    const challenge = challengess.find(ch => ch.match_id === numericMatchId);
+    console.log(challenge);
     if (challenge) {
       // winscore와 losescore 값 확인
-      if (challenge.winscore === undefined && challenge.losescore === undefined) {
+      if (challenge.winscore === "0" && challenge.losescore === "0") {
         // challenge 객체에서 정보 가져와서 설정하기 (result 팝업)
         document.getElementById("challenger_result").textContent = challenge.challenger;
         document.getElementById("contender_result").textContent = challenge.contender;
