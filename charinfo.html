@@ -37,8 +37,6 @@
 </head>
 
 <body>
-
-    <!-- character information -->
     <div class="container">
         <video autoplay loop muted plays-inline class="background-clip">
             <source src="tekken.mp4" type="video/mp4">
@@ -58,10 +56,10 @@
             </nav>
         </header>
 
+        <!-- review input -->
         <div class="reviews-container">
             <h2>캐릭터 리뷰</h2><br><br>
             <form onsubmit="return submitReview()" action="#">
-                <div>
                 <label>캐릭터 이름:</label>
                 <select class="input_champion" id="cName" name="c_name">
                     <option value="" disabled selected hidden>캐릭터를 선택하세요</option>
@@ -103,26 +101,26 @@
                     <option value="XIAOYU">XIAOYU</option>
                     <option value="YOSHIMITSU">YOSHIMITSU</option>
                 </select><br>
-                </div>
-                <div>
+
                 <label>사용자 ID:</label>
                 <input type="text" id="userId" name="id"></input><br>
-                </div>
-                <div>
+
                 <label>리뷰 내용:</label>
                 <textarea id="reviewContent" name="reviewData" required></textarea><br>
-                </div>
+
                 <button id="submit" class="submit_btn">리뷰 제출</button>
             </form>
         </div>
-    
-        <!--- review -->
+
+        <!--- review output-->
         <div id="pagination-container" class="pagination-container">
             <form onsubmit="return updateReview()" action="#">
                 <div id="reviewList" class="review-list"></div>
             </form>
         </div>
-        
+
+
+        <!-- character information -->
         <div class="content">
             <div class="characterlist">
                 <p class="character-link" data-character="character1">AKUMA</p>
@@ -134,7 +132,6 @@
                 <p class="character-link" data-character="character7">CLAUDIO</p>
                 <p class="character-link" data-character="character8">DEVIL JIN</p>
                 <p class="character-link" data-character="character9">EDDY</p>
-               
             </div>
             <button id="btn-all-close">Close Information</button>
             <ul type="none"></ul>
@@ -148,41 +145,51 @@
             </div>
         </div>
 
+        <!-- character popup -->
         <div class="infoandpic_char">
             <div class="character-container" id="character1">
-                <p>DIFFICULTY</p><p class="character-info"></p>
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
             </div>
 
             <div class="character-container" id="character2">
-                <p>DIFFICULTY</p><p class="character-info"></p>
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
             </div>
 
             <div class="character-container" id="character3">
-                <p>DIFFICULTY</p><p class="character-info"></p>
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
             </div>
 
             <div class="character-container" id="character4">
-                <p>DIFFICULTY</p><p class="character-info"></p>
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
             </div>
 
             <div class="character-container" id="character5">
-                <p>DIFFICULTY</p><p class="character-info"></p>
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
             </div>
 
             <div class="character-container" id="character6">
-                <p>DIFFICULTY</p><p class="character-info"></p>
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
             </div>
 
             <div class="character-container" id="character7">
-                <p>DIFFICULTY</p><p class="character-info"></p>
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
             </div>
 
             <div class="character-container" id="character8">
-                <p>DIFFICULTY</p><p class="character-info"></p>
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
             </div>
 
             <div class="character-container" id="character9">
-                <p>DIFFICULTY</p><p class="character-info"></p>
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
             </div>
 
         </div>
