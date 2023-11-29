@@ -199,19 +199,14 @@ img {
 
 .contitle {
   position: absolute;
-  left: 68px;
+  left: 100px;
   height: 60px;
-  top: 58px;
-
+  top: 64px;
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 90;
-  font-size: 12px;
   line-height: 20px;
-  text-transform: uppercase;
-  text-align: left;
+  text-transform: uppercase;  
   color: white;
-
 }
 
 h3 {

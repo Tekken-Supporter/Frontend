@@ -5,7 +5,7 @@ let currentPage = 1;
 
 window.onload=()=>{
 
-var submitButton = document.getElementById("button");
+var submitButton = document.getElementById("submit");
 // 이벤트 리스너를 추가하기 전에 엘리먼트가 존재하는지 확인
 if (submitButton) {
     submitButton.addEventListener("click", submitReview);
@@ -15,10 +15,10 @@ if (submitButton) {
 
 //1 submit , POST 
 function submitReview() {
-  console.log("come in submit Review");
-  var cName = document.getElementById("cName").value;
-  var userId = document.getElementById("userId").value;
-  var reviewContent = document.getElementById("reviewContent").value;
+  
+  const cName = document.getElementById("cName").value;
+  const userId = document.getElementById("userId").value;
+  const reviewContent = document.getElementById("reviewContent").value;
 
   var currentTime = new Date();
   var creationTime = currentTime.toISOString();
@@ -49,6 +49,7 @@ function submitReview() {
         if (response.status === "success") {
           // 리뷰가 성공적으로 등록된 경우에 처리할 내용 추가
           displayReview(response.data);
+          console.log(response.data);
         } else {
           // 리뷰 등록이 실패한 경우에 처리할 내용 추가
           console.error("리뷰 등록 실패:", response.message);
@@ -59,12 +60,20 @@ function submitReview() {
     }
   };
   // 데이터를 JSON 형식으로 변환하여 전송
-  xhr2.send(JSON.stringify(data));
-  
-loadReviews(currentPage);
-loadPageNumbers();//index of lists
-}
+  xhr2.send(JSON.stringify({
+    c_name: cName,
+    id: userId,
+    reviewData: reviewContent,
+    CreationTime: creationTime,
+    modifiedTime: modifiedTime,
 
+  }));
+  
+  
+//loadReviews(currentPage);
+//loadPageNumbers();//index of lists
+}
+/////////////
 function getReviews() {
   var xhr1 = new XMLHttpRequest();
   var url = "http://34.127.90.191:3000/character/review";
@@ -154,7 +163,6 @@ function updateReviewList() {
   reviewListContainer.innerHTML = "";
 
   // 각 리뷰에 대해 HTML 엘리먼트를 생성하여 추가
-  
   reviews.forEach(function (review) {
   var reviewElement = document.createElement("div");
   reviewElement.classList.add("review");
@@ -169,7 +177,6 @@ function updateReviewList() {
   `;
   reviewListContainer.appendChild(reviewElement);
   });
-
  }
 
  var deleteButtons = document.querySelectorAll(".deleteButton");
@@ -233,7 +240,6 @@ function resetCharacterContainers() {
 function showCharacterInfo(event) {
    // 클릭한 캐릭터의 데이터 얻기
    const characterId = event.target.getAttribute('data-character');
-    
    // 모든 캐릭터 컨테이너 숨기기
    const characterContainers = document.querySelectorAll('.character-container');
    characterContainers.forEach(container => {
@@ -287,8 +293,8 @@ function displayReviews(reviews) {
           <p>사용자 ID: ${review.id || "알 수 없음"}</p>
           <p>리뷰 내용: ${review.reviewData || "리뷰 없음"}</p>
           <p>작성 시간: ${review.Creationtime || "알 수 없음"}</p>
-          <button onclick="updateReview(${review.number})">수정</button>
-          <button onclick="deleteReview(${review.number})">삭제</button>
+          <button type="updateReview(${review.number})">수정</button>
+          <button type="deleteReview(${review.number})">삭제</button>
       `;
       reviewListContainer.appendChild(reviewElement);
   });
