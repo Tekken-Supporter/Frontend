@@ -16,7 +16,6 @@ const itemsPerPage = 5;
 
 // 대결 전적 정보 연결
 document.addEventListener("DOMContentLoaded", loadName);
-document.addEventListener("DOMContentLoaded", loadChallengeInfo);
 
 function loadName() {
   const userId = localStorage.getItem("userId");
@@ -45,7 +44,9 @@ function loadName() {
 
           if (objects["status"] == "ok") {
             userName = objects["name"];
-            console.log(userName);
+            console.log("계정주 이름:" + userName);
+            loadChallengeInfo();
+            updateList(1);
           }
         } catch (e) {
           console.error("Error parsing response:", e);
@@ -56,6 +57,7 @@ function loadName() {
     }
   };
 }
+
 
 function loadChallengeInfo() {
   const userId = localStorage.getItem("userId");
@@ -97,6 +99,12 @@ function loadChallengeInfo() {
 }
 
 function updateList(pageNumber) {
+  if (!userName) {
+    console.error("userName is not loaded yet");
+    return;
+  }
+  console.log("UserName in another function:", userName);
+
   const startIndex = (pageNumber - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedItems = challengess.slice(startIndex, endIndex);
@@ -105,7 +113,11 @@ function updateList(pageNumber) {
   listElement.innerHTML = "";
 
   paginatedItems.forEach((challenge, index) => {
-    const nameToShow = (userName === challenge.challenger) ? challenge.challenger : challenge.contender;
+    let nameToShow;
+    if (userName === challenge.challenger)
+      nameToShow = challenge.contender;
+    if (userName === challenge.contender)
+      nameToShow = challenge.challenger;
     console.log(nameToShow);
     const challengeRow = document.createElement("div");
     challengeRow.innerHTML = `
