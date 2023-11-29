@@ -197,10 +197,10 @@ function updateReviewList() {
 
 function deleteReview(reviewId) {
   var xhr4 = new XMLHttpRequest();
-  var url = "http://34.127.90.191:3000/character/review?number=${review.number}";
+  var url = "http://34.127.90.191:3000/character/review";
 
-  xhr4.open("DELETE", url + "?reviewId=" + reviewId, true);
-
+  xhr4.open("DELETE", url + "number" + reviewId, true);
+//number로 바꾸기 
   xhr4.onreadystatechange = function () {
       if (xhr4.readyState == 4) {
           if (xhr4.status == 200) {
@@ -325,26 +325,71 @@ function loadPageNumbers() {
   }
 }
 
-checkLevel();
+/////////////////////
+var xhr7 = new XMLHttpRequest();
+var url = "http://34.127.90.191:3000/character/main";
 
-function checkLevel(){
-  var xhr7 = new XMLHttpRequest();
-  var url = "http://34.127.90.191:3000/character/main";
-  
-  xhr7.open("GET", url, true);
-  xhr7.onreadystatechange = function () {
-    if (xhr7.readyState == 4) {
-      if (xhr7.status == 200) {
-        // 서버 응답에 따른 추가 작업 수행
-       tips = JSON.parse(xhr7.responseText);
-       console.log(tips);
-      } else {
-          console.error("서버 에러:", xhr7.status);
-        }
+xhr7.open("GET", url, true);
+xhr7.onreadystatechange = function () {
+  if (xhr7.readyState == 4) {
+    if (xhr7.status == 200) {
+      // 서버 응답에 따른 추가 작업 수행
+     tips = JSON.parse(xhr7.responseText);
+     console.log(tips);
+     var akuma =tips[0];
+     var alisa=tips[1];
+     var armor=tips[2];
+     var bob=tips[4];
+     var bryan=tips[5];
+     var claudio=tips[6];
+     var devil=tips[7];
+     var eddy=tips[9];
+     var hwarang=tips[13];
+     var katarina=tips[17];
+     var gigas=tips[11];
+     var asuka=tips[3];
+
+     
+checkLevel1(akuma);
+//checkLevel2(alisa);
+checkLevel3(gigas);
+//checkLevel4(asuka);
+//checkLevel5(eddy);
+//checkLevel6(katarina);
+//checkLevel7(hwarang);
+//checkLevel8(bob);
+//checkLevel9(bryan);
+//checkLevel10(devil);
+
+    } else {
+        console.error("서버 에러:", xhr7.status);
       }
+    }
+  };
+  xhr7.send();
 
-    };
-    xhr7.send();
+
+function checkLevel3(tips) {
+  var characterinfo = document.getElementById('character3');
+  var tip = document.createElement('div');
+  tip.classList.add('tips');
+  console.log(tips.difficulty);
+  tip.innerHTML = `
+  <p>${tips.difficulty}</p>
+  `
+  ;
+  characterinfo.appendChild(tip);
+}
+
+function checkLevel1(tips) {
+  var characterinfo = document.getElementById('character1');
+  var tip = document.createElement('div');
+  tip.classList.add('tips');
+  tip.innerHTML = `
+  <p>${tips.difficulty}</p>
+  `
+  ;
+  characterinfo.appendChild(tip);
 }
   
 
