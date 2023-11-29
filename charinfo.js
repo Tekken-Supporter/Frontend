@@ -132,9 +132,9 @@ function deleteReviewFunction(reviewId) {
 
 function deleteReview(reviewId) {
   var xhr4 = new XMLHttpRequest();
-  var url = "http://34.127.90.191:3000/character/review?number=${review.number}";
+  var url = "http://34.127.90.191:3000/character/review";
 
-  xhr4.open("DELETE", url + "?reviewId=" + reviewId, true);
+  xhr4.open("DELETE", url + "?number" + reviewId, true);
 
   xhr4.onreadystatechange = function () {
     if (xhr4.readyState == 4) {
