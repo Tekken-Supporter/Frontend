@@ -1,9 +1,10 @@
-var jwt= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdCIsImlhdCI6MTY5OTYzMjA1NywiZXhwIjoxNzAyMjI0MDU3fQ.P0AX2jyS18tjHFKBQRy6Wi6OWG9AlDQ4hJtpZp3woB0";
+var jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCIsImlkIjoidGVzdCIsImlhdCI6MTY5OTYzMjA1NywiZXhwIjoxNzAyMjI0MDU3fQ.P0AX2jyS18tjHFKBQRy6Wi6OWG9AlDQ4hJtpZp3woB0";
 var reviews = [];
 const reviewsPerPage = 3;
 let currentPage = 1;
 
-window.onload=()=>{
+window.onload = () => {
+
 
 var submitButton = document.getElementById("submit");
 // 이벤트 리스너를 추가하기 전에 엘리먼트가 존재하는지 확인
@@ -12,6 +13,7 @@ if (submitButton) {
 } else {
     console.error("Submit 버튼을 찾을 수 없습니다.");
 }
+
 
 //1 submit , POST submitReview
 function submitReview() {
