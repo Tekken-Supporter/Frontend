@@ -14,7 +14,6 @@
 
 
     <script defer src="./reviewsend.js"></script>
-
     <script defer src="./charinfo.js"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -30,7 +29,7 @@
 
 <body>
     <div id="reviews-container">
-        <form onsubmit="return submitReview" action="#">
+        <form onsubmit="return submitReview()" action="#">
             <label >캐릭터 이름:</label>
             <select class="input_champion" id="cName" name="c_name">
                 <option value="" disabled selected hidden>캐릭터를 선택하세요</option>
@@ -79,7 +78,7 @@
             <label>리뷰 내용:</label>
             <textarea id="reviewContent" name="reviewData" required></textarea><br>
         
-            <button id="submit" class="submit_btn" onclick="submitReview()" >리뷰 제출</button>
+            <button id="submit" class="submit_btn">리뷰 제출</button>
         </form>
    </div>
    

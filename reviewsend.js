@@ -2,7 +2,7 @@ function submitReview() {
     const cName = document.getElementById("cName").value;
     const userId = document.getElementById("userId").value;
     const reviewContent = document.getElementById("reviewContent").value;
-
+    console.log(cName + userId + reviewContent);
     // XMLHttpRequest 객체 생성
     const xhr2 = new XMLHttpRequest();
 
