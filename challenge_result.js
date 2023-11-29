@@ -1,6 +1,8 @@
 const wrapper3 = document.querySelector('.wrapper_result')
 const btnPopup3 = document.querySelector('.btnResult-popup');
 const iconClose3 = document.querySelector('.icon-close3');
+const wrapper4 = document.querySelector('.wrapper_record')
+const iconClose4 = document.querySelector('.icon-close4');
 
 var jwt = localStorage.getItem("jwt");
 
@@ -40,7 +42,6 @@ function loadName() {
           console.log("Response about user:", objects);
 
           if (objects["status"] == "ok") {
-            document.getElementById("contender_result").textContent = objects["name"];
           }
         } catch (e) {
           console.error("Error parsing response:", e);
@@ -179,24 +180,38 @@ function result() {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.addEventListener('click', function (event) {
-    // 클릭된 요소가 btnResult-popup 클래스를 가지고 있는지 확인
-    if (event.target && event.target.classList.contains('btnResult-popup')) {
-      // 해당 버튼과 관련된 challenge 객체 찾기
-      const challenge = challengess.find(ch => ch.challenger === event.target.textContent);
-      if (challenge) {
-        // challenge 객체에서 정보 가져와서 설정하기
+document.addEventListener('click', function (event) {
+  // 클릭된 요소가 btnResult-popup 클래스를 가지고 있는지 확인
+  if (event.target && event.target.classList.contains('btnResult-popup')) {
+    // 해당 버튼과 관련된 challenge 객체 찾기
+    const challenge = challengess.find(ch => ch.challenger === event.target.textContent);
+    if (challenge) {
+      // winscore와 losescore 값 확인
+      if (challenge.winscore === undefined && challenge.losescore === undefined) {
+        // challenge 객체에서 정보 가져와서 설정하기 (result 팝업)
         document.getElementById("challenger_result").textContent = challenge.challenger;
+        document.getElementById("contender_result").textContent = challenge.contender;
         document.getElementById("date_result").textContent = new Date(challenge.matchDate).toLocaleDateString();
+        wrapper3.classList.add('active-popup');
+      } else {
+        // challenge 객체에서 정보 가져와서 설정하기 (record 팝업)
+        document.getElementById("winner_record").textContent = challenge.winscore > challenge.losescore ? challenge.winner : challenge.loser;
+        document.getElementById("loser_record").textContent = challenge.winscore < challenge.losescore ? challenge.winner : challenge.loser;
+        document.getElementById("winscore").textContent = Math.max(challenge.winscore, challenge.losescore);
+        document.getElementById("losescore").textContent = Math.min(challenge.winscore, challenge.losescore);
+        wrapper4.classList.add('active-popup');
       }
-      wrapper3.classList.add('active-popup');
       currentSelectedChallenges = challenge;
     }
-  });
-
+  }
   const iconClose3 = document.querySelector('.icon-close3');
   iconClose3.addEventListener('click', () => {
     wrapper3.classList.remove('active-popup');
   });
+  const iconClose4 = document.querySelector('.icon-close4');
+  iconClose4.addEventListener('click', () => {
+    wrapper4.classList.remove('active-popup');
+  });
+
 });
+
