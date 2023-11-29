@@ -72,6 +72,46 @@ function updateReview(reviewId) {
 
 //3 delete, REview
 
+var deleteButtons = document.querySelectorAll(".deleteButton");
+deleteButtons.forEach(function (deleteButton) {
+  deleteButton.addEventListener("click", function () {
+    var reviewId = deleteButton.getAttribute("data-reviewid");
+    console.log(reviewId);
+    deleteReviewFunction(reviewId);
+  });
+});
+
+
+function deleteReviewFunction(reviewId) {
+  var confirmation = confirm("정말로 리뷰를 삭제하시겠습니까?");
+  if (confirmation) {
+    deleteReview(reviewId);
+  }
+}
+
+function deleteReview(reviewId) {
+  var xhr4 = new XMLHttpRequest();
+  var url = "http://34.127.90.191:3000/character/review";
+
+  xhr4.open("DELETE", url + "?number" + reviewId, true);
+
+  xhr4.onreadystatechange = function () {
+    if (xhr4.readyState == 4) {
+      if (xhr4.status == 200) {
+        console.log("서버 응답:", xhr4.responseText);
+        var response = JSON.parse(xhr4.responseText);
+        if (response.status === "success") {
+          removeReviewFromUI(reviewId);
+        } else {
+          console.error("리뷰 삭제 실패:", response.message);
+        }
+      } else {
+        console.error("서버 에러:", xhr4.status);
+      }
+    }
+  };
+  xhr4.send();
+}
 
 // 4. 리뷰를 웹에 보여주는 함수 (UI 업데이트)
 function displayReview(reviewData) {
@@ -113,46 +153,6 @@ function updateReviewList() {
   });
 }
 
-var deleteButtons = document.querySelectorAll(".deleteButton");
-deleteButtons.forEach(function (deleteButton) {
-  deleteButton.addEventListener("click", function () {
-    var reviewId = deleteButton.getAttribute("data-reviewid");
-    console.log(reviewId);
-    deleteReviewFunction(reviewId);
-  });
-});
-
-
-function deleteReviewFunction(reviewId) {
-  var confirmation = confirm("정말로 리뷰를 삭제하시겠습니까?");
-  if (confirmation) {
-    deleteReview(reviewId);
-  }
-}
-
-function deleteReview(reviewId) {
-  var xhr4 = new XMLHttpRequest();
-  var url = "http://34.127.90.191:3000/character/review";
-
-  xhr4.open("DELETE", url + "?number" + reviewId, true);
-
-  xhr4.onreadystatechange = function () {
-    if (xhr4.readyState == 4) {
-      if (xhr4.status == 200) {
-        console.log("서버 응답:", xhr4.responseText);
-        var response = JSON.parse(xhr4.responseText);
-        if (response.status === "success") {
-          removeReviewFromUI(reviewId);
-        } else {
-          console.error("리뷰 삭제 실패:", response.message);
-        }
-      } else {
-        console.error("서버 에러:", xhr4.status);
-      }
-    }
-  };
-  xhr4.send();
-}
 //
 // [ 캐릭터 목록들 정리버튼 ]
 const btnAllClose = document.getElementById('btn-all-close');
