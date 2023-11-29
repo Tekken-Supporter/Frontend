@@ -111,7 +111,7 @@ header {
   transition: .5s;
 }
 
-#reviews-container{
+.reviews-container{
   position: static;
   width: 25%;
   top:50px;
