@@ -7,9 +7,18 @@
     <title>character_info</title>
 
     <style>
-        h1,h2 { text-align: center;}
-        h3 {  text-align: right;}
-        #reviews-container { margin-bottom: 20px;}
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: right;
+        }
+
+        #reviews-container {
+            margin-bottom: 20px;
+        }
     </style>
 
 
@@ -24,81 +33,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap" rel="stylesheet">
-    
+
 </head>
 
 <body>
-    <div class="reviews-container">
-        <h3>캐릭터 리뷰</h3><br><br>
-        <form onsubmit="return submitReview()" action="#">
-            <label >캐릭터 이름:</label>
-            <select class="input_champion" id="cName" name="c_name">
-                <option value="" disabled selected hidden>캐릭터를 선택하세요</option>
-                <option value="AKUMA">AKUMA</option>
-                <option value="ALISA">ALISA</option>
-                <option value="ARMOR KING">ARMOR KING</option>
-                <option value="ASUKA">ASUKA</option>
-                <option value="BOB">BOB</option>
-                <option value="BRYAN">BRYAN</option>
-                <option value="CLAUDIO">CLAUDIO</option>
-                <option value="DEVIL JIN">DEVIL JIN</option>
-                <option value="DRAGUNOV">DRAGUNOV</option>
-                <option value="EDDY">EDDY</option>
-                <option value="FENG">FENG</option>
-                <option value="GIGAS">GIGAS</option>
-                <option value="HEIHACHI">HEIHACHI</option>
-                <option value="HWARANG">HWARANG</option>
-                <option value="JACK-7">JACK-7</option>
-                <option value="JIN">JIN</option>
-                <option value="JOSIE">JOSIE</option>
-                <option value="KATARINA">KATARINA</option>
-                <option value="KAZUMI">KAZUMI</option>
-                <option value="KAZUYA">KAZUYA</option>
-                <option value="KING">KING</option>
-                <option value="KUMA">KUMA</option>
-                <option value="LARS">LARS</option>
-                <option value="LAW">LAW</option>
-                <option value="LEE">LEE</option>
-                <option value="LEO">LEO</option>
-                <option value="LILI">LILI</option>
-                <option value="LUCKY CHLOE">LUCKY CHLOE</option>
-                <option value="MASTER RAVEN">MASTER RAVEN</option>
-                <option value="MIGUEL">MIGUEL</option>
-                <option value="NINA">NINA</option>
-                <option value="PANDA">PANDA</option>
-                <option value="PAUL">PAUL</option>
-                <option value="SHAHEEN">SHAHEEN</option>
-                <option value="STEVE">STEVE</option>
-                <option value="XIAOYU">XIAOYU</option>
-                <option value="YOSHIMITSU">YOSHIMITSU</option>
-              </select><br>
-        
-            <label>사용자 ID:</label>
-            <input type="text" id="userId" name="id"></input><br>
-        
-            <label>리뷰 내용:</label>
-            <textarea id="reviewContent" name="reviewData" required></textarea><br>
-        
-            <button id="submit" class="submit_btn">리뷰 제출</button>
-        </form>
-   </div>
-   
-   <!--- review -->
-  <div id="pagination-container" class="pagination-container">
-    <form onsubmit="return updateReview()" action="#">
-    <div id="reviewList" class="review-list"></div>
-  </form>
-  </div>
-  <!-- character information -->
+
+    <!-- character information -->
     <div class="container">
         <video autoplay loop muted plays-inline class="background-clip">
             <source src="tekken.mp4" type="video/mp4">
         </video>
-        
+
         <header>
             <h2 class="logo">Tekken Supporter</h2>
             <div class="contitle">
-                <p >Tips & Reviews about Characters</p>
+                <p>Tips & Reviews about Characters</p>
             </div>
             <nav class="navigation">
                 <a href="myinfo.html" class="myinfo">계정 정보</a>
@@ -109,8 +58,72 @@
             </nav>
         </header>
 
+        <div class="reviews-container">
+            <h2>캐릭터 리뷰</h2><br><br>
+            <form onsubmit="return submitReview()" action="#">
+                <div>
+                <label>캐릭터 이름:</label>
+                <select class="input_champion" id="cName" name="c_name">
+                    <option value="" disabled selected hidden>캐릭터를 선택하세요</option>
+                    <option value="AKUMA">AKUMA</option>
+                    <option value="ALISA">ALISA</option>
+                    <option value="ARMOR KING">ARMOR KING</option>
+                    <option value="ASUKA">ASUKA</option>
+                    <option value="BOB">BOB</option>
+                    <option value="BRYAN">BRYAN</option>
+                    <option value="CLAUDIO">CLAUDIO</option>
+                    <option value="DEVIL JIN">DEVIL JIN</option>
+                    <option value="DRAGUNOV">DRAGUNOV</option>
+                    <option value="EDDY">EDDY</option>
+                    <option value="FENG">FENG</option>
+                    <option value="GIGAS">GIGAS</option>
+                    <option value="HEIHACHI">HEIHACHI</option>
+                    <option value="HWARANG">HWARANG</option>
+                    <option value="JACK-7">JACK-7</option>
+                    <option value="JIN">JIN</option>
+                    <option value="JOSIE">JOSIE</option>
+                    <option value="KATARINA">KATARINA</option>
+                    <option value="KAZUMI">KAZUMI</option>
+                    <option value="KAZUYA">KAZUYA</option>
+                    <option value="KING">KING</option>
+                    <option value="KUMA">KUMA</option>
+                    <option value="LARS">LARS</option>
+                    <option value="LAW">LAW</option>
+                    <option value="LEE">LEE</option>
+                    <option value="LEO">LEO</option>
+                    <option value="LILI">LILI</option>
+                    <option value="LUCKY CHLOE">LUCKY CHLOE</option>
+                    <option value="MASTER RAVEN">MASTER RAVEN</option>
+                    <option value="MIGUEL">MIGUEL</option>
+                    <option value="NINA">NINA</option>
+                    <option value="PANDA">PANDA</option>
+                    <option value="PAUL">PAUL</option>
+                    <option value="SHAHEEN">SHAHEEN</option>
+                    <option value="STEVE">STEVE</option>
+                    <option value="XIAOYU">XIAOYU</option>
+                    <option value="YOSHIMITSU">YOSHIMITSU</option>
+                </select><br>
+                </div>
+                <div>
+                <label>사용자 ID:</label>
+                <input type="text" id="userId" name="id"></input><br>
+                </div>
+                <div>
+                <label>리뷰 내용:</label>
+                <textarea id="reviewContent" name="reviewData" required></textarea><br>
+                </div>
+                <button id="submit" class="submit_btn">리뷰 제출</button>
+            </form>
+        </div>
+    
+        <!--- review -->
+        <div id="pagination-container" class="pagination-container">
+            <form onsubmit="return updateReview()" action="#">
+                <div id="reviewList" class="review-list"></div>
+            </form>
+        </div>
+        
         <div class="content">
-
             <div class="characterlist">
                 <p class="character-link" data-character="character1">GIGAS</p>
                 <p class="character-link" data-character="character2">EDDY</p>
@@ -121,7 +134,7 @@
                 <p class="character-link" data-character="character7">BRYAN</p>
                 <p class="character-link" data-character="character8">DEVIL JIN</p>
                 <p class="character-link" data-character="character9">KATARINA</p>
-                
+
             </div>
             <button id="btn-all-close">Close Information</button>
             <ul type="none"></ul>
@@ -137,47 +150,65 @@
 
         <div class="infoandpic_char">
             <div class="character-container" id="character1">
-                <p class="character-info"> <p>punch <br>kick<br>signature</p></p>
+                <p class="character-info">
+                <p>punch <br>kick<br>signature</p>
+                </p>
                 <img class="character-image" src="" alt="캐릭터 이미지">
             </div>
 
             <div class="character-container" id="character2">
-                <p class="character-info"> <p>punch <br>kick<br>signature</p></p>
+                <p class="character-info">
+                <p>punch <br>kick<br>signature</p>
+                </p>
                 <img class="character-image" src="#" alt="캐릭터 이미지">
             </div>
 
             <div class="character-container" id="character3">
-                <p class="character-info"> <p>punch <br>kick<br>signature</p></p>
+                <p class="character-info">
+                <p>punch <br>kick<br>signature</p>
+                </p>
                 <img class="character-image" src="#" alt="캐릭터 이미지">
             </div>
 
             <div class="character-container" id="characte4">
-                <p class="character-info"> <p>punch <br>kick<br>signature</p></p>
+                <p class="character-info">
+                <p>punch <br>kick<br>signature</p>
+                </p>
                 <img class="character-image" src="#" alt="캐릭터 이미지">
             </div>
 
             <div class="character-container" id="character5">
-                <p class="character-info"> <p>punch <br>kick<br>signature</p></p>
+                <p class="character-info">
+                <p>punch <br>kick<br>signature</p>
+                </p>
                 <img class="character-image" src="#" alt="캐릭터 이미지">
             </div>
 
             <div class="character-container" id="character6">
-                <p class="character-info"> <p>punch <br>kick<br>signature</p></p>
+                <p class="character-info">
+                <p>punch <br>kick<br>signature</p>
+                </p>
                 <img class="character-image" src="#" alt="캐릭터 이미지">
             </div>
 
             <div class="character-container" id="character7">
-                <p class="character-info"> <p>punch <br>kick<br>signature</p></p>
+                <p class="character-info">
+                <p>punch <br>kick<br>signature</p>
+                </p>
                 <img class="character-image" src="#" alt="캐릭터 이미지">
             </div>
 
             <div class="character-container" id="character8">
-                <p class="character-info"> <p>punch <br>kick<br>signature</p></p>
+                <p class="character-info">
+                <p>punch <br>kick<br>signature</p>
+                </p>
                 <img class="character-image" src="#" alt="캐릭터 이미지">
             </div>
 
             <div class="character-container" id="character9">
-                <p class="character-info"> <p>punch <br>kick<br>signature</p></p>
+                <p class="character-info">
+                <p>punch <br>kick<br>signature</p>
+                </p>
                 <img class="character-image" src="#" alt="캐릭터 이미지">
             </div>
 
@@ -187,10 +218,10 @@
         </div>
 
 
-        
+
 
     </div>
-  
+
 </body>
 
 
