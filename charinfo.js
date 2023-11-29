@@ -26,7 +26,7 @@ function getReviews() {
   xhr1.send();
 }
 
-// 2 PUT, update 리뷰 수정 함수
+// 2 PUT, update 리뷰 수정 함수 > 미루기 
 function updateReview(reviewId) {
   var modifiedReviewContent = prompt("수정된 리뷰 내용을 입력하세요:");
   if (modifiedReviewContent !== null) {
@@ -71,7 +71,6 @@ function updateReview(reviewId) {
 }
 
 //3 delete, REview
-
 var deleteButtons = document.querySelectorAll(".deleteButton");
 deleteButtons.forEach(function (deleteButton) {
   deleteButton.addEventListener("click", function () {
