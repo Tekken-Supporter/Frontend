@@ -105,15 +105,22 @@ header {
 
 .reviews-container {
   position: static;
-  width: calc(100%/4 - 20px);
-  margin: 20px;
-  padding: 20px;
-  font-weight: 200;
-  font-size: 1em;
+  width: 25%;
+  top:50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: flex;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 170;
+  font-size: 15px;
   line-height: 20px;
   text-transform: uppercase;
+  color: black;
   background: linear-gradient(180deg, #D9D9D9 0%, rgba(217, 217, 217, 0.51) 0%);
 }
+
 
 .reviews-container>div {
   margin-bottom: 15px;
@@ -191,7 +198,6 @@ header {
   font-weight: 170;
   font-size: 20px;
   line-height: 30px;
-
   text-transform: uppercase;
   color: black;
 
