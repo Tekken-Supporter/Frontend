@@ -28,25 +28,26 @@
 
 
     <div id="reviews-container">
-        <form id="reviewForm">
+        <form onsubmit="return submitReview" action="#">
             <label for="cName">캐릭터 이름:</label>
-            <input type="text" id="cName" name="c_name" required><br>
+            <input type="text" id="cName" name="c_name"></input><br>
         
             <label for="userId">사용자 ID:</label>
-            <input type="text" id="userId" name="id" required><br>
+            <input type="text" id="userId" name="id"></input><br>
         
             <label for="reviewContent">리뷰 내용:</label>
             <textarea id="reviewContent" name="reviewData" required></textarea><br>
         
-            <button id="button" >리뷰 제출</button>
-          </form>
-
+            <button id="submit" class="submit_btn" >리뷰 제출</button>
+        </form>
    </div>
-
+   <!--- review -->
   <div id="pagination-container" class="pagination-container">
+    <form onsubmit="return updateReview()" action="#">
     <div id="reviewList" class="review-list"></div>
+  </form>
   </div>
-  
+  <!-- character information -->
     <div class="container">
         <video autoplay loop muted plays-inline class="background-clip">
             <source src="tekken.mp4" type="video/mp4">
@@ -55,7 +56,7 @@
         <header>
             <h2 class="logo">Tekken Supporter</h2>
             <div class="contitle">
-                <h2>Tips & Reviews <br> about Characters</h2>
+                <p >Tips & Reviews about Characters</p>
             </div>
             <nav class="navigation">
                 <a href="myinfo.html" class="myinfo">계정 정보</a>
@@ -66,12 +67,9 @@
             </nav>
         </header>
 
-        
-
         <div class="content">
 
             <div class="characterlist">
-
                 <p class="character-link" data-character="character1">캐릭터1 정보</p>
                 <p class="character-link" data-character="character2">캐릭터2 정보</p>
                 <p class="character-link" data-character="character3">캐릭터3 정보</p>
@@ -85,7 +83,6 @@
             </div>
             <button id="btn-all-close">Close Information</button>
             <ul type="none"></ul>
-
             <div class="linkposition">
                 <ul type="none">
                     <li><a href="https://namu.wiki/w/%EC%B2%A0%EA%B6%8C%207#s-3.1">나무위키 철권 7</a></li>
