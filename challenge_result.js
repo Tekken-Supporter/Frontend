@@ -1,8 +1,6 @@
 const wrapper3 = document.querySelector('.wrapper_result')
 const btnPopup3 = document.querySelector('.btnResult-popup');
-const iconClose3 = document.querySelector('.icon-close3');
 const wrapper4 = document.querySelector('.wrapper_record')
-const iconClose4 = document.querySelector('.icon-close4');
 
 var jwt = localStorage.getItem("jwt");
 
@@ -11,6 +9,9 @@ let challengess = [];
 
 // 현재 선택된 challengess 객체를 저장할 변수
 let currentSelectedChallenges = null;
+
+// 페이지당 항목 수
+const itemsPerPage = 5;
 
 // 대결 전적 정보 연결
 document.addEventListener("DOMContentLoaded", loadName);
@@ -75,24 +76,13 @@ function loadChallengeInfo() {
           const response = JSON.parse(this.responseText);
           console.log("Response from challenge check:", response);
 
-          // matchlist가 존재하는지 확인
           if (response.matchlist && Array.isArray(response.matchlist)) {
-            challengess = response.matchlist; // 서버로부터 받은 데이터를 challengess 배열에 저장
-            const listElement = document.querySelector(".board_list_p");
-            response.matchlist.forEach((challenge, index) => {
-              const challengeRow = document.createElement("div");
-              challengeRow.innerHTML = `
-                                <div class="num">${index + 1}</div>
-                                <div class="name"><button class="btnResult-popup">${challenge.challenger}</button></div>
-                                <div class="result">${challenge.winner}</div>
-                                <div class="date">${new Date(challenge.matchDate).toLocaleDateString()}</div>
-                            `;
-              listElement.appendChild(challengeRow);
-            });
+            challengess = response.matchlist;
+            updateList(1); // 첫 페이지로 초기화
+            createPaginationButtons(); // 페이지네이션 버튼 생성
           } else {
             console.error("matchlist is not an array or undefined");
           }
-
         } catch (e) {
           console.error("Error parsing response", e);
         }
@@ -101,6 +91,45 @@ function loadChallengeInfo() {
       }
     }
   };
+}
+
+function updateList(pageNumber) {
+  const startIndex = (pageNumber - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedItems = challengess.slice(startIndex, endIndex);
+
+  const listElement = document.querySelector(".board_list_p");
+  listElement.innerHTML = "";
+
+  paginatedItems.forEach((challenge, index) => {
+    const challengeRow = document.createElement("div");
+    challengeRow.innerHTML = `
+                                <div class="num">${index + 1}</div>
+                                <div class="name"><button class="btnResult-popup">${challenge.challenger}</button></div>
+                                <div class="result">${challenge.winner}</div>
+                                <div class="date">${new Date(challenge.matchDate).toLocaleDateString()}</div>
+                            `;
+    listElement.appendChild(challengeRow);
+  });
+}
+
+function createPaginationButtons() {
+  const pageCount = Math.ceil(challengess.length / itemsPerPage);
+  const paginationElement = document.querySelector(".board_page");
+  paginationElement.innerHTML = ""; // 이전 페이지 버튼들을 지우고 새로 시작
+
+  for (let i = 1; i <= pageCount; i++) {
+    const pageButton = document.createElement("a");
+    pageButton.href = "#";
+    pageButton.textContent = i;
+    pageButton.className = "num";
+    pageButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      updateList(i);
+    });
+
+    paginationElement.appendChild(pageButton);
+  }
 }
 
 // 대결 결과 전송
