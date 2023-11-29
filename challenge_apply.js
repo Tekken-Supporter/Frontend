@@ -95,7 +95,7 @@ function quest() {
     JSON.stringify({
       challenger: challenger,
       contender: contender,
-      date: date,
+      matchdate: date,
       applymessage: message,
     })
   );
