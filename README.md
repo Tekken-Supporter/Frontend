@@ -33,11 +33,11 @@
 
 모르면 맞아야조
 
-세종대학교 전자정보통신공학과/컴퓨터공학과 19 박상욱 (@sw0501) <br>
-세종대학교 전자정보통신공학과/컴퓨터공학과 19 조영우 (@chodevelop) <br>
-세종대학교 전자정보통신공학과/컴퓨터공학과 21 김서현 (@betterb2etr) <br>
-세종대학교 컴퓨터공학과 21 이유진 (@newjinlee) <br>
-세종대학교 전자정보통신공학과 22 문창민 (@cmmoon03) <br>
+세종대학교 전자정보통신공학과/컴퓨터공학과 19 박상욱 ([@sw0501](https://github.com/sw0501)) <br>
+세종대학교 전자정보통신공학과/컴퓨터공학과 19 조영우 ([@chodevelop](https://github.com/chodevelop)) <br>
+세종대학교 전자정보통신공학과/컴퓨터공학과 21 김서현 ([@betterb2etr](https://github.com/betterb2etr)) <br>
+세종대학교 컴퓨터공학과 21 이유진 ([@newjinlee](https://github.com/newjinlee)) <br>
+세종대학교 전자정보통신공학과 22 문창민 ([@cmmoon03](https://github.com/cmmoon03)) <br>
 
 ## Stacks
 
