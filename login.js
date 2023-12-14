@@ -10,7 +10,6 @@ function login() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://34.127.90.191:3000/auth/login");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
   xhttp.send(
     JSON.stringify({
       id: id,
@@ -65,3 +64,4 @@ function login() {
   };
   return false;
 }
+
