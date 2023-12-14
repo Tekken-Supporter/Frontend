@@ -1,0 +1,274 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+  }
+
+  .container {
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .background-clip {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+  }
+
+  @media (min-aspect-ratio:16/9) {
+      .background-clip {
+          width: 100%;
+          height: auto;
+      }
+  }
+
+  @media (max-aspect-ratio:16/9) {
+      .background-clip {
+          width: auto;
+          height: 100%;
+      }
+  }
+
+  header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 99;
+  }
+
+  .logo {
+      font-size: 2em;
+      color: #fff;
+      user-select: none;
+  }
+
+  .navigation a {
+      position: relative;
+      font-size: 1.1em;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 40px;
+  }
+
+  .navigation a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 5px;
+      transform-origin: right;
+      transform: scaleX(0);
+      transition: transform .5s;
+  }
+
+
+  .navigation a:hover::after {
+      transform-origin: left;
+      transform: scaleX(1);
+  }
+
+  .myinfo::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      border-radius: 5px;
+  }
+
+  .navigation .btnLogout {
+      width: 100px;
+      height: 40px;
+      background: transparent;
+      border: 2px solid #fff;
+      outline: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.1em;
+      color: #fff;
+      font-weight: 500;
+      margin-left: 40px;
+      transition: .5s;
+  }
+
+  .wrapper {
+      position: relative;
+      width: 1000px;
+      height: 600px;
+      background: transparent;
+      background-color: rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, .5);
+      border-radius: 20px;
+      backdrop-filter: blur(30px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transform: scale(1);
+  }
+
+  .wrapper .form-box {
+      width: 100%;
+      padding: 40px;
+      transition: none;
+  }
+
+  .wrapper h2 {
+      position: absolute;
+      top: 10%;
+      font-size: 2em;
+      color: #272727;
+      text-align: center;
+  }
+
+  .output-box {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      border-bottom: 2px solid #272727;
+      margin: 30px 0;
+  }
+
+  .output-box label {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      font-size: 1em;
+      color: #272727;
+      font-weight: 500;
+      pointer-events: none;
+      transition: .5s;
+  }
+
+  .output-box output {
+      position: absolute;
+      left: 100px;
+      width: 60%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      color: #272727;
+      font-weight: 600;
+      padding: 10px 35px 0 5px;
+      background: transparent;
+      align-items: center;
+  }
+
+  .output-box .input_nowpassword {
+      position: absolute;
+      left: 100px;
+      width: 60%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      color: #272727;
+      font-weight: 600;
+      padding: 0 35px 0 25px;
+      background: transparent;
+  }
+
+  .output-box .input_newpassword {
+      position: absolute;
+      left: 100px;
+      width: 60%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      color: #272727;
+      font-weight: 600;
+      padding: 0 35px 0 25px;
+      background: transparent;
+  }
+
+  /* Select 드롭다운 스타일링 */
+  .output-box select {
+      position: absolute;
+      left: 100px;
+      width: 60%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      color: #272727;
+      font-weight: 600;
+      padding: 0 35px 0 5px;
+      cursor: pointer;
+      /* 드롭다운 메뉴임을 나타내는 커서 스타일 */
+      -webkit-appearance: none;
+      /* 기본 브라우저 스타일 제거 */
+      -moz-appearance: none;
+      appearance: none;
+      background: transparent;
+  }
+
+  .output-box .icon {
+      position: absolute;
+      right: 8px;
+      font-size: 1.2em;
+      color: #272727;
+      line-height: 57px;
+  }
+
+  /* 수정하기 버튼 스타일링 - 로그아웃 버튼 스타일 참조 */
+  .change_btn {
+      width: 100px;
+      /* 또는 원하는 너비 */
+      height: 40px;
+      background: transparent;
+      border: 2px solid #fff;
+      outline: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.1em;
+      color: #fff;
+      font-weight: 500;
+      transition: .5s;
+      float: right;
+  }
+
+  .change_btn:hover {
+      background: #fff;
+      /* 호버 시 배경색 변경 */
+      color: #272727;
+      /* 호버 시 글자색 변경 */
+  }
+
+  /* Select 드롭다운 화살표 스타일링 */
+  .output-box select::-ms-expand {
+      display: none;
+  }
+
+  /* 아이콘과 함께 select 스타일링 */
+  .output-box .icon {
+      position: absolute;
+      right: 8px;
+      font-size: 1.2em;
+      color: #272727;
+      line-height: 57px;
+      pointer-events: none;
+      /* 아이콘이 선택을 방해하지 않도록 설정 */
+  }

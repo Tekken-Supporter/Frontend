@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>character_info</title>
+
+    <style>
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: right;
+        }
+
+        #reviews-container {
+            margin-bottom: 20px;
+        }
+    </style>
+
+
+    <script defer src="./reviewsend.js"></script>
+    <script defer src="./charinfo.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+
+    <link href="charinfo.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <video autoplay loop muted plays-inline class="background-clip">
+            <source src="tekken.mp4" type="video/mp4">
+        </video>
+
+        <header>
+            <h2 class="logo">Tekken Supporter</h2>
+            <div class="contitle">
+                <p>Tips & Reviews about Characters</p>
+            </div>
+            <nav class="navigation">
+                <a href="myinfo.html" class="myinfo">계정 정보</a>
+                <a href="ranking.html" class="ranking">티어표</a>
+                <a href="challenge.html" class="challenge">1:1대결</a>
+                <a href="charinfo.html" class="chacinfo"><strong>캐릭터 도움말</strong></a>
+                <button class="btnLogout">로그아웃</button>
+            </nav>
+        </header>
+
+        <!-- review input -->
+        <div class="reviews-container">
+            <h2>캐릭터 리뷰</h2><br><br>
+            <form onsubmit="return submitReview()" action="#">
+                <label>캐릭터 이름:</label>
+                <select class="input_champion" id="cName" name="c_name">
+                    <option value="" disabled selected hidden>캐릭터를 선택하세요</option>
+                    <option value="AKUMA">AKUMA</option>
+                    <option value="ALISA">ALISA</option>
+                    <option value="ARMOR KING">ARMOR KING</option>
+                    <option value="ASUKA">ASUKA</option>
+                    <option value="BOB">BOB</option>
+                    <option value="BRYAN">BRYAN</option>
+                    <option value="CLAUDIO">CLAUDIO</option>
+                    <option value="DEVIL JIN">DEVIL JIN</option>
+                    <option value="DRAGUNOV">DRAGUNOV</option>
+                    <option value="EDDY">EDDY</option>
+                    <option value="FENG">FENG</option>
+                    <option value="GIGAS">GIGAS</option>
+                    <option value="HEIHACHI">HEIHACHI</option>
+                    <option value="HWARANG">HWARANG</option>
+                    <option value="JACK-7">JACK-7</option>
+                    <option value="JIN">JIN</option>
+                    <option value="JOSIE">JOSIE</option>
+                    <option value="KATARINA">KATARINA</option>
+                    <option value="KAZUMI">KAZUMI</option>
+                    <option value="KAZUYA">KAZUYA</option>
+                    <option value="KING">KING</option>
+                    <option value="KUMA">KUMA</option>
+                    <option value="LARS">LARS</option>
+                    <option value="LAW">LAW</option>
+                    <option value="LEE">LEE</option>
+                    <option value="LEO">LEO</option>
+                    <option value="LILI">LILI</option>
+                    <option value="LUCKY CHLOE">LUCKY CHLOE</option>
+                    <option value="MASTER RAVEN">MASTER RAVEN</option>
+                    <option value="MIGUEL">MIGUEL</option>
+                    <option value="NINA">NINA</option>
+                    <option value="PANDA">PANDA</option>
+                    <option value="PAUL">PAUL</option>
+                    <option value="SHAHEEN">SHAHEEN</option>
+                    <option value="STEVE">STEVE</option>
+                    <option value="XIAOYU">XIAOYU</option>
+                    <option value="YOSHIMITSU">YOSHIMITSU</option>
+                </select><br>
+
+                <label>사용자 ID:</label>
+                <input type="text" id="userId" name="id"></input><br>
+
+                <label>리뷰 내용:</label>
+                <textarea id="reviewContent" name="reviewData" required></textarea><br>
+
+                <button id="submit" class="submit_btn">리뷰 제출</button>
+            </form>
+        </div>
+
+        <!--- review output-->
+        <div id="pagination-container" class="pagination-container">
+            <form onsubmit="return updateReview()" action="#">
+                <div id="reviewList" class="review-list"></div>
+            </form>
+        </div>
+
+
+        <!-- character information -->
+        <div class="content">
+            <div class="characterlist">
+                <p class="character-link" data-character="character1">AKUMA</p>
+                <p class="character-link" data-character="character2">ALISA</p>
+                <p class="character-link" data-character="character3">ARMOR KING</p>
+                <p class="character-link" data-character="character4">ASUKA</p>
+                <p class="character-link" data-character="character5">BOB</p>
+                <p class="character-link" data-character="character6">BRYAN</p>
+                <p class="character-link" data-character="character7">CLAUDIO</p>
+                <p class="character-link" data-character="character8">DEVIL JIN</p>
+                <p class="character-link" data-character="character9">EDDY</p>
+            </div>
+            <button id="btn-all-close">Close Information</button>
+            <ul type="none"></ul>
+            <div class="linkposition">
+                <ul type="none">
+                    <li><a href="https://namu.wiki/w/%EC%B2%A0%EA%B6%8C%207#s-3.1">나무위키 철권 7</a></li>
+                    <li><a
+                            href="https://namu.wiki/w/%EB%B6%84%EB%A5%98:%EC%B2%A0%EA%B6%8C%20%EC%8B%9C%EB%A6%AC%EC%A6%88/%EB%93%B1%EC%9E%A5%EC%9D%B8%EB%AC%BC">자세한건
+                            여기를 클릭!</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- character popup -->
+        <div class="infoandpic_char">
+            <div class="character-container" id="character1">
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
+            </div>
+
+            <div class="character-container" id="character2">
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
+            </div>
+
+            <div class="character-container" id="character3">
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
+            </div>
+
+            <div class="character-container" id="character4">
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
+            </div>
+
+            <div class="character-container" id="character5">
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
+            </div>
+
+            <div class="character-container" id="character6">
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
+            </div>
+
+            <div class="character-container" id="character7">
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
+            </div>
+
+            <div class="character-container" id="character8">
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
+            </div>
+
+            <div class="character-container" id="character9">
+                <p>DIFFICULTY</p>
+                <p class="character-info"></p>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+</body>
+
+
+</html>

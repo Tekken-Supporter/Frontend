@@ -1,0 +1,842 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-clip {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+@media (min-aspect-ratio:16/9) {
+    .background-clip {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-aspect-ratio:16/9) {
+    .background-clip {
+        width: auto;
+        height: 100%;
+    }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.navigation .btnLogout {
+    width: 100px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.btnQuest-popup {
+    width: 200px;
+    height: 50px;
+    top: 50%;
+    left: 10%;
+    position: absolute;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 2em;
+    color: #fff;
+    font-weight: 500;
+    /* margin-left: 40px; */
+    transition: .5s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+/* 대결 신청 팝업 */
+
+.wrapper {
+    position: absolute;
+    left: 8%;
+    width: 400px;
+    height: 600px;
+    background: transparent;
+    background-color: rgba(255, 255, 255, .3);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.wrapper.active {
+    height: 520px;
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #272727;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box h2 {
+    font-size: 2em;
+    color: #272727;
+    text-align: center;
+}
+
+.wrapper form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.wrapper .input-box .icon {
+    position: absolute;
+    left: 10px;
+    font-size: 1.2em;
+    color: #272727;
+    /*line-height: 30px;*/
+}
+
+.wrapper .input-box input, output{
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.wrapper .input-box select {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.wrapper .input-box select option {
+    color: black;
+    background: white;
+}
+
+.wrapper .input-box output {
+    display: block;
+}
+
+.wrapper .input-box textarea {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+}
+
+.wrapper .input-box label {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: -37px;
+    padding: 10px;
+    color: black;
+    cursor: text;
+    transition: 0.2s;
+}
+
+.wrapper .quest_btn {
+    padding: 10px 0;
+    width: 100%;
+    height: 45px;
+    background: #272727;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* 대결 수락 팝업*/
+
+.wrapper_unread {
+    position: absolute;
+    left: 8%;
+    width: 400px;
+    height: 600px;
+    background: transparent;
+    background-color: rgba(255, 255, 255, .3);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper_unread.active-popup {
+    transform: scale(1);
+}
+
+.wrapper_unread.active {
+    height: 520px;
+}
+
+.wrapper_unread .icon-close2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #272727;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.wrapper_unread .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper_unread .form-box h2 {
+    font-size: 2em;
+    color: #272727;
+    text-align: center;
+}
+
+.wrapper_unread form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.wrapper_unread .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.wrapper_unread .input-box .icon {
+    position: absolute;
+    left: 10px;
+    font-size: 1.2em;
+    color: #272727;
+    /*line-height: 30px;*/
+}
+
+.wrapper_unread .input-box input, output{
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.wrapper_unread .input-box output {
+    display: block;
+}
+
+.wrapper_unread .input-box textarea {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+}
+
+.wrapper_unread .input-box label {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: -37px;
+    padding: 10px;
+    color: black;
+    cursor: text;
+    transition: 0.2s;
+}
+
+.wrapper_unread .quest_btn {
+    padding: 10px 0;
+    width: 45%;
+    height: 45px;
+    background: #272727;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    margin: 0 6.8px;
+}
+
+/* 대결 결과 팝업*/
+
+.wrapper_result {
+    position: absolute;
+    left: 8%;
+    width: 400px;
+    height: 600px;
+    background: transparent;
+    background-color: rgba(255, 255, 255, .3);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper_result.active-popup {
+    transform: scale(1);
+}
+
+.wrapper_result.active {
+    height: 520px;
+}
+
+.wrapper_result .icon-close3 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #272727;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.wrapper_result .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper_result .form-box h2 {
+    font-size: 2em;
+    color: #272727;
+    text-align: center;
+}
+
+.wrapper_result form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.wrapper_result .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.wrapper_result .input-box .icon {
+    position: absolute;
+    left: 10px;
+    font-size: 1.2em;
+    color: #272727;
+    /*line-height: 30px;*/
+}
+
+.wrapper_result .input-box output{
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.wrapper_result .input-box input {
+    width: 20%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.wrapper_result .input-box label {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: -37px;
+    padding: 10px;
+    color: black;
+    cursor: text;
+    transition: 0.2s;
+}
+
+.wrapper_result .quest_btn {
+    padding: 10px 0;
+    width: 100%;
+    height: 45px;
+    background: #272727;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    margin: 0 6.8px;
+}
+
+/* 대결 결과 팝업*/
+
+.wrapper_record {
+    position: absolute;
+    left: 8%;
+    width: 400px;
+    height: 600px;
+    background: transparent;
+    background-color: rgba(255, 255, 255, .3);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper_record.active-popup {
+    transform: scale(1);
+}
+
+.wrapper_record.active {
+    height: 520px;
+}
+
+.wrapper_record .icon-close4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #272727;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.wrapper_record .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper_record .form-box h2 {
+    font-size: 2em;
+    color: #272727;
+    text-align: center;
+}
+
+.wrapper_record form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.wrapper_record .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.wrapper_record .input-box .icon {
+    position: absolute;
+    left: 10px;
+    font-size: 1.2em;
+    color: #272727;
+    /*line-height: 30px;*/
+}
+
+.wrapper_record .input-box output{
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.wrapper_record .input-box input {
+    width: 20%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.wrapper_record .input-box label {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: -37px;
+    padding: 10px;
+    color: black;
+    cursor: text;
+    transition: 0.2s;
+}
+
+/* 리스트 */
+
+.wrapper_list {
+    position: absolute;
+    right: 8%;
+    display: flex;
+    width: 1000px;
+    height: 600px;
+    background: transparent;
+    background-color: rgba(255, 255, 255, .3);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    overflow: hidden;
+    transform: scale(1);
+}
+
+.unread_list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 70px 30px 30px 30px;
+    border-right: 1px solid #ddd;
+}
+
+.past_list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 70px 30px 30px 30px;
+}
+
+.unread_list h2,
+.past_list h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.board_list_ur,
+.board_list_p,
+.board_page {
+    width: 100%;
+    text-align: center;
+}
+
+/*미확인 보드 스타일링*/
+
+.board_list_ur {
+    width: 100%;
+    border-top: 2px solid #000;
+}
+
+.board_list_ur>div {
+    border-bottom: 1px solid #ddd;
+    font-size: 0;
+}
+
+.board_list_ur>div.top {
+    border-bottom: 1.5px solid #000;
+}
+
+.board_list_ur>div:last-child {
+    border-bottom: 1.5px solid #000;
+}
+
+.board_list_ur>div>div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.board_list_ur>div.top>div {
+    font-weight: 600;
+}
+
+.board_list_ur .num {
+    width: 10%;
+}
+
+.board_list_ur .name {
+    width: 70%;
+}
+
+.btnAccept-popup {
+    background: none; 
+    border: none; 
+    color: inherit; 
+    font: inherit; 
+    cursor: pointer; 
+    padding: 0; 
+    margin: 0; 
+    text-align: left; 
+    display: inline; 
+    line-height: normal; 
+}
+
+.board_list_ur .date {
+    width: 20%;
+}
+
+/* 전적 보드 스타일링 */
+
+.board_list_p {
+    width: 100%;
+    border-top: 2px solid #000;
+}
+
+.board_list_p .top {
+    font-size: 0;
+}
+
+.board_list_p .top > div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.board_list_p>div.top>div {
+    font-weight: 600;
+}
+
+.board_list_p .num, .numT {
+    width: 10%;
+}
+
+.board_list_p .name, .nameT {
+    width: 30%;
+}
+
+.board_list_p .result, .resultT {
+    width: 30%;
+}
+
+.board_list_p .date, .dateT {
+    width: 30%;
+}
+
+.list {
+    width: 100%;
+    border-top: 2px solid #000;
+}
+
+.list > div {
+    border-bottom: 1px solid #ddd;
+    font-size: 0;
+}
+
+.list > div:last-child {
+    border-bottom: 1.5px solid #000;
+}
+
+.list > div > div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.btnResult-popup {
+    background: none; 
+    border: none; 
+    color: inherit; 
+    font: inherit; 
+    cursor: pointer; 
+    padding: 0; 
+    margin: 0; 
+    text-align: left; 
+    display: inline; 
+    line-height: normal; 
+}
+
+/* 페이지 */
+
+.board_page {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.board_page a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+
+.board_page a.bt {
+    padding-top: 5px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+    color: #272727;
+}
+
+.board_page a.num {
+    padding-top: 7px;
+    font-size: 1rem;
+    color: #272727;
+}
+
+.board_page a.num.on {
+    color: #fff;
+}
+
+.board_page a:first-child {
+    border-left: 1px solid #ddd;
+}
